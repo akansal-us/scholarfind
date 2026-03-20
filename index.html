@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <title>ScholarFind — Phoenixville 19460</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
@@ -92,6 +95,11 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .tab-header{margin-bottom:1.2rem}
 .tab-header h2{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900}
 .tab-header p{color:var(--slate);margin-top:0.25rem;font-size:0.9rem}
+
+/* TAB SEARCH */
+.tab-search{margin-bottom:1rem}
+.tab-search input{width:100%;padding:0.75rem 1.2rem;border:1.5px solid var(--light);border-radius:50px;font-size:0.95rem;font-family:'DM Sans',sans-serif;outline:none;background:var(--white);color:var(--navy);transition:border-color 0.2s}
+.tab-search input:focus{border-color:var(--teal)}
 
 /* FILTER BAR */
 .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
@@ -252,11 +260,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <div class="hero">
   <h1>Find <span>Scholarships</span> &amp; Opportunities</h1>
   <p>Real, verified opportunities for Phoenixville-area students · ZIP 19460</p>
-  <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Search scholarships, internships, universities…" oninput="filterCards()"/>
-    <button onclick="filterCards()">Search</button>
-  </div>
-  <p style="margin-top:0.6rem;font-size:0.78rem;color:#64748b;">🔍 Searches within Phoenixville · ZIP 19460 listings only</p>
+
 </div>
 
 <div class="stats-bar">
@@ -274,6 +278,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <div class="section active" id="tab-scholarships">
   <div class="tab-header"><h2>🏆 Scholarships</h2><p>Real, verified scholarships for Phoenixville-area students</p></div>
   <div class="warn-banner">⚠️ <strong>Always verify:</strong> Deadlines and award amounts change each year. Confirm details with your school counselor, check Naviance, and visit each organization's website before applying.</div>
+  <div class="tab-search">
+    <input type="text" id="search-schol" placeholder="Search scholarships…" oninput="renderScholarships()" />
+  </div>
   <div class="filter-bar" id="schol-filters">
     <button class="filter-btn active" onclick="setFilter('schol','All',this)">All</button>
     <button class="filter-btn" onclick="setFilter('schol','STEM',this)">STEM</button>
@@ -289,6 +296,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <div class="section" id="tab-internships">
   <div class="tab-header"><h2>💼 Internships &amp; Programs</h2><p>Local opportunities within 15 miles of Phoenixville 19460</p></div>
   <div class="warn-banner">💡 <strong>Tip:</strong> Apply early — some programs (like SEI Investments) have short application windows in January only.</div>
+  <div class="tab-search">
+    <input type="text" id="search-intern" placeholder="Search internships…" oninput="renderInternships()" />
+  </div>
   <div class="filter-bar" id="intern-filters">
     <button class="filter-btn active" onclick="setFilter('intern','All',this)">All</button>
     <button class="filter-btn" onclick="setFilter('intern','Finance',this)">Finance</button>
@@ -401,6 +411,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <div class="section" id="tab-university">
   <div class="tab-header"><h2>🎓 University Programs</h2><p>Summer programs, dual enrollment &amp; college prep for grades 6–12</p></div>
   <div class="warn-banner">🎓 <strong>Note:</strong> These are real programs from nearby universities. Deadlines and fees change each year — always verify at the university's website before applying.</div>
+  <div class="tab-search">
+    <input type="text" id="search-uni" placeholder="Search by university name or keyword…" oninput="renderUniversityPrograms()" />
+  </div>
   <div class="filter-bar" id="uni-filters">
     <button class="filter-btn active" onclick="setFilter('uni','All',this)">All</button>
     <button class="filter-btn" onclick="setFilter('uni','Middle School',this)">Middle School</button>
@@ -1116,7 +1129,7 @@ const universityPrograms = [
 let currentUniFilter = 'All';
 
 function renderUniversityPrograms() {
-  const q = document.getElementById('search-input').value.toLowerCase();
+  const q = (document.getElementById('search-uni')?.value || '').toLowerCase();
   const grid = document.getElementById('uni-grid');
   const filtered = universityPrograms.filter(p => {
     const matchCat = currentUniFilter === 'All' ? true
@@ -1166,7 +1179,7 @@ let quizAnswers = {};
 // RENDER
 // ============================================================
 function renderScholarships() {
-  const q = document.getElementById('search-input').value.toLowerCase();
+  const q = (document.getElementById('search-schol')?.value || '').toLowerCase();
   const grid = document.getElementById('schol-grid');
   const filtered = scholarships.filter(s => {
     const matchCat = currentScholFilter === 'All' || s.category === currentScholFilter;
@@ -1177,7 +1190,7 @@ function renderScholarships() {
 }
 
 function renderInternships() {
-  const q = document.getElementById('search-input').value.toLowerCase();
+  const q = (document.getElementById('search-intern')?.value || '').toLowerCase();
   const grid = document.getElementById('intern-grid');
   const filtered = internships.filter(s => {
     const matchCat = currentInternFilter === 'All' || s.category === currentInternFilter;
@@ -1273,29 +1286,29 @@ function setFilter(scope, val, btn) {
   btn.classList.add('active');
 }
 
+let currentTab = 'scholarships';
+
 function filterCards() {
-  const activeTab = document.querySelector('.section.active');
-  if (!activeTab) return;
-  const id = activeTab.id;
-  if (id === 'tab-scholarships') renderScholarships();
-  else if (id === 'tab-internships') renderInternships();
-  else if (id === 'tab-university') renderUniversityPrograms();
-  else renderScholarships();
+  if (currentTab === 'scholarships') renderScholarships();
+  else if (currentTab === 'internships') renderInternships();
+  else if (currentTab === 'university') renderUniversityPrograms();
 }
 
 function switchTab(tab, btn) {
+  currentTab = tab;
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
-  // Mark active in both desktop nav and mobile drawer
   document.querySelectorAll('.tab-btn').forEach(b => {
     if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + tab + "'")) {
       b.classList.add('active');
     }
   });
   if (tab === 'saved') renderSaved();
-  if (tab === 'deadlines') renderDeadlines();
-  if (tab === 'university') renderUniversityPrograms();
+  else if (tab === 'deadlines') renderDeadlines();
+  else if (tab === 'university') renderUniversityPrograms();
+  else if (tab === 'scholarships') renderScholarships();
+  else if (tab === 'internships') renderInternships();
 }
 
 function toggleDrawer() {
