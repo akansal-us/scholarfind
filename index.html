@@ -253,7 +253,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
   <h1>Find <span>Scholarships</span> &amp; Opportunities</h1>
   <p>Real, verified opportunities for Phoenixville-area students · ZIP 19460</p>
   <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Search by name, keyword, or subject…" oninput="filterCards()"/>
+    <input type="text" id="search-input" placeholder="Search scholarships, internships, universities…" oninput="filterCards()"/>
     <button onclick="filterCards()">Search</button>
   </div>
   <p style="margin-top:0.6rem;font-size:0.78rem;color:#64748b;">🔍 Searches within Phoenixville · ZIP 19460 listings only</p>
@@ -415,13 +415,14 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <!-- SAVED TAB -->
 <div class="section" id="tab-saved">
-  <div class="tab-header"><h2>⭐ Saved Items</h2><p>Scholarships and programs you've bookmarked</p></div>
+  <div class="tab-header"><h2>⭐ Saved Items</h2><p>Scholarships and programs you've bookmarked · <span style="color:var(--warn)">⚠️ Stored on this device only</span></p></div>
   <div id="saved-grid-wrap">
     <div class="cards-grid" id="saved-grid"></div>
     <div class="saved-empty hidden" id="saved-empty">
       <span>⭐</span>
       <h3>No saved items yet</h3>
       <p>Click the ☆ on any scholarship or internship to save it here.</p>
+      <p style="margin-top:0.75rem;font-size:0.8rem;color:#94a3b8;">Saves are stored in your browser on this device only.<br>They will persist when you return — unless you clear your browser data.</p>
     </div>
   </div>
 </div>
@@ -1115,13 +1116,16 @@ const universityPrograms = [
 let currentUniFilter = 'All';
 
 function renderUniversityPrograms() {
+  const q = document.getElementById('search-input').value.toLowerCase();
   const grid = document.getElementById('uni-grid');
   const filtered = universityPrograms.filter(p => {
-    if (currentUniFilter === 'All') return true;
-    if (currentUniFilter === 'Middle School') return p.tags.includes('Middle School');
-    if (currentUniFilter === 'High School') return p.tags.includes('High School');
-    if (currentUniFilter === 'Free') return p.tags.includes('Free');
-    return p.tags.includes(currentUniFilter);
+    const matchCat = currentUniFilter === 'All' ? true
+      : currentUniFilter === 'Middle School' ? p.tags.includes('Middle School')
+      : currentUniFilter === 'High School' ? p.tags.includes('High School')
+      : currentUniFilter === 'Free' ? p.tags.includes('Free')
+      : p.tags.includes(currentUniFilter);
+    const matchQ = !q || p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.source.toLowerCase().includes(q) || (p.tags && p.tags.join(' ').toLowerCase().includes(q));
+    return matchCat && matchQ;
   });
   grid.innerHTML = filtered.length ? filtered.map(p => uniCardHTML(p)).join('') : '<p style="color:var(--slate);padding:2rem">No matching programs found.</p>';
 }
@@ -1173,8 +1177,13 @@ function renderScholarships() {
 }
 
 function renderInternships() {
+  const q = document.getElementById('search-input').value.toLowerCase();
   const grid = document.getElementById('intern-grid');
-  const filtered = internships.filter(s => currentInternFilter === 'All' || s.category === currentInternFilter);
+  const filtered = internships.filter(s => {
+    const matchCat = currentInternFilter === 'All' || s.category === currentInternFilter;
+    const matchQ = !q || s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.category.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
   grid.innerHTML = filtered.length ? filtered.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching internships found.</p>';
 }
 
@@ -1264,7 +1273,15 @@ function setFilter(scope, val, btn) {
   btn.classList.add('active');
 }
 
-function filterCards() { renderScholarships(); }
+function filterCards() {
+  const activeTab = document.querySelector('.section.active');
+  if (!activeTab) return;
+  const id = activeTab.id;
+  if (id === 'tab-scholarships') renderScholarships();
+  else if (id === 'tab-internships') renderInternships();
+  else if (id === 'tab-university') renderUniversityPrograms();
+  else renderScholarships();
+}
 
 function switchTab(tab, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
