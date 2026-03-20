@@ -1,0 +1,58 @@
+name: Weekly scholarship update
+
+on:
+  schedule:
+    - cron: '0 9 * * 0'   # Every Sunday at 9am UTC
+  workflow_dispatch:       # Also allows manual trigger from GitHub UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch@3
+
+      - name: Run AI update script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/update-data.mjs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet data/scholarships.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto-update: scholarships & programs data"
+          title: "Weekly data update — please review before merging"
+          body: |
+            ## What changed
+            The AI searched the web for updates to scholarships, internships, and university programs near Phoenixville PA 19460.
+
+            **What to check before approving:**
+            - [ ] Deadline dates look accurate
+            - [ ] Award amounts are reasonable
+            - [ ] No programs were incorrectly removed
+            - [ ] New items (if any) look legitimate
+
+            Review the `data/scholarships.json` diff in the Files tab above.
+            If everything looks good, click **Merge pull request**.
+            If something looks wrong, click **Close pull request** to skip this week.
+          branch: auto-update/weekly
+          delete-branch: true
