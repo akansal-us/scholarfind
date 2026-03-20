@@ -121,18 +121,43 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .countdown.ok{color:var(--success)}
 
 /* QUIZ */
-.quiz-wrap{max-width:640px;margin:0 auto}
+.quiz-wrap{max-width:680px;margin:0 auto}
 .quiz-wrap h2{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;margin-bottom:0.4rem}
-.quiz-wrap p{color:var(--slate);margin-bottom:1.5rem}
-.quiz-card{background:var(--white);border-radius:var(--radius);padding:1.8rem;box-shadow:var(--card-shadow)}
-.quiz-q{font-weight:600;margin-bottom:0.75rem;font-size:0.95rem}
-.quiz-options{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem}
-.quiz-opt{border:1.5px solid var(--light);background:var(--cream);padding:0.45rem 1rem;border-radius:50px;cursor:pointer;font-size:0.85rem;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.quiz-wrap>p{color:var(--slate);margin-bottom:1.5rem}
+.quiz-progress{display:flex;gap:6px;margin-bottom:1.5rem}
+.quiz-pip{height:5px;flex:1;border-radius:99px;background:var(--light);transition:background 0.3s}
+.quiz-pip.done{background:var(--teal)}
+.quiz-pip.active{background:var(--gold)}
+.quiz-card{background:var(--white);border-radius:var(--radius);padding:2rem;box-shadow:var(--card-shadow);min-height:220px}
+.quiz-step{display:none}
+.quiz-step.active{display:block;animation:fadeIn 0.25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.quiz-step-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--slate);font-weight:600;margin-bottom:0.4rem}
+.quiz-q{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;margin-bottom:1.2rem;color:var(--navy);line-height:1.3}
+.quiz-options{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:1.4rem}
+.quiz-opt{border:1.5px solid var(--light);background:var(--cream);padding:0.55rem 1.1rem;border-radius:50px;cursor:pointer;font-size:0.88rem;font-family:'DM Sans',sans-serif;font-weight:500;transition:all 0.2s;color:var(--navy)}
+.quiz-opt:hover{border-color:var(--teal);background:#e0f2ef}
 .quiz-opt.selected{background:var(--teal);color:white;border-color:var(--teal)}
-.quiz-btn{background:var(--gold);color:var(--navy);border:none;padding:0.85rem 2rem;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:0.5rem;transition:background 0.2s}
-.quiz-btn:hover{background:#e6b800}
-.quiz-results{margin-top:1.5rem}
-.quiz-results h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:1rem;color:var(--teal)}
+.quiz-nav{display:flex;gap:0.75rem;align-items:center;margin-top:0.5rem}
+.quiz-btn{background:var(--teal);color:white;border:none;padding:0.75rem 1.8rem;border-radius:50px;font-weight:600;font-size:0.95rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
+.quiz-btn:hover{background:#158a7c}
+.quiz-btn.gold{background:var(--gold);color:var(--navy)}
+.quiz-btn.gold:hover{background:#e6b800}
+.quiz-btn-back{background:none;border:1.5px solid var(--light);color:var(--slate);padding:0.7rem 1.4rem;border-radius:50px;font-weight:500;font-size:0.88rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.quiz-btn-back:hover{border-color:var(--slate)}
+.quiz-results-wrap{margin-top:1.5rem}
+.quiz-results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem}
+.quiz-results-header h3{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--teal)}
+.quiz-reset-btn{background:none;border:1.5px solid var(--teal);color:var(--teal);padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.quiz-reset-btn:hover{background:var(--teal);color:white}
+.quiz-match-card{background:var(--cream);border-radius:10px;padding:1rem 1.2rem;margin-bottom:0.75rem;cursor:pointer;border:1.5px solid transparent;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.quiz-match-card:hover{border-color:var(--teal);background:var(--white)}
+.quiz-match-title{font-weight:600;font-size:0.95rem;margin-bottom:0.2rem}
+.quiz-match-amount{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--teal);font-weight:700}
+.quiz-match-deadline{font-size:0.78rem;color:var(--slate);margin-top:0.2rem}
+.quiz-match-arrow{color:var(--teal);font-size:1.2rem;flex-shrink:0}
+.quiz-no-match{text-align:center;padding:2rem;color:var(--slate)}
+.quiz-no-match span{font-size:2.5rem;display:block;margin-bottom:0.75rem}
 
 /* SAVED */
 .saved-empty{text-align:center;padding:4rem 2rem;color:var(--slate)}
@@ -238,42 +263,86 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <div class="section" id="tab-quiz">
   <div class="quiz-wrap">
     <h2>🎯 Eligibility Quiz</h2>
-    <p>Answer 5 quick questions and we'll show you scholarships you actually qualify for.</p>
-    <div class="quiz-card">
-      <div class="quiz-q">1. What grade are you in?</div>
-      <div class="quiz-options" id="q-grade">
-        <button class="quiz-opt" onclick="selectOpt(this,'grade','9th')">9th Grade</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'grade','10th')">10th Grade</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'grade','11th')">11th Grade</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'grade','12th')">12th Grade (Senior)</button>
+    <p>Answer 5 quick questions to see which scholarships you actually qualify for.</p>
+    <div class="quiz-progress">
+      <div class="quiz-pip active" id="pip-0"></div>
+      <div class="quiz-pip" id="pip-1"></div>
+      <div class="quiz-pip" id="pip-2"></div>
+      <div class="quiz-pip" id="pip-3"></div>
+      <div class="quiz-pip" id="pip-4"></div>
+    </div>
+    <div class="quiz-card" id="quiz-card">
+      <div class="quiz-step active" id="step-0">
+        <div class="quiz-step-label">Question 1 of 5</div>
+        <div class="quiz-q">What grade are you in?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','9th')">9th Grade</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','10th')">10th Grade</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','11th')">11th Grade</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','12th')">12th Grade (Senior)</button>
+        </div>
+        <div class="quiz-nav"><button class="quiz-btn" onclick="quizNext(1)">Next →</button></div>
       </div>
-      <div class="quiz-q">2. What is your GPA range?</div>
-      <div class="quiz-options" id="q-gpa">
-        <button class="quiz-opt" onclick="selectOpt(this,'gpa','below3')">Below 3.0</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'gpa','3to35')">3.0 – 3.49</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'gpa','35plus')">3.5 or above</button>
+      <div class="quiz-step" id="step-1">
+        <div class="quiz-step-label">Question 2 of 5</div>
+        <div class="quiz-q">What is your GPA range?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="pickOpt(this,'gpa','below3')">Below 3.0</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'gpa','3to35')">3.0 – 3.49</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'gpa','35plus')">3.5 or above</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="quizBack(0)">← Back</button>
+          <button class="quiz-btn" onclick="quizNext(2)">Next →</button>
+        </div>
       </div>
-      <div class="quiz-q">3. What are your main interest areas?</div>
-      <div class="quiz-options" id="q-interest">
-        <button class="quiz-opt" onclick="selectOpt(this,'interest','STEM')">STEM</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'interest','Healthcare')">Healthcare</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'interest','Arts')">Arts</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'interest','Community')">Community Service</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'interest','General')">General / Undecided</button>
+      <div class="quiz-step" id="step-2">
+        <div class="quiz-step-label">Question 3 of 5</div>
+        <div class="quiz-q">What are your main interest areas?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','STEM')">STEM</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Healthcare')">Healthcare</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Arts')">Arts</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Community')">Community Service</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','General')">General / Undecided</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="quizBack(1)">← Back</button>
+          <button class="quiz-btn" onclick="quizNext(3)">Next →</button>
+        </div>
       </div>
-      <div class="quiz-q">4. Are you a first-generation college student?</div>
-      <div class="quiz-options" id="q-firstgen">
-        <button class="quiz-opt" onclick="selectOpt(this,'firstgen','yes')">Yes</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'firstgen','no')">No</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'firstgen','unsure')">Not Sure</button>
+      <div class="quiz-step" id="step-3">
+        <div class="quiz-step-label">Question 4 of 5</div>
+        <div class="quiz-q">Are you a first-generation college student?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="pickOpt(this,'firstgen','yes')">Yes</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'firstgen','no')">No</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'firstgen','unsure')">Not sure</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="quizBack(2)">← Back</button>
+          <button class="quiz-btn" onclick="quizNext(4)">Next →</button>
+        </div>
       </div>
-      <div class="quiz-q">5. Does a family member work in retail or food industry (Wawa, Giant, etc.)?</div>
-      <div class="quiz-options" id="q-family">
-        <button class="quiz-opt" onclick="selectOpt(this,'family','yes')">Yes</button>
-        <button class="quiz-opt" onclick="selectOpt(this,'family','no')">No</button>
+      <div class="quiz-step" id="step-4">
+        <div class="quiz-step-label">Question 5 of 5</div>
+        <div class="quiz-q">Does a family member work in retail or food industry (Wawa, Giant, etc.)?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="pickOpt(this,'family','yes')">Yes</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'family','no')">No</button>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn-back" onclick="quizBack(3)">← Back</button>
+          <button class="quiz-btn gold" onclick="runQuiz()">Show My Matches →</button>
+        </div>
       </div>
-      <button class="quiz-btn" onclick="runQuiz()">Show My Matches →</button>
-      <div class="quiz-results hidden" id="quiz-results"></div>
+    </div>
+    <div class="quiz-results-wrap hidden" id="quiz-results-wrap">
+      <div class="quiz-results-header">
+        <h3 id="quiz-results-title">Your matches</h3>
+        <button class="quiz-reset-btn" onclick="resetQuiz()">↺ Start over</button>
+      </div>
+      <div id="quiz-results-list"></div>
     </div>
   </div>
 </div>
@@ -1043,15 +1112,27 @@ function toggleSave(id, btn) {
 // ============================================================
 // QUIZ
 // ============================================================
-function selectOpt(btn, key, val) {
+function pickOpt(btn, key, val) {
   btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   quizAnswers[key] = val;
 }
 
+function quizNext(stepIndex) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + stepIndex).classList.add('active');
+  for (let i = 0; i < 5; i++) {
+    const pip = document.getElementById('pip-' + i);
+    pip.className = 'quiz-pip' + (i < stepIndex ? ' done' : i === stepIndex ? ' active' : '');
+  }
+}
+
+function quizBack(stepIndex) {
+  quizNext(stepIndex);
+}
+
 function runQuiz() {
   const { grade, gpa, interest, family } = quizAnswers;
-  const results = document.getElementById('quiz-results');
   const gpRank = {below3:0,'3to35':1,'35plus':2};
   const matched = scholarships.filter(s => {
     if (grade && s.grades && !s.grades.includes(grade)) return false;
@@ -1060,15 +1141,42 @@ function runQuiz() {
     if (s.familyRetail && family !== 'yes') return false;
     return true;
   });
-  results.classList.remove('hidden');
+  const wrap = document.getElementById('quiz-results-wrap');
+  const list = document.getElementById('quiz-results-list');
+  const title = document.getElementById('quiz-results-title');
+  document.getElementById('quiz-card').style.display = 'none';
+  document.querySelector('.quiz-progress').style.display = 'none';
+  wrap.classList.remove('hidden');
   if (matched.length === 0) {
-    results.innerHTML = '<h3>No exact matches — but check All Scholarships!</h3><p style="font-size:0.85rem;color:var(--slate)">Try adjusting your answers or browse the full list.</p>';
+    title.textContent = 'No exact matches found';
+    list.innerHTML = `<div class="quiz-no-match"><span>🔍</span><p>Try adjusting your answers — or browse the full scholarships tab to see everything available.</p><button class="quiz-btn" style="margin-top:1rem" onclick="resetQuiz()">Try again</button></div>`;
   } else {
-    results.innerHTML = `<h3>🎉 ${matched.length} matching scholarship${matched.length>1?'s':''} found!</h3>` +
-      matched.map(s => `<div class="deadline-card" style="margin-bottom:0.75rem;cursor:pointer" onclick="openModal('${s.id}')">
-        <div class="deadline-name">${s.title}</div>
-        <div class="deadline-date">${s.amount} · Due: ${s.deadline}</div>
-      </div>`).join('');
+    title.textContent = matched.length + ' scholarship' + (matched.length > 1 ? 's' : '') + ' matched!';
+    list.innerHTML = matched.map(s => {
+      const urgency = getUrgency(s.deadlineDate);
+      return `<div class="quiz-match-card" onclick="openModal('${s.id}')">
+        <div>
+          <div class="quiz-match-title">${s.title}</div>
+          <div class="quiz-match-amount">${s.amount}</div>
+          <div class="quiz-match-deadline">📅 ${s.deadline} &nbsp;<span class="badge ${urgency.cls}">${urgency.label}</span></div>
+        </div>
+        <div class="quiz-match-arrow">→</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function resetQuiz() {
+  quizAnswers = {};
+  document.getElementById('quiz-card').style.display = '';
+  document.querySelector('.quiz-progress').style.display = '';
+  document.getElementById('quiz-results-wrap').classList.add('hidden');
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-0').classList.add('active');
+  document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+  for (let i = 0; i < 5; i++) {
+    const pip = document.getElementById('pip-' + i);
+    pip.className = 'quiz-pip' + (i === 0 ? ' active' : '');
   }
 }
 
