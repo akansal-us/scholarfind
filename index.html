@@ -33,10 +33,36 @@ header{background:var(--navy);padding:0 2rem;position:sticky;top:0;z-index:100;b
 
 /* NAV TABS */
 nav{background:var(--white);border-bottom:2px solid var(--light);position:sticky;top:64px;z-index:99}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;overflow-x:auto}
-.tab-btn{border:none;background:none;padding:1rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;color:var(--slate);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.2s}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.tab-btn{border:none;background:none;padding:1rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;color:var(--slate);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
 .tab-btn:hover{color:var(--teal)}
 .tab-btn.active{color:var(--teal);border-bottom-color:var(--teal);font-weight:600}
+
+/* HAMBURGER */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:0.4rem;color:var(--white);flex-direction:column;gap:5px;justify-content:center;align-items:center}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE DRAWER */
+.mobile-drawer{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);z-index:98;box-shadow:0 8px 24px rgba(13,27,42,0.15);border-top:2px solid var(--light)}
+.mobile-drawer.open{display:block}
+.mobile-drawer .tab-btn{display:flex;width:100%;padding:1rem 1.5rem;font-size:1rem;border-bottom:1px solid var(--light);border-left:3px solid transparent;text-align:left;gap:0.6rem;align-items:center}
+.mobile-drawer .tab-btn.active{border-left-color:var(--teal);border-bottom-color:var(--light);color:var(--teal);background:#f0fdf9}
+.mobile-drawer .tab-btn:last-child{border-bottom:none}
+.drawer-overlay{display:none;position:fixed;inset:0;top:64px;background:rgba(13,27,42,0.3);z-index:97}
+.drawer-overlay.open{display:block}
+
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-desktop{display:none}
+}
+@media(min-width:769px){
+  .mobile-drawer{display:none!important}
+  .drawer-overlay{display:none!important}
+}
 
 /* HERO */
 .hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 60%,#1a9e8f22 100%);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
@@ -171,11 +197,14 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .hidden{display:none!important}
 
 /* RESPONSIVE */
-@media(max-width:600px){
+@media(max-width:768px){
   .hero h1{font-size:1.6rem}
+  .hero{padding:2rem 1.2rem 1.8rem}
   .cards-grid{grid-template-columns:1fr}
   .header-inner{gap:0.5rem}
   .tagline{display:none}
+  main{padding:1.2rem}
+  .stats-inner{gap:1rem}
 }
 </style>
 </head>
@@ -187,19 +216,33 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
       <div class="logo">Scholar<span>Find</span></div>
       <div class="tagline">Phoenixville, PA · ZIP 19460</div>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
 <nav>
-  <div class="nav-inner">
+  <div class="nav-inner nav-desktop">
     <button class="tab-btn active" onclick="switchTab('scholarships',this)">🏆 Scholarships</button>
-    <button class="tab-btn" onclick="switchTab('internships',this)">💼 Internships & Programs</button>
-    <button class="tab-btn" onclick="switchTab('deadlines',this)">📅 Deadline Tracker</button>
-    <button class="tab-btn" onclick="switchTab('quiz',this)">🎯 Eligibility Quiz</button>
-    <button class="tab-btn" onclick="switchTab('university',this)">🎓 University Programs</button>
+    <button class="tab-btn" onclick="switchTab('internships',this)">💼 Internships</button>
+    <button class="tab-btn" onclick="switchTab('deadlines',this)">📅 Deadlines</button>
+    <button class="tab-btn" onclick="switchTab('quiz',this)">🎯 Quiz</button>
+    <button class="tab-btn" onclick="switchTab('university',this)">🎓 University</button>
     <button class="tab-btn" onclick="switchTab('saved',this)">⭐ Saved (<span id="saved-count">0</span>)</button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <button class="tab-btn active" onclick="switchTab('scholarships',this);closeDrawer()">🏆 Scholarships</button>
+  <button class="tab-btn" onclick="switchTab('internships',this);closeDrawer()">💼 Internships & Programs</button>
+  <button class="tab-btn" onclick="switchTab('deadlines',this);closeDrawer()">📅 Deadline Tracker</button>
+  <button class="tab-btn" onclick="switchTab('quiz',this);closeDrawer()">🎯 Eligibility Quiz</button>
+  <button class="tab-btn" onclick="switchTab('university',this);closeDrawer()">🎓 University Programs</button>
+  <button class="tab-btn" onclick="switchTab('saved',this);closeDrawer()">⭐ Saved (<span id="saved-count-mobile">0</span>)</button>
+</div>
 
 <div class="hero">
   <h1>Find <span>Scholarships</span> &amp; Opportunities</h1>
@@ -1179,6 +1222,7 @@ function renderSaved() {
   if (items.length === 0) { grid.innerHTML = ''; empty.classList.remove('hidden'); }
   else { empty.classList.add('hidden'); grid.innerHTML = items.map(s => cardHTML(s)).join(''); }
   document.getElementById('saved-count').textContent = savedItems.length;
+document.getElementById('saved-count-mobile').textContent = savedItems.length;
 }
 
 // ============================================================
@@ -1217,10 +1261,31 @@ function switchTab(tab, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
-  btn.classList.add('active');
+  // Mark active in both desktop nav and mobile drawer
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + tab + "'")) {
+      b.classList.add('active');
+    }
+  });
   if (tab === 'saved') renderSaved();
   if (tab === 'deadlines') renderDeadlines();
   if (tab === 'university') renderUniversityPrograms();
+}
+
+function toggleDrawer() {
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const hamburger = document.getElementById('hamburger');
+  const isOpen = drawer.classList.contains('open');
+  drawer.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  hamburger.classList.toggle('open', !isOpen);
+}
+
+function closeDrawer() {
+  document.getElementById('mobile-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
 }
 
 // ============================================================
@@ -1236,6 +1301,8 @@ function toggleSave(id, btn) {
   }
   localStorage.setItem('sf_saved', JSON.stringify(savedItems));
   document.getElementById('saved-count').textContent = savedItems.length;
+document.getElementById('saved-count-mobile').textContent = savedItems.length;
+  document.getElementById('saved-count-mobile').textContent = savedItems.length;
 }
 
 // ============================================================
@@ -1316,6 +1383,7 @@ renderScholarships();
 renderInternships();
 renderUniversityPrograms();
 document.getElementById('saved-count').textContent = savedItems.length;
+document.getElementById('saved-count-mobile').textContent = savedItems.length;
 </script>
 </body>
 </html>
