@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ScholarFind — Phoenixville 19460</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0d1b2a;
+  --teal: #1a9e8f;
+  --gold: #f5c842;
+  --coral: #f4603a;
+  --cream: #fdf8f0;
+  --slate: #4a5568;
+  --light: #f0f4f8;
+  --white: #ffffff;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --card-shadow: 0 4px 24px rgba(13,27,42,0.10);
+  --radius: 14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh}
+
+/* HEADER */
+header{background:var(--navy);padding:0 2rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.2)}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--white);letter-spacing:-0.5px}
+.logo span{color:var(--gold)}
+.tagline{font-size:0.78rem;color:#94a3b8;font-weight:300}
+
+/* NAV TABS */
+nav{background:var(--white);border-bottom:2px solid var(--light);position:sticky;top:64px;z-index:99}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;overflow-x:auto}
+.tab-btn{border:none;background:none;padding:1rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;color:var(--slate);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.2s}
+.tab-btn:hover{color:var(--teal)}
+.tab-btn.active{color:var(--teal);border-bottom-color:var(--teal);font-weight:600}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 60%,#1a9e8f22 100%);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,0.12),transparent 70%)}
+.hero h1{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:900;color:var(--white);margin-bottom:0.4rem}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#94a3b8;margin-bottom:1.5rem;font-size:1rem}
+.search-bar{display:flex;max-width:560px;margin:0 auto;background:var(--white);border-radius:50px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+.search-bar input{flex:1;border:none;padding:0.85rem 1.4rem;font-size:1rem;font-family:'DM Sans',sans-serif;outline:none;background:transparent}
+.search-bar button{background:var(--teal);color:white;border:none;padding:0.85rem 1.6rem;font-weight:600;cursor:pointer;font-size:0.95rem;font-family:'DM Sans',sans-serif}
+
+/* STATS */
+.stats-bar{background:var(--navy);padding:0.75rem 2rem}
+.stats-inner{max-width:1200px;margin:0 auto;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-val{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--gold)}
+.stat-lbl{font-size:0.72rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:2rem}
+
+/* SECTION */
+.section{display:none}
+.section.active{display:block}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-btn{border:1.5px solid var(--light);background:var(--white);padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;color:var(--slate);transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--teal);color:white;border-color:var(--teal)}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;border:1.5px solid transparent}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(13,27,42,0.15);border-color:var(--teal)}
+.card-header{padding:1.2rem 1.2rem 0.6rem;display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem}
+.card-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;line-height:1.3}
+.save-btn{background:none;border:none;cursor:pointer;font-size:1.2rem;flex-shrink:0;transition:transform 0.2s}
+.save-btn:hover{transform:scale(1.3)}
+.card-body{padding:0 1.2rem 1.2rem}
+.card-amount{font-size:1.3rem;font-weight:700;color:var(--teal);font-family:'Fraunces',serif}
+.card-desc{font-size:0.84rem;color:var(--slate);margin:0.4rem 0 0.75rem;line-height:1.5}
+.card-meta{display:flex;gap:0.5rem;flex-wrap:wrap}
+.badge{font-size:0.72rem;padding:0.25rem 0.6rem;border-radius:50px;font-weight:600}
+.badge-cat{background:#e0f2fe;color:#0369a1}
+.badge-urgent{background:#fee2e2;color:var(--danger)}
+.badge-soon{background:#fef9c3;color:#92400e}
+.badge-ok{background:#dcfce7;color:#166534}
+.badge-type{background:#f3e8ff;color:#7c3aed}
+.badge-source{background:#f0fdf4;color:#166534;font-size:0.68rem}
+.card-deadline{font-size:0.78rem;color:var(--slate);margin-top:0.5rem}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.6);z-index:1000;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:20px;max-width:580px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.modal-header{background:var(--navy);padding:1.8rem;border-radius:20px 20px 0 0;position:relative}
+.modal-header h2{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--white);margin-bottom:0.3rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.15);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+.modal-amount{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--gold)}
+.modal-body{padding:1.8rem}
+.modal-section{margin-bottom:1.2rem}
+.modal-section h3{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--slate);margin-bottom:0.4rem}
+.modal-section p{font-size:0.92rem;line-height:1.6;color:var(--navy)}
+.apply-btn{display:block;background:var(--teal);color:white;text-decoration:none;text-align:center;padding:0.9rem;border-radius:10px;font-weight:600;font-size:1rem;margin-top:1rem;transition:background 0.2s}
+.apply-btn:hover{background:#158a7c}
+
+/* DEADLINE TRACKER */
+.deadline-header{margin-bottom:1.5rem}
+.deadline-header h2{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900}
+.deadline-header p{color:var(--slate);margin-top:0.3rem}
+.deadline-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.deadline-card{background:var(--white);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--card-shadow);border-left:4px solid var(--teal)}
+.deadline-card.urgent{border-left-color:var(--danger)}
+.deadline-card.soon{border-left-color:var(--warn)}
+.deadline-name{font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
+.deadline-date{font-size:0.82rem;color:var(--slate)}
+.countdown{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;margin:0.5rem 0}
+.countdown.urgent{color:var(--danger)}
+.countdown.soon{color:var(--warn)}
+.countdown.ok{color:var(--success)}
+
+/* QUIZ */
+.quiz-wrap{max-width:640px;margin:0 auto}
+.quiz-wrap h2{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;margin-bottom:0.4rem}
+.quiz-wrap p{color:var(--slate);margin-bottom:1.5rem}
+.quiz-card{background:var(--white);border-radius:var(--radius);padding:1.8rem;box-shadow:var(--card-shadow)}
+.quiz-q{font-weight:600;margin-bottom:0.75rem;font-size:0.95rem}
+.quiz-options{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem}
+.quiz-opt{border:1.5px solid var(--light);background:var(--cream);padding:0.45rem 1rem;border-radius:50px;cursor:pointer;font-size:0.85rem;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.quiz-opt.selected{background:var(--teal);color:white;border-color:var(--teal)}
+.quiz-btn{background:var(--gold);color:var(--navy);border:none;padding:0.85rem 2rem;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:0.5rem;transition:background 0.2s}
+.quiz-btn:hover{background:#e6b800}
+.quiz-results{margin-top:1.5rem}
+.quiz-results h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:1rem;color:var(--teal)}
+
+/* SAVED */
+.saved-empty{text-align:center;padding:4rem 2rem;color:var(--slate)}
+.saved-empty span{font-size:3rem;display:block;margin-bottom:1rem}
+.saved-empty h3{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:0.5rem}
+
+/* WARNING BANNER */
+.warn-banner{background:#fef9c3;border:1.5px solid #f59e0b;border-radius:10px;padding:0.9rem 1.2rem;margin-bottom:1.5rem;font-size:0.85rem;color:#78350f;line-height:1.5}
+
+/* HIDDEN */
+.hidden{display:none!important}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero h1{font-size:1.6rem}
+  .cards-grid{grid-template-columns:1fr}
+  .header-inner{gap:0.5rem}
+  .tagline{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="logo">Scholar<span>Find</span></div>
+      <div class="tagline">Phoenixville, PA · ZIP 19460</div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="tab-btn active" onclick="switchTab('scholarships',this)">🏆 Scholarships</button>
+    <button class="tab-btn" onclick="switchTab('internships',this)">💼 Internships & Programs</button>
+    <button class="tab-btn" onclick="switchTab('deadlines',this)">📅 Deadline Tracker</button>
+    <button class="tab-btn" onclick="switchTab('quiz',this)">🎯 Eligibility Quiz</button>
+    <button class="tab-btn" onclick="switchTab('university',this)">🎓 University Programs</button>
+    <button class="tab-btn" onclick="switchTab('saved',this)">⭐ Saved (<span id="saved-count">0</span>)</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Find <span>Scholarships</span> &amp; Opportunities</h1>
+  <p>Real, verified opportunities for Phoenixville-area students · ZIP 19460</p>
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search by name, keyword, or subject…" oninput="filterCards()"/>
+    <button onclick="filterCards()">Search</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-val" id="stat-scholarships">10</div><div class="stat-lbl">Scholarships</div></div>
+    <div class="stat"><div class="stat-val" id="stat-money">$100K+</div><div class="stat-lbl">Available</div></div>
+    <div class="stat"><div class="stat-val" id="stat-internships">10</div><div class="stat-lbl">Internships</div></div>
+    <div class="stat"><div class="stat-val" id="stat-deadline">Mar 31</div><div class="stat-lbl">Next Deadline</div></div>
+  </div>
+</div>
+
+<main>
+
+<!-- SCHOLARSHIPS TAB -->
+<div class="section active" id="tab-scholarships">
+  <div class="warn-banner">⚠️ <strong>Always verify:</strong> Deadlines and award amounts change each year. Confirm details with your school counselor, check Naviance, and visit each organization's website before applying.</div>
+  <div class="filter-bar" id="schol-filters">
+    <button class="filter-btn active" onclick="setFilter('schol','All',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('schol','STEM',this)">STEM</button>
+    <button class="filter-btn" onclick="setFilter('schol','Arts',this)">Arts</button>
+    <button class="filter-btn" onclick="setFilter('schol','Community',this)">Community</button>
+    <button class="filter-btn" onclick="setFilter('schol','Healthcare',this)">Healthcare</button>
+    <button class="filter-btn" onclick="setFilter('schol','General',this)">General</button>
+  </div>
+  <div class="cards-grid" id="schol-grid"></div>
+</div>
+
+<!-- INTERNSHIPS TAB -->
+<div class="section" id="tab-internships">
+  <div class="warn-banner">💡 <strong>Tip:</strong> Apply early — some programs (like SEI Investments) have short application windows in January only.</div>
+  <div class="filter-bar" id="intern-filters">
+    <button class="filter-btn active" onclick="setFilter('intern','All',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('intern','Finance',this)">Finance</button>
+    <button class="filter-btn" onclick="setFilter('intern','Healthcare',this)">Healthcare</button>
+    <button class="filter-btn" onclick="setFilter('intern','Tech',this)">Tech</button>
+    <button class="filter-btn" onclick="setFilter('intern','Retail',this)">Retail</button>
+    <button class="filter-btn" onclick="setFilter('intern','STEM Programs',this)">🏫 STEM Programs</button>
+  </div>
+  <div class="cards-grid" id="intern-grid"></div>
+</div>
+
+<!-- DEADLINES TAB -->
+<div class="section" id="tab-deadlines">
+  <div class="deadline-header">
+    <h2>📅 Deadline Tracker</h2>
+    <p>Countdowns for every scholarship and program — sorted by urgency</p>
+  </div>
+  <div class="deadline-grid" id="deadline-grid"></div>
+</div>
+
+<!-- QUIZ TAB -->
+<div class="section" id="tab-quiz">
+  <div class="quiz-wrap">
+    <h2>🎯 Eligibility Quiz</h2>
+    <p>Answer 5 quick questions and we'll show you scholarships you actually qualify for.</p>
+    <div class="quiz-card">
+      <div class="quiz-q">1. What grade are you in?</div>
+      <div class="quiz-options" id="q-grade">
+        <button class="quiz-opt" onclick="selectOpt(this,'grade','9th')">9th Grade</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'grade','10th')">10th Grade</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'grade','11th')">11th Grade</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'grade','12th')">12th Grade (Senior)</button>
+      </div>
+      <div class="quiz-q">2. What is your GPA range?</div>
+      <div class="quiz-options" id="q-gpa">
+        <button class="quiz-opt" onclick="selectOpt(this,'gpa','below3')">Below 3.0</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'gpa','3to35')">3.0 – 3.49</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'gpa','35plus')">3.5 or above</button>
+      </div>
+      <div class="quiz-q">3. What are your main interest areas?</div>
+      <div class="quiz-options" id="q-interest">
+        <button class="quiz-opt" onclick="selectOpt(this,'interest','STEM')">STEM</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'interest','Healthcare')">Healthcare</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'interest','Arts')">Arts</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'interest','Community')">Community Service</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'interest','General')">General / Undecided</button>
+      </div>
+      <div class="quiz-q">4. Are you a first-generation college student?</div>
+      <div class="quiz-options" id="q-firstgen">
+        <button class="quiz-opt" onclick="selectOpt(this,'firstgen','yes')">Yes</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'firstgen','no')">No</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'firstgen','unsure')">Not Sure</button>
+      </div>
+      <div class="quiz-q">5. Does a family member work in retail or food industry (Wawa, Giant, etc.)?</div>
+      <div class="quiz-options" id="q-family">
+        <button class="quiz-opt" onclick="selectOpt(this,'family','yes')">Yes</button>
+        <button class="quiz-opt" onclick="selectOpt(this,'family','no')">No</button>
+      </div>
+      <button class="quiz-btn" onclick="runQuiz()">Show My Matches →</button>
+      <div class="quiz-results hidden" id="quiz-results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- UNIVERSITY PROGRAMS TAB -->
+<div class="section" id="tab-university">
+  <div class="warn-banner">🎓 <strong>Note:</strong> These are real programs from nearby universities. Deadlines and fees change each year — always verify at the university's website before applying.</div>
+  <div class="filter-bar" id="uni-filters">
+    <button class="filter-btn active" onclick="setFilter('uni','All',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('uni','Middle School',this)">Middle School</button>
+    <button class="filter-btn" onclick="setFilter('uni','High School',this)">High School</button>
+    <button class="filter-btn" onclick="setFilter('uni','STEM',this)">STEM</button>
+    <button class="filter-btn" onclick="setFilter('uni','Arts',this)">Arts</button>
+    <button class="filter-btn" onclick="setFilter('uni','College Credit',this)">College Credit</button>
+    <button class="filter-btn" onclick="setFilter('uni','Free',this)">Free / Low Cost</button>
+  </div>
+  <div class="cards-grid" id="uni-grid"></div>
+</div>
+
+<!-- SAVED TAB -->
+<div class="section" id="tab-saved">
+  <div id="saved-grid-wrap">
+    <div class="cards-grid" id="saved-grid"></div>
+    <div class="saved-empty hidden" id="saved-empty">
+      <span>⭐</span>
+      <h3>No saved items yet</h3>
+      <p>Click the ☆ on any scholarship or internship to save it here.</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 id="m-title">Title</h2>
+      <div class="modal-amount" id="m-amount"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section"><h3>About</h3><p id="m-desc"></p></div>
+      <div class="modal-section"><h3>Who Can Apply</h3><p id="m-eligibility"></p></div>
+      <div class="modal-section"><h3>Deadline</h3><p id="m-deadline"></p></div>
+      <div class="modal-section"><h3>How to Apply</h3><p id="m-how"></p></div>
+      <div class="modal-section" id="m-source-wrap"><h3>✅ Verified Source</h3><p id="m-source"></p></div>
+      <a id="m-apply" href="#" target="_blank" class="apply-btn">Apply / Learn More →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const scholarships = [
+  {
+    id:'s1', type:'scholarship',
+    title:'Lenfest Scholarship',
+    amount:'Up to $12,000',
+    amountNum:12000,
+    category:'General',
+    desc:'One of the most generous scholarships available to Chester County high school juniors. Awarded since 2001 to students with financial need and strong character.',
+    eligibility:'Chester County PA high school juniors with demonstrated financial need. Must attend an accredited 4-year institution.',
+    deadline:'February 1, 2026',
+    deadlineDate: new Date('2026-02-01'),
+    how:'Apply online at lenfestscholars.org. Requires transcripts, two recommendations, and a personal statement.',
+    source:'lenfestscholars.org — verified program since 2001',
+    url:'https://www.lenfestscholars.org',
+    grades:['11th'],
+    gpaMin:'3to35',
+    interests:['General','Community']
+  },
+  {
+    id:'s2', type:'scholarship',
+    title:'PCHF Healthcare Scholarship',
+    amount:'Varies',
+    amountNum:3000,
+    category:'Healthcare',
+    desc:'The Phoenixville Community Health Foundation awards scholarships specifically to Phoenixville-area seniors pursuing degrees in healthcare or human services.',
+    eligibility:'Phoenixville-area high school seniors planning to study healthcare, nursing, social work, or human services at an accredited institution.',
+    deadline:'March 31, 2026',
+    deadlineDate: new Date('2026-03-31'),
+    how:'Apply through PCHF directly. Visit pchf.org for the current application. Letters of recommendation and an essay required.',
+    source:'pchf.org — Phoenixville Community Health Foundation',
+    url:'https://www.pchf.org',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['Healthcare','Community']
+  },
+  {
+    id:'s3', type:'scholarship',
+    title:'Chester County Community Foundation',
+    amount:'Multiple Awards',
+    amountNum:5000,
+    category:'General',
+    desc:'The CCCF manages dozens of named scholarship funds. One Universal Application covers many awards — ideal for Chester County students who want to maximize their chances.',
+    eligibility:'Chester County residents attending or planning to attend a post-secondary institution. Various funds have different criteria.',
+    deadline:'March 15, 2026',
+    deadlineDate: new Date('2026-03-15'),
+    how:'Submit the Universal Scholarship Application at chescocf.org. One form = many scholarships.',
+    source:'chescocf.org — Chester County Community Foundation',
+    url:'https://www.chescocf.org',
+    grades:['11th','12th'],
+    gpaMin:'3to35',
+    interests:['General','Arts','STEM','Community']
+  },
+  {
+    id:'s4', type:'scholarship',
+    title:'Philadelphia Foundation Scholarship',
+    amount:'Varies (200+ awards)',
+    amountNum:4000,
+    category:'General',
+    desc:'The Philadelphia Foundation awards over 200 scholarships annually through one Common Application. Chester County residents are explicitly eligible.',
+    eligibility:'Students from Philadelphia and surrounding counties including Chester County. Various academic and need-based criteria apply.',
+    deadline:'March 30, 2026',
+    deadlineDate: new Date('2026-03-30'),
+    how:'Apply via the Common Scholarship Application at philafound.org. One application covers 200+ scholarships.',
+    source:'philafound.org — Philadelphia Foundation',
+    url:'https://www.philafound.org',
+    grades:['11th','12th'],
+    gpaMin:'3to35',
+    interests:['General','STEM','Arts','Community','Healthcare']
+  },
+  {
+    id:'s5', type:'scholarship',
+    title:'PAHS Naviance Scholarship List',
+    amount:'Various',
+    amountNum:2000,
+    category:'General',
+    desc:'Phoenixville Area High School maintains a curated scholarship list in Naviance updated throughout the year. New awards are added regularly — check it often.',
+    eligibility:'Current PAHS students. Requirements vary by individual scholarship.',
+    deadline:'Rolling — check Naviance',
+    deadlineDate: new Date('2026-06-01'),
+    how:'Log in to Naviance through your PAHS student account. Visit your school counselor for access help.',
+    source:'Phoenixville Area High School Guidance Office',
+    url:'https://www.pasd.com',
+    grades:['9th','10th','11th','12th'],
+    gpaMin:'below3',
+    interests:['General','STEM','Arts','Healthcare','Community']
+  },
+  {
+    id:'s6', type:'scholarship',
+    title:'PFMA Ridge Scholarship',
+    amount:'$2,500',
+    amountNum:2500,
+    category:'Community',
+    desc:'Past winners have included Phoenixville-area students. Ideal for students whose family works in the retail grocery industry (Giant, Wawa, etc.).',
+    eligibility:'Students with a family connection to the retail food/grocery industry. Must demonstrate community involvement.',
+    deadline:'April 15, 2026',
+    deadlineDate: new Date('2026-04-15'),
+    how:'Apply at pfma.org. Include family employment verification and a personal essay.',
+    source:'pfma.org — Pennsylvania Food Merchants Association',
+    url:'https://www.pfma.org',
+    grades:['11th','12th'],
+    gpaMin:'3to35',
+    interests:['Community','General'],
+    familyRetail: true
+  },
+  {
+    id:'s7', type:'scholarship',
+    title:'Exelon Foundation Chris Crane Scholarship',
+    amount:'Full Tuition + Room & Board',
+    amountNum:40000,
+    category:'STEM',
+    desc:'A full scholarship covering tuition, books, room, board, and all fees for STEM Academy alumni pursuing STEM-related fields. Also includes guaranteed internships with Exelon throughout college.',
+    eligibility:'Must be a graduate of the Exelon STEM Academy program. STEM field of study required.',
+    deadline:'December 2026 (apply to Academy first)',
+    deadlineDate: new Date('2026-12-01'),
+    how:'Attend the Exelon STEM Academy first (see Internships tab). Scholarship applications open to Academy graduates.',
+    source:'exelonstemacademy.org — Exelon Foundation',
+    url:'https://www.exelonstemacademy.org',
+    grades:['11th','12th'],
+    gpaMin:'3to35',
+    interests:['STEM']
+  },
+  {
+    id:'s8', type:'scholarship',
+    title:'Main Line Health Nursing Scholarship',
+    amount:'Up to $5,000',
+    amountNum:5000,
+    category:'Healthcare',
+    desc:'Main Line Health offers scholarships to students from the greater Philadelphia region pursuing nursing or allied health degrees. Students from Chester County are eligible.',
+    eligibility:'Seniors pursuing nursing or allied health at an accredited school. Must commit to working at a Main Line Health facility after graduation.',
+    deadline:'April 30, 2026',
+    deadlineDate: new Date('2026-04-30'),
+    how:'Apply at mainlinehealth.org/careers. Requires essay, transcripts, and two recommendations.',
+    source:'mainlinehealth.org',
+    url:'https://www.mainlinehealth.org',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['Healthcare']
+  },
+  {
+    id:'s9', type:'scholarship',
+    title:'PA State Grant (PHEAA)',
+    amount:'Up to $5,750/yr',
+    amountNum:5750,
+    category:'General',
+    desc:'Pennsylvania\'s primary need-based grant program for college students. One of the largest sources of aid for PA residents — every eligible student should apply.',
+    eligibility:'PA resident, first-time college students with demonstrated financial need. FAFSA must be filed by May 1.',
+    deadline:'May 1, 2026',
+    deadlineDate: new Date('2026-05-01'),
+    how:'File FAFSA at fafsa.gov. PA State Grant is automatically considered. Check pheaa.org for status.',
+    source:'pheaa.org — Pennsylvania Higher Education Assistance Agency',
+    url:'https://www.pheaa.org',
+    grades:['12th'],
+    gpaMin:'below3',
+    interests:['General','STEM','Arts','Healthcare','Community']
+  },
+  {
+    id:'s10', type:'scholarship',
+    title:'Vanguard Scholarship Program',
+    amount:'Varies',
+    amountNum:3500,
+    category:'STEM',
+    desc:'Vanguard, headquartered in Malvern just 5 miles from Phoenixville, offers scholarships through the Vanguard Strong Start program for students pursuing finance or business degrees.',
+    eligibility:'Students pursuing finance, business, economics, or related STEM/quantitative fields. Chester County residents given preference.',
+    deadline:'February 28, 2026',
+    deadlineDate: new Date('2026-02-28'),
+    how:'Apply at vanguard.com/corporate/careers/community. Check with PAHS counselor for current cycle.',
+    source:'vanguard.com — The Vanguard Group, Malvern PA',
+    url:'https://www.vanguard.com',
+    grades:['11th','12th'],
+    gpaMin:'35plus',
+    interests:['STEM','General']
+  }
+];
+
+const internships = [
+  {
+    id:'i1', type:'internship',
+    title:'Vanguard Summer Internship',
+    amount:'$17–$25/hr · Paid',
+    category:'Finance',
+    desc:'10-week paid summer internship at Vanguard\'s Malvern campus, just 5 miles from Phoenixville. Roles in finance, technology, and operations.',
+    eligibility:'Rising college juniors and seniors. High school internships available through the North Star program (see below). GPA 3.0+ preferred.',
+    deadline:'January 31, 2026',
+    deadlineDate: new Date('2026-01-31'),
+    how:'Apply at vanguard.com/careers. Roles are posted in November–January for the following summer.',
+    source:'vanguard.com — Malvern, PA (5 miles)',
+    url:'https://www.vanguard.com/corporate/careers/students',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['Finance','STEM']
+  },
+  {
+    id:'i2', type:'internship',
+    title:'Vanguard North Star (High School)',
+    amount:'Stipend · Virtual',
+    category:'Finance',
+    desc:'Vanguard\'s North Star program is designed specifically for high school students — a virtual internship exploring personal finance, investing, and career development.',
+    eligibility:'Current high school students (grades 10–12). No prior finance experience required.',
+    deadline:'March 1, 2026',
+    deadlineDate: new Date('2026-03-01'),
+    how:'Apply through vanguard.com/northstar or ask your PAHS counselor for a referral link.',
+    source:'vanguard.com — The Vanguard Group',
+    url:'https://www.vanguard.com',
+    grades:['10th','11th','12th'],
+    gpaMin:'below3',
+    interests:['Finance','General']
+  },
+  {
+    id:'i3', type:'internship',
+    title:'SEI Investments Internship',
+    amount:'Competitive Pay',
+    category:'Finance',
+    desc:'SEI Investments is headquartered in Oaks, PA — just 3 miles from Phoenixville. They hire college interns in finance, technology, and operations each summer.',
+    eligibility:'College students only. Applications open January ONLY — short window, apply early.',
+    deadline:'January 31, 2026',
+    deadlineDate: new Date('2026-01-31'),
+    how:'Apply at seic.com/careers. Window opens and closes in January — set a reminder.',
+    source:'seic.com — Oaks, PA (3 miles)',
+    url:'https://www.seic.com/careers',
+    grades:['12th'],
+    gpaMin:'35plus',
+    interests:['Finance','STEM']
+  },
+  {
+    id:'i4', type:'internship',
+    title:'Siemens Healthineers Internship',
+    amount:'$24–$40/hr · Paid',
+    category:'Tech',
+    desc:'Siemens Healthineers\' Malvern campus (5 miles) hires engineering and software interns each summer. One of the highest-paying internships in the region.',
+    eligibility:'College students in engineering, computer science, or biomedical fields. GPA 3.2+ preferred.',
+    deadline:'February 15, 2026',
+    deadlineDate: new Date('2026-02-15'),
+    how:'Apply at siemens-healthineers.com/careers. Filter by Malvern, PA.',
+    source:'siemens-healthineers.com — Malvern, PA (5 miles)',
+    url:'https://www.siemens-healthineers.com/careers',
+    grades:['12th'],
+    gpaMin:'35plus',
+    interests:['STEM','Tech']
+  },
+  {
+    id:'i5', type:'internship',
+    title:'Phoenixville Hospital Volunteer Program',
+    amount:'Volunteer (Academic Credit)',
+    category:'Healthcare',
+    desc:'Tower Health\'s Phoenixville Hospital runs a structured volunteer/shadow program open to students 16 and older. Great for students pursuing healthcare careers.',
+    eligibility:'Age 16+. Open year-round. Priority given to students pursuing healthcare degrees.',
+    deadline:'April 20, 2026',
+    deadlineDate: new Date('2026-04-20'),
+    how:'Apply at towerhealth.org/volunteering or visit the volunteer office at Phoenixville Hospital.',
+    source:'towerhealth.org — Phoenixville Hospital',
+    url:'https://www.towerhealth.org',
+    grades:['10th','11th','12th'],
+    gpaMin:'below3',
+    interests:['Healthcare']
+  },
+  {
+    id:'i6', type:'internship',
+    title:'Tower Health Clinical Internship',
+    amount:'Paid · Part-Time',
+    category:'Healthcare',
+    desc:'Tower Health offers paid clinical internships for college students pursuing nursing, pre-med, or allied health programs. Chester County locations including Phoenixville.',
+    eligibility:'College students enrolled in healthcare degree programs. Requires background check and health screening.',
+    deadline:'Rolling',
+    deadlineDate: new Date('2026-08-01'),
+    how:'Apply at towerhealth.org/careers. Search for internship roles in Phoenixville/Chester County.',
+    source:'towerhealth.org — Tower Health System',
+    url:'https://www.towerhealth.org/careers',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['Healthcare']
+  },
+  {
+    id:'i7', type:'internship',
+    title:'Wawa Co-op & Scholarship Program',
+    amount:'Hourly + Benefits',
+    category:'Retail',
+    desc:'Wawa, headquartered in Media PA, hires local high school and college students and offers a scholarship program for associates. Multiple Phoenixville-area locations.',
+    eligibility:'Age 16+. Wawa associates and their dependents may qualify for the PFMA Ridge Scholarship.',
+    deadline:'Rolling',
+    deadlineDate: new Date('2026-12-01'),
+    how:'Apply at wawa.com/careers or visit your local Wawa store directly.',
+    source:'wawa.com — Multiple Phoenixville locations',
+    url:'https://www.wawa.com/careers',
+    grades:['9th','10th','11th','12th'],
+    gpaMin:'below3',
+    interests:['Retail','General']
+  },
+  {
+    id:'i8', type:'internship',
+    title:'Exelon STEM Academy — Young Women',
+    amount:'FREE · Residential · iPad included',
+    category:'STEM Programs',
+    desc:'A free, week-long residential STEM program for young women in 10th or 11th grade from the PECO service area, which explicitly includes Chester County. Hosted at Saint Joseph\'s University. Participants get hands-on workshops with women in STEM, facility tours, and keep a free iPad.',
+    eligibility:'Young women currently in 10th or 11th grade living in the PECO service area (Chester County qualifies). No cost to attend.',
+    deadline:'Applications open December 2026',
+    deadlineDate: new Date('2026-12-01'),
+    how:'Apply at exelonstemacademy.org. Applications open each December for the following summer. Contact PAHS guidance to be notified.',
+    source:'exelonstemacademy.org — PECO/Exelon Foundation',
+    url:'https://www.exelonstemacademy.org',
+    grades:['10th','11th'],
+    gpaMin:'below3',
+    interests:['STEM']
+  },
+  {
+    id:'i9', type:'internship',
+    title:'Exelon Boys to STEM Academy',
+    amount:'FREE · Residential · iPad included',
+    category:'STEM Programs',
+    desc:'A free, week-long residential STEM program for young men in 10th or 11th grade from the PECO service area (Chester County qualifies). Hosted at Saint Joseph\'s University. Includes climate and energy challenges, conversations with STEM leaders, and a free iPad.',
+    eligibility:'Young men currently in 10th or 11th grade in the PECO service area. Chester County and Phoenixville-area students are eligible.',
+    deadline:'Applications open December 2026',
+    deadlineDate: new Date('2026-12-01'),
+    how:'Apply at exelonstemacademy.org. Applications open each December. Check with PAHS counselor or bookmark the site.',
+    source:'exelonstemacademy.org — PECO/Exelon Foundation',
+    url:'https://www.exelonstemacademy.org',
+    grades:['10th','11th'],
+    gpaMin:'below3',
+    interests:['STEM']
+  },
+  {
+    id:'i10', type:'internship',
+    title:'Main Line Health Student Externship',
+    amount:'Unpaid · Academic Credit',
+    category:'Healthcare',
+    desc:'Main Line Health offers structured externships for high school and college students interested in healthcare. Shadow real clinicians at facilities throughout Chester County.',
+    eligibility:'Students age 16+ interested in healthcare careers. High school juniors and seniors preferred.',
+    deadline:'May 1, 2026',
+    deadlineDate: new Date('2026-05-01'),
+    how:'Apply at mainlinehealth.org/careers/students. Requires health screenings and a brief interview.',
+    source:'mainlinehealth.org — Main Line Health',
+    url:'https://www.mainlinehealth.org',
+    grades:['11th','12th'],
+    gpaMin:'below3',
+    interests:['Healthcare']
+  }
+];
+
+const universityPrograms = [
+  {
+    id:'u1', type:'university',
+    title:'Villanova Pre-College Summer Academy',
+    amount:'$6,000–$8,000',
+    category:'High School',
+    tags:['High School','College Credit'],
+    desc:'Four-week residential or commuter program on Villanova\'s campus for rising 10th–12th graders. Earn 4 real college credits taught by Villanova faculty alongside current undergrads.',
+    eligibility:'Rising 10th, 11th, and 12th graders. Commuter ($6,000) or residential ($8,000). Financial aid available for qualifying families.',
+    deadline:'April 6, 2026',
+    deadlineDate: new Date('2026-04-06'),
+    how:'Apply at villanova.edu/summer. Requires transcript, parent permission letter, and a 250–500 word personal statement.',
+    source:'villanova.edu — Villanova, PA (18 miles)',
+    url:'https://www1.villanova.edu/university/summer-sessions/pre-college-summer-academy.html',
+    grades:['10th','11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u2', type:'university',
+    title:'Villanova High School Scholar Program',
+    amount:'Per-credit tuition',
+    category:'College Credit',
+    tags:['High School','College Credit'],
+    desc:'Academically strong high schoolers can take individual college-level courses at Villanova each semester — fall, spring, or summer — and earn transferable college credits.',
+    eligibility:'Current high school students (any grade). Students under 18 receive an approved course list. One 3-credit course per semester max.',
+    deadline:'Rolling — contact CPS office',
+    deadlineDate: new Date('2026-08-01'),
+    how:'Apply at villanova.edu/summer. Contact CPS Admissions at cps.info@villanova.edu for the approved course list.',
+    source:'villanova.edu — Villanova, PA (18 miles)',
+    url:'https://www.villanova.edu/university/professional-studies/academics/degrees-certificates/admissions_hs_and_visiting_students.html',
+    grades:['9th','10th','11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u3', type:'university',
+    title:'West Chester University Dual Enrollment',
+    amount:'Reduced tuition (PA state rates)',
+    category:'College Credit',
+    tags:['High School','College Credit'],
+    desc:'WCU\'s Dual Enrollment Partnership lets Chester County high schoolers take real WCU courses and earn college credit — taught by WCU faculty, often at an off-campus Graduate Center near you.',
+    eligibility:'High school students at WCU partner schools. PASD students should ask their counselor if Phoenixville Area is a partner. GPA requirements apply per course.',
+    deadline:'Rolling — check with PAHS counselor',
+    deadlineDate: new Date('2026-09-01'),
+    how:'Contact your PAHS guidance counselor first. Then register at wcupa.edu/dualenrollment or call 610-436-3411.',
+    source:'wcupa.edu — West Chester, PA (12 miles)',
+    url:'https://www.wcupa.edu/_admin/dualEnrollment/',
+    grades:['11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u4', type:'university',
+    title:'TCHS Pickering CTE Programs',
+    amount:'Free (part of public school)',
+    category:'Free / Low Cost',
+    tags:['High School','STEM','Free'],
+    desc:'Chester County Technical College High School – Pickering Campus is right in Phoenixville and serves PASD students in grades 10–12. Programs include healthcare (clinicals at Phoenixville Hospital!), engineering, IT, and more — all earning college credit through SOAR.',
+    eligibility:'PASD students in grades 10–12. Apply through PAHS. All programs are free as part of your public high school education.',
+    deadline:'Apply for next year — check with PAHS',
+    deadlineDate: new Date('2026-04-01'),
+    how:'Talk to your PAHS guidance counselor. Applications for the following year are typically due in spring. Visit cciu.org/tchs for program details.',
+    source:'cciu.org/tchs — Phoenixville, PA (on campus)',
+    url:'https://www.cciu.org/programs/career-and-technolgy-programs',
+    grades:['10th','11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u5', type:'university',
+    title:'Temple Summer Academy',
+    amount:'~$3,500–$5,000',
+    category:'High School',
+    tags:['High School','Arts','STEM'],
+    desc:'Four-week pre-college residential program on Temple\'s Main Campus in Philadelphia for rising 11th and 12th graders. Earn one college-level credit while exploring subjects across Temple\'s schools — from engineering to film to business.',
+    eligibility:'Rising 11th and 12th graders. Residential and commuter options available. Applications open December 2025, priority deadline March 1, 2026.',
+    deadline:'May 1, 2026 (priority: March 1)',
+    deadlineDate: new Date('2026-05-01'),
+    how:'Apply at admissions.temple.edu/summer/pre-college. Priority given to applications received before March 1.',
+    source:'temple.edu — Philadelphia, PA (30 miles)',
+    url:'https://admissions.temple.edu/summer/pre-college/find-your-program/interdisciplinary-programs/summer-academy',
+    grades:['11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u6', type:'university',
+    title:'Temple Summer Institutes & Intensives',
+    amount:'~$1,500–$2,500',
+    category:'High School',
+    tags:['High School','STEM','Arts'],
+    desc:'Two-week focused workshops at Temple covering topics like engineering, science, arts, business, and more. Less time commitment than the full Academy — great for students wanting to try a specific subject area.',
+    eligibility:'High school students. Various programs serve different grade levels. Applications open December 2025.',
+    deadline:'May 1, 2026',
+    deadlineDate: new Date('2026-05-01'),
+    how:'Browse all programs at admissions.temple.edu/summer/pre-college and select the institute that matches your interest.',
+    source:'temple.edu — Philadelphia, PA (30 miles)',
+    url:'https://admissions.temple.edu/summer/pre-college/find-your-program/interdisciplinary-programs/summer-institutes-and-intensives',
+    grades:['9th','10th','11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u7', type:'university',
+    title:'Drexel University Summer Programs (High School)',
+    amount:'Varies by program',
+    category:'High School',
+    tags:['High School','STEM','Arts'],
+    desc:'Drexel offers competitive summer programs for high schoolers including a Neuroscience Camp (run by Drexel College of Medicine), Camp Business, and STEM/arts institutes. Located in Philadelphia — about 30 miles from Phoenixville.',
+    eligibility:'Mostly rising juniors and seniors, some open to rising sophomores. Applications typically open in December.',
+    deadline:'Rolling (apply early — programs fill fast)',
+    deadlineDate: new Date('2026-05-15'),
+    how:'Visit drexel.edu/undergrad/admissions/summer-programs for the current list of offerings.',
+    source:'drexel.edu — Philadelphia, PA (30 miles)',
+    url:'https://drexel.edu/undergrad/admissions/summer-programs',
+    grades:['10th','11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u8', type:'university',
+    title:'Penn GEMS — UPenn Engineering (Middle School)',
+    amount:'Varies (financial aid available)',
+    category:'Middle School',
+    tags:['Middle School','STEM','Free'],
+    desc:'A one-week engineering and STEM program hosted on Penn\'s campus for rising 7th–9th graders within 60 miles of campus (Phoenixville qualifies!). Students rotate through bioengineering, robotics, AI, and materials science workshops with Penn faculty and researchers.',
+    eligibility:'Rising 7th, 8th, and 9th graders who live and attend school within 60 miles of Penn\'s campus. Phoenixville (19460) is within range.',
+    deadline:'Spring 2026 — check Penn GEMS website',
+    deadlineDate: new Date('2026-04-15'),
+    how:'Search "Penn GEMS" at seas.upenn.edu. Financial assistance is available for qualifying families.',
+    source:'seas.upenn.edu — Philadelphia, PA (28 miles)',
+    url:'https://www.seas.upenn.edu',
+    grades:['7th','8th','9th'],
+    level:'Middle School'
+  },
+  {
+    id:'u9', type:'university',
+    title:'Drexel Young Dragons STEAM (Middle School)',
+    amount:'FREE',
+    category:'Middle School',
+    tags:['Middle School','STEM','Free','Arts'],
+    desc:'A free summer STEAM program run out of Drexel\'s ExCITe Center for middle schoolers. Each week focuses on a different STEAM theme combining science, engineering, and art. Project-based and challenge-driven — not just lectures.',
+    eligibility:'Middle school students. Summer cohort is 2 intensive weeks (weekdays); spring cohort is 10 weekends.',
+    deadline:'Spring 2026 — check Drexel ExCITe Center',
+    deadlineDate: new Date('2026-04-01'),
+    how:'Visit drexel.edu/excite or search "Young Dragons Drexel" for the 2026 application.',
+    source:'drexel.edu/excite — Philadelphia, PA (30 miles)',
+    url:'https://drexel.edu/excite',
+    grades:['6th','7th','8th'],
+    level:'Middle School'
+  },
+  {
+    id:'u10', type:'university',
+    title:'Temple Ambler Middle School Summer Programs',
+    amount:'Affordable (check website)',
+    category:'Middle School',
+    tags:['Middle School','STEM'],
+    desc:'Temple\'s Ambler campus (just 15 miles from Phoenixville) runs focused middle school summer tracks including SeaPerch Robotics (build underwater robots!), Green Thumb Academy (plant science), and space/materials science. Hands-on and project-specific.',
+    eligibility:'Middle school students. Various tracks available. Held at Temple\'s Ambler campus in Fort Washington, PA.',
+    deadline:'Spring 2026 — check Temple Ambler',
+    deadlineDate: new Date('2026-05-01'),
+    how:'Visit ambler.temple.edu or search "Temple Ambler summer programs" for current 2026 offerings.',
+    source:'ambler.temple.edu — Ambler, PA (15 miles)',
+    url:'https://ambler.temple.edu',
+    grades:['6th','7th','8th'],
+    level:'Middle School'
+  },
+  {
+    id:'u11', type:'university',
+    title:'iD Tech STEM Camp at Villanova',
+    amount:'~$1,200–$1,800/week',
+    category:'High School',
+    tags:['High School','Middle School','STEM'],
+    desc:'Week-long tech and coding camps held right on Villanova\'s campus for ages 7–18. Topics include coding, game design, Minecraft, robotics, 3D printing, and AI. Great for middle and high schoolers wanting hands-on tech skills in a fun setting.',
+    eligibility:'Ages 7–18 (middle and high school). Day camp and overnight options. Programs run throughout the summer.',
+    deadline:'Rolling — register early, programs sell out',
+    deadlineDate: new Date('2026-08-01'),
+    how:'Register at idtech.com/villanova. Discounts available for early registration and siblings.',
+    source:'idtech.com — Villanova, PA (18 miles)',
+    url:'https://www.idtech.com/locations/pennsylvania-summer-camps/villanova-university',
+    grades:['6th','7th','8th','9th','10th','11th'],
+    level:'Middle School'
+  },
+  {
+    id:'u12', type:'university',
+    title:'Villanova AAP Summer Bridge (Incoming Freshmen)',
+    amount:'FREE — room, board & materials included',
+    category:'Free / Low Cost',
+    tags:['High School','Free','College Credit'],
+    desc:'The Academic Advancement Program offers a FREE 5-week residential summer experience at Villanova for admitted freshmen who would benefit from extra academic and financial support. Room, board, course materials, and all activities included — zero cost to participants.',
+    eligibility:'Newly admitted Villanova freshmen from PA, NJ, NY, DE, MD, or DC who qualify through the AAP selection process. Based on transcripts, essays, and family income.',
+    deadline:'June 2026 — AAP application reopens June 2026',
+    deadlineDate: new Date('2026-06-26'),
+    how:'Apply to Villanova through regular admissions and indicate interest in AAP. Email Marquis Coates at Villanova for details.',
+    source:'villanova.edu/casa — Villanova, PA (18 miles)',
+    url:'https://www1.villanova.edu/university/academic-enterprise/student-support/casa/programs.html',
+    grades:['12th'],
+    level:'High School'
+  }
+];
+
+let currentUniFilter = 'All';
+
+function renderUniversityPrograms() {
+  const grid = document.getElementById('uni-grid');
+  const filtered = universityPrograms.filter(p => {
+    if (currentUniFilter === 'All') return true;
+    if (currentUniFilter === 'Middle School') return p.tags.includes('Middle School');
+    if (currentUniFilter === 'High School') return p.tags.includes('High School');
+    if (currentUniFilter === 'Free') return p.tags.includes('Free');
+    return p.tags.includes(currentUniFilter);
+  });
+  grid.innerHTML = filtered.length ? filtered.map(p => uniCardHTML(p)).join('') : '<p style="color:var(--slate);padding:2rem">No matching programs found.</p>';
+}
+
+function uniCardHTML(item) {
+  const saved = savedItems.includes(item.id);
+  const urgency = getUrgency(item.deadlineDate);
+  const levelBadge = item.tags.includes('Middle School') && item.tags.includes('High School')
+    ? '<span class="badge badge-type">Grades 6–12</span>'
+    : item.tags.includes('Middle School')
+    ? '<span class="badge" style="background:#fce7f3;color:#9d174d">Middle School</span>'
+    : '<span class="badge badge-type">High School</span>';
+  const freeBadge = item.tags.includes('Free') ? '<span class="badge" style="background:#dcfce7;color:#166534">FREE</span>' : '';
+  return `<div class="card" onclick="openModal('${item.id}')">
+    <div class="card-header">
+      <div class="card-title">${item.title}</div>
+      <button class="save-btn" onclick="event.stopPropagation();toggleSave('${item.id}',this)" title="${saved?'Remove':'Save'}">${saved?'⭐':'☆'}</button>
+    </div>
+    <div class="card-body">
+      <div class="card-amount">${item.amount}</div>
+      <div class="card-desc">${item.desc.substring(0,120)}…</div>
+      <div class="card-meta">
+        ${levelBadge}
+        ${freeBadge}
+        <span class="badge ${urgency.cls}">${urgency.label}</span>
+      </div>
+      <div class="card-deadline">📅 ${item.deadline}</div>
+    </div>
+  </div>`;
+}
+
+let currentScholFilter = 'All';
+let currentInternFilter = 'All';
+let savedItems = JSON.parse(localStorage.getItem('sf_saved') || '[]');
+let quizAnswers = {};
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderScholarships() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const grid = document.getElementById('schol-grid');
+  const filtered = scholarships.filter(s => {
+    const matchCat = currentScholFilter === 'All' || s.category === currentScholFilter;
+    const matchQ = !q || s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.category.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  grid.innerHTML = filtered.length ? filtered.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching scholarships found.</p>';
+}
+
+function renderInternships() {
+  const grid = document.getElementById('intern-grid');
+  const filtered = internships.filter(s => currentInternFilter === 'All' || s.category === currentInternFilter);
+  grid.innerHTML = filtered.length ? filtered.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching internships found.</p>';
+}
+
+function cardHTML(item) {
+  const saved = savedItems.includes(item.id);
+  const urgency = getUrgency(item.deadlineDate);
+  return `<div class="card" onclick="openModal('${item.id}')">
+    <div class="card-header">
+      <div class="card-title">${item.title}</div>
+      <button class="save-btn" onclick="event.stopPropagation();toggleSave('${item.id}',this)" title="${saved?'Remove':'Save'}">${saved?'⭐':'☆'}</button>
+    </div>
+    <div class="card-body">
+      <div class="card-amount">${item.amount}</div>
+      <div class="card-desc">${item.desc.substring(0,120)}…</div>
+      <div class="card-meta">
+        <span class="badge badge-cat">${item.category}</span>
+        <span class="badge ${urgency.cls}">${urgency.label}</span>
+        ${item.type==='internship'?'<span class="badge badge-type">Internship</span>':''}
+      </div>
+      <div class="card-deadline">📅 ${item.deadline}</div>
+    </div>
+  </div>`;
+}
+
+function getUrgency(d) {
+  const now = new Date(); const days = Math.round((d - now) / 86400000);
+  if (days < 0) return {cls:'badge-ok',label:'Past'};
+  if (days <= 14) return {cls:'badge-urgent',label:`${days}d left!`};
+  if (days <= 45) return {cls:'badge-soon',label:`${days}d left`};
+  return {cls:'badge-ok',label:'Open'};
+}
+
+function renderDeadlines() {
+  const all = [...scholarships, ...internships, ...universityPrograms].filter(x => x.deadlineDate).sort((a,b)=>a.deadlineDate-b.deadlineDate);
+  const now = new Date();
+  const grid = document.getElementById('deadline-grid');
+  grid.innerHTML = all.map(item => {
+    const days = Math.round((item.deadlineDate - now) / 86400000);
+    const cls = days < 0 ? 'ok' : days <= 14 ? 'urgent' : days <= 45 ? 'soon' : 'ok';
+    const label = days < 0 ? 'Passed' : `${days} days`;
+    return `<div class="deadline-card ${cls}">
+      <div class="deadline-name">${item.title}</div>
+      <div class="deadline-date">${item.deadline}</div>
+      <div class="countdown ${cls}">${label}</div>
+      <span class="badge ${cls==='urgent'?'badge-urgent':cls==='soon'?'badge-soon':'badge-ok'}">${item.type==='scholarship'?'🏆 Scholarship':'💼 Internship'}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderSaved() {
+  const grid = document.getElementById('saved-grid');
+  const empty = document.getElementById('saved-empty');
+  const items = [...scholarships, ...internships, ...universityPrograms].filter(x => savedItems.includes(x.id));
+  if (items.length === 0) { grid.innerHTML = ''; empty.classList.remove('hidden'); }
+  else { empty.classList.add('hidden'); grid.innerHTML = items.map(s => cardHTML(s)).join(''); }
+  document.getElementById('saved-count').textContent = savedItems.length;
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+function openModal(id) {
+  const item = [...scholarships, ...internships, ...universityPrograms].find(x => x.id === id);
+  if (!item) return;
+  document.getElementById('m-title').textContent = item.title;
+  document.getElementById('m-amount').textContent = item.amount;
+  document.getElementById('m-desc').textContent = item.desc;
+  document.getElementById('m-eligibility').textContent = item.eligibility;
+  document.getElementById('m-deadline').textContent = item.deadline;
+  document.getElementById('m-how').textContent = item.how;
+  document.getElementById('m-source').textContent = item.source;
+  document.getElementById('m-apply').href = item.url;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+function closeModalOnOverlay(e) { if (e.target.id === 'modal-overlay') closeModal(); }
+
+// ============================================================
+// FILTERS & TABS
+// ============================================================
+function setFilter(scope, val, btn) {
+  if (scope === 'schol') { currentScholFilter = val; renderScholarships(); }
+  else if (scope === 'intern') { currentInternFilter = val; renderInternships(); }
+  else { currentUniFilter = val; renderUniversityPrograms(); }
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function filterCards() { renderScholarships(); }
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+  if (tab === 'saved') renderSaved();
+  if (tab === 'deadlines') renderDeadlines();
+  if (tab === 'university') renderUniversityPrograms();
+}
+
+// ============================================================
+// SAVE
+// ============================================================
+function toggleSave(id, btn) {
+  if (savedItems.includes(id)) {
+    savedItems = savedItems.filter(x => x !== id);
+    btn.textContent = '☆';
+  } else {
+    savedItems.push(id);
+    btn.textContent = '⭐';
+  }
+  localStorage.setItem('sf_saved', JSON.stringify(savedItems));
+  document.getElementById('saved-count').textContent = savedItems.length;
+}
+
+// ============================================================
+// QUIZ
+// ============================================================
+function selectOpt(btn, key, val) {
+  btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  quizAnswers[key] = val;
+}
+
+function runQuiz() {
+  const { grade, gpa, interest, family } = quizAnswers;
+  const results = document.getElementById('quiz-results');
+  const gpRank = {below3:0,'3to35':1,'35plus':2};
+  const matched = scholarships.filter(s => {
+    if (grade && s.grades && !s.grades.includes(grade)) return false;
+    if (gpa && s.gpaMin && gpRank[gpa] < gpRank[s.gpaMin]) return false;
+    if (interest && s.interests && !s.interests.includes(interest)) return false;
+    if (s.familyRetail && family !== 'yes') return false;
+    return true;
+  });
+  results.classList.remove('hidden');
+  if (matched.length === 0) {
+    results.innerHTML = '<h3>No exact matches — but check All Scholarships!</h3><p style="font-size:0.85rem;color:var(--slate)">Try adjusting your answers or browse the full list.</p>';
+  } else {
+    results.innerHTML = `<h3>🎉 ${matched.length} matching scholarship${matched.length>1?'s':''} found!</h3>` +
+      matched.map(s => `<div class="deadline-card" style="margin-bottom:0.75rem;cursor:pointer" onclick="openModal('${s.id}')">
+        <div class="deadline-name">${s.title}</div>
+        <div class="deadline-date">${s.amount} · Due: ${s.deadline}</div>
+      </div>`).join('');
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderScholarships();
+renderInternships();
+renderUniversityPrograms();
+document.getElementById('saved-count').textContent = savedItems.length;
+</script>
+</body>
+</html>
