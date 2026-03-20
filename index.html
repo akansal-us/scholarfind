@@ -88,6 +88,11 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .section{display:none}
 .section.active{display:block}
 
+/* TAB HEADER */
+.tab-header{margin-bottom:1.2rem}
+.tab-header h2{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900}
+.tab-header p{color:var(--slate);margin-top:0.25rem;font-size:0.9rem}
+
 /* FILTER BAR */
 .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .filter-btn{border:1.5px solid var(--light);background:var(--white);padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;color:var(--slate);transition:all 0.2s}
@@ -267,6 +272,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <!-- SCHOLARSHIPS TAB -->
 <div class="section active" id="tab-scholarships">
+  <div class="tab-header"><h2>🏆 Scholarships</h2><p>Real, verified scholarships for Phoenixville-area students</p></div>
   <div class="warn-banner">⚠️ <strong>Always verify:</strong> Deadlines and award amounts change each year. Confirm details with your school counselor, check Naviance, and visit each organization's website before applying.</div>
   <div class="filter-bar" id="schol-filters">
     <button class="filter-btn active" onclick="setFilter('schol','All',this)">All</button>
@@ -281,6 +287,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <!-- INTERNSHIPS TAB -->
 <div class="section" id="tab-internships">
+  <div class="tab-header"><h2>💼 Internships &amp; Programs</h2><p>Local opportunities within 15 miles of Phoenixville 19460</p></div>
   <div class="warn-banner">💡 <strong>Tip:</strong> Apply early — some programs (like SEI Investments) have short application windows in January only.</div>
   <div class="filter-bar" id="intern-filters">
     <button class="filter-btn active" onclick="setFilter('intern','All',this)">All</button>
@@ -392,6 +399,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <!-- UNIVERSITY PROGRAMS TAB -->
 <div class="section" id="tab-university">
+  <div class="tab-header"><h2>🎓 University Programs</h2><p>Summer programs, dual enrollment &amp; college prep for grades 6–12</p></div>
   <div class="warn-banner">🎓 <strong>Note:</strong> These are real programs from nearby universities. Deadlines and fees change each year — always verify at the university's website before applying.</div>
   <div class="filter-bar" id="uni-filters">
     <button class="filter-btn active" onclick="setFilter('uni','All',this)">All</button>
@@ -407,6 +415,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <!-- SAVED TAB -->
 <div class="section" id="tab-saved">
+  <div class="tab-header"><h2>⭐ Saved Items</h2><p>Scholarships and programs you've bookmarked</p></div>
   <div id="saved-grid-wrap">
     <div class="cards-grid" id="saved-grid"></div>
     <div class="saved-empty hidden" id="saved-empty">
