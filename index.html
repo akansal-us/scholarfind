@@ -113,6 +113,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .ai-search-btn{background:var(--teal);color:white;border:none;padding:0.6rem 1.2rem;border-radius:8px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
 .ai-results{margin-top:1rem;font-size:0.88rem;color:var(--slate);line-height:1.6}
 .ai-results.loading{color:var(--teal)}
+.result-badge{display:inline-block;background:var(--teal);color:white;font-size:0.75rem;font-weight:700;padding:0.25rem 0.7rem;border-radius:50px;font-family:'DM Sans',sans-serif}
+.result-badge-empty{background:var(--slate)}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .ai-result-card{background:var(--cream);border-radius:10px;padding:1rem;margin-bottom:0.75rem;border:1.5px solid var(--light)}
 .ai-result-card h4{font-size:0.95rem;font-weight:600;margin-bottom:0.3rem}
 .ai-result-card p{font-size:0.82rem;color:var(--slate);margin:0}
@@ -1343,9 +1346,12 @@ async function runAISearch() {
   const zip = document.getElementById('ai-zip-input').value.trim();
   if (!zip || zip.length !== 5) { alert('Please enter a valid 5-digit ZIP code'); return; }
   const resultsDiv = document.getElementById('ai-results');
+  const btn = document.querySelector('.ai-search-btn');
   resultsDiv.classList.remove('hidden');
   resultsDiv.className = 'ai-results loading';
-  resultsDiv.innerHTML = 'Searching for scholarships near ZIP ' + zip + '...';
+  btn.disabled = true;
+  btn.textContent = 'Searching…';
+  resultsDiv.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;margin-right:6px">⏳</span> Searching for scholarships near ZIP ' + zip + '…';
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -1362,17 +1368,25 @@ async function runAISearch() {
     const clean = text.replace(/```json|```/g, '').trim();
     let items = [];
     try { items = JSON.parse(clean); } catch(e) { items = []; }
+    btn.disabled = false;
+    btn.textContent = 'Search →';
     if (!items.length) {
       resultsDiv.className = 'ai-results';
-      resultsDiv.innerHTML = 'No specific results found. Try the <a href="https://www.chescocf.org" target="_blank">Chester County Community Foundation</a> — it covers students county-wide.';
+      resultsDiv.innerHTML = '<span class="result-badge result-badge-empty">0 results</span> No specific results found. Try the <a href="https://www.chescocf.org" target="_blank">Chester County Community Foundation</a> — it covers students county-wide.';
       return;
     }
     resultsDiv.className = 'ai-results';
-    resultsDiv.innerHTML = '<p style="font-weight:600;margin-bottom:0.75rem">Found ' + items.length + ' scholarships near ZIP ' + zip + ':</p>' +
-      items.map(s => '<div class="ai-result-card"><h4>' + (s.title||'') + '</h4><p><strong>' + (s.amount||'Varies') + '</strong> · ' + (s.deadline||'Check website') + '</p><p style="margin-top:0.3rem">' + (s.desc||'').substring(0,120) + '...</p>' + (s.url ? '<a href="' + s.url + '" target="_blank">Apply / Learn More</a>' : '') + '</div>').join('');
+    resultsDiv.innerHTML =
+      '<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem">' +
+        '<span class="result-badge">' + items.length + ' found</span>' +
+        '<span style="font-size:0.85rem;color:var(--slate)">scholarships near ZIP ' + zip + '</span>' +
+      '</div>' +
+      items.map(s => '<div class="ai-result-card"><h4>' + (s.title||'') + '</h4><p><strong>' + (s.amount||'Varies') + '</strong> · ' + (s.deadline||'Check website') + '</p><p style="margin-top:0.3rem">' + (s.desc||'').substring(0,120) + '...</p>' + (s.url ? '<a href="' + s.url + '" target="_blank">Apply / Learn More →</a>' : '') + '</div>').join('');
   } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Search →';
     resultsDiv.className = 'ai-results';
-    resultsDiv.innerHTML = 'Search unavailable right now. Try <a href="https://www.chescocf.org" target="_blank">chescocf.org</a> for county-wide scholarships.';
+    resultsDiv.innerHTML = '<span class="result-badge result-badge-empty">Error</span> Search unavailable right now. Try <a href="https://www.chescocf.org" target="_blank">chescocf.org</a> for county-wide scholarships.';
   }
 }
 let savedItems = JSON.parse(localStorage.getItem('sf_saved') || '[]');
