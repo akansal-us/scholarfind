@@ -1469,7 +1469,8 @@ function renderUniversityPrograms() {
     const matchQ = !q || p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.source.toLowerCase().includes(q) || (p.tags && p.tags.join(' ').toLowerCase().includes(q));
     return matchCat && matchQ;
   });
-  grid.innerHTML = filtered.length ? filtered.map(p => uniCardHTML(p)).join('') : '<p style="color:var(--slate);padding:2rem">No matching programs found.</p>';
+  const sorted = sortByDeadline(filtered);
+  grid.innerHTML = sorted.length ? sorted.map(p => uniCardHTML(p)).join('') : '<p style="color:var(--slate);padding:2rem">No matching programs found.</p>';
 }
 
 function uniCardHTML(item) {
@@ -1668,6 +1669,17 @@ let quizAnswers = {};
 // ============================================================
 // RENDER
 // ============================================================
+function sortByDeadline(items) {
+  const now = new Date();
+  return [...items].sort((a, b) => {
+    const aPast = a.deadlineDate < now;
+    const bPast = b.deadlineDate < now;
+    if (aPast && !bPast) return 1;   // a is past, b is active → b first
+    if (!aPast && bPast) return -1;  // a is active, b is past → a first
+    return a.deadlineDate - b.deadlineDate; // both same status → sort by date
+  });
+}
+
 function renderScholarships() {
   const q = (document.getElementById('search-schol')?.value || '').toLowerCase();
   const grid = document.getElementById('schol-grid');
@@ -1678,7 +1690,8 @@ function renderScholarships() {
     const matchQ = !q || s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.category.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
-  grid.innerHTML = filtered.length ? filtered.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching scholarships found.</p>';
+  const sorted = sortByDeadline(filtered);
+  grid.innerHTML = sorted.length ? sorted.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching scholarships found.</p>';
 }
 
 function renderInternships() {
@@ -1689,7 +1702,8 @@ function renderInternships() {
     const matchQ = !q || s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.category.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
-  grid.innerHTML = filtered.length ? filtered.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching internships found.</p>';
+  const sorted = sortByDeadline(filtered);
+  grid.innerHTML = sorted.length ? sorted.map(s => cardHTML(s)).join('') : '<p style="color:var(--slate);padding:2rem">No matching internships found.</p>';
 }
 
 function cardHTML(item) {
