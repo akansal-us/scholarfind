@@ -1,9 +1,20 @@
-name: Weekly scholarship update
+name: ScholarFind Data Updater
 
 on:
   schedule:
-    - cron: '0 9 * * 0'   # Every Sunday at 9am UTC
-  workflow_dispatch:       # Also allows manual trigger from GitHub UI
+    - cron: '0 9 * * 3'   # Wednesday — verify existing URLs
+    - cron: '0 9 * * 0'   # Sunday — search for new scholarships
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'What to run (both/verify/search)'
+        required: true
+        default: 'both'
+        type: choice
+        options:
+          - both
+          - verify
+          - search
 
 jobs:
   update:
@@ -24,42 +35,63 @@ jobs:
       - name: Install dependencies
         run: npm install node-fetch@3
 
-      - name: Run AI update script
+      - name: Determine run mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MODE="${{ github.event.inputs.mode }}"
+          elif [ "$(date +%u)" = "3" ]; then
+            MODE="verify"
+          else
+            MODE="search"
+          fi
+          echo "mode=$MODE" >> $GITHUB_OUTPUT
+          echo "Running mode: $MODE"
+
+      - name: Run updater
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/update-data.mjs
+        run: |
+          MODE="${{ steps.mode.outputs.mode }}"
+          if [ "$MODE" = "verify" ]; then
+            node scripts/update-data.mjs --verify
+          elif [ "$MODE" = "search" ]; then
+            node scripts/update-data.mjs --search
+          else
+            node scripts/update-data.mjs
+          fi
 
       - name: Check for changes
         id: changes
         run: |
           git diff data/scholarships.json
           git diff --quiet data/scholarships.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
-          echo "Git status:"
           git status
 
-      - name: No changes detected
+      - name: No changes
         if: steps.changes.outputs.changed == 'false'
-        run: echo "No changes found in scholarships.json — data is already up to date. No PR needed."
+        run: echo "No changes found — data is up to date."
 
       - name: Create Pull Request
         if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Auto-update: scholarships & programs data"
-          title: "Weekly data update — please review before merging"
+          commit-message: "Auto-update: ${{ steps.mode.outputs.mode }} run"
+          title: "[${{ steps.mode.outputs.mode }}] Data update — review before merging"
           body: |
-            ## What changed
-            The AI searched the web for updates to scholarships, internships, and university programs near Phoenixville PA 19460.
+            ## ScholarFind Data Update — ${{ steps.mode.outputs.mode }}
 
-            **What to check before approving:**
-            - [ ] Deadline dates look accurate
+            **verify mode:** Checked existing scholarship URLs for deadline/amount changes.
+            **search mode:** Searched for new local scholarships and programs.
+
+            ### Before merging check:
+            - [ ] Items with `needsReview: true` — verify their details are accurate
+            - [ ] Deadline dates look correct
             - [ ] Award amounts are reasonable
-            - [ ] No programs were incorrectly removed
-            - [ ] New items (if any) look legitimate
+            - [ ] No existing scholarships were removed
 
-            Review the `data/scholarships.json` diff in the Files tab above.
-            If everything looks good, click **Merge pull request**.
-            If something looks wrong, click **Close pull request** to skip this week.
+            ✅ Looks good → **Merge pull request**
+            ❌ Something wrong → **Close pull request**
           branch: auto-update/weekly
           delete-branch: true
