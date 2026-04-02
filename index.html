@@ -256,6 +256,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .quiz-no-match{text-align:center;padding:2rem;color:var(--slate)}
 .quiz-no-match span{font-size:2.5rem;display:block;margin-bottom:0.75rem}
 
+
 /* SAVED */
 .saved-empty{text-align:center;padding:4rem 2rem;color:var(--slate)}
 .saved-empty span{font-size:3rem;display:block;margin-bottom:1rem}
@@ -576,6 +577,8 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
   </div>
   <div class="cards-grid" id="uni-grid"></div>
 </div>
+
+
 
 <!-- SAVED TAB -->
 <div class="section" id="tab-saved">
@@ -1508,98 +1511,54 @@ let currentDistrict = 'phoenixville';
 // ============================================================
 // DISTRICT DATA
 // ============================================================
-const districtData = {
-  phoenixville: { label:'Phoenixville · 19460', hasStatic:true, extraScholarships:[] },
-  westchester: {
-    label:'West Chester · 19380', hasStatic:true,
-    extraScholarships:[
-      { id:'wc1', type:'scholarship', title:'WCU General Scholarship', amount:'Varies — hundreds available', amountNum:3000, category:'General',
-        desc:'West Chester University offers 600+ scholarships for incoming and current students covering merit, need, arts, STEM, and leadership. One General Application covers many awards.',
-        eligibility:'Incoming and current WCU students. Most require FAFSA completion.',
-        deadline:'Rolling — check wcupa.edu/scholarships', deadlineDate:new Date('2026-05-01'),
-        how:'Apply at wcupa.edu/scholarships.', source:'wcupa.edu — West Chester University', url:'https://www.wcupa.edu/financialAid/scholarships.aspx',
-        grades:['12th'], gpaMin:'3to35', interests:['General','STEM','Arts','Healthcare','Community'] },
-      { id:'wc2', type:'scholarship', title:'CCCF Universal Application (West Chester)', amount:'Multiple awards', amountNum:4000, category:'General',
-        desc:'The CCCF Universal Application covers dozens of named scholarships for Chester County residents including West Chester area students.',
-        eligibility:'Chester County residents attending or planning post-secondary education.',
-        deadline:'March 15, 2026', deadlineDate:new Date('2026-03-15'),
-        how:'Apply at chescocf.org.', source:'chescocf.org — Chester County Community Foundation', url:'https://www.chescocf.org',
-        grades:['11th','12th'], gpaMin:'3to35', interests:['General','STEM','Arts','Community','Healthcare'] }
-    ]
-  },
-  downingtown: {
-    label:'Downingtown · 19335', hasStatic:true,
-    extraScholarships:[
-      { id:'dt1', type:'scholarship', title:"Downingtown Woman's Club Scholarship", amount:'Varies', amountNum:2000, category:'General',
-        desc:'A long-standing local scholarship for Downingtown-area students recognizing academic achievement and community involvement.',
-        eligibility:'Downingtown area high school seniors.',
-        deadline:'Spring 2026 — check chescocf.org', deadlineDate:new Date('2026-04-01'),
-        how:'Apply through chescocf.org Universal Application.', source:'chescocf.org — Chester County Community Foundation', url:'https://www.chescocf.org',
-        grades:['12th'], gpaMin:'3to35', interests:['General','Community'] },
-      { id:'dt2', type:'scholarship', title:'Mullestein Family Scholarship', amount:'Varies', amountNum:2000, category:'General',
-        desc:'A scholarship for Downingtown-area students through the Chester County Community Foundation Universal Application.',
-        eligibility:'Chester County students, Downingtown area preferred.',
-        deadline:'March 15, 2026', deadlineDate:new Date('2026-03-15'),
-        how:'Apply at chescocf.org.', source:'chescocf.org — Chester County Community Foundation', url:'https://www.chescocf.org',
-        grades:['12th'], gpaMin:'3to35', interests:['General'] }
-    ]
-  },
-  coatesville: {
-    label:'Coatesville · 19320', hasStatic:true,
-    extraScholarships:[
-      { id:'cv1', type:'scholarship', title:'Rotary Club of Coatesville Scholarship', amount:'Varies', amountNum:2500, category:'Community',
-        desc:'The Coatesville Rotary Club awards scholarships to local seniors demonstrating academic achievement, leadership, and community service.',
-        eligibility:'Coatesville Area School District seniors with strong community involvement.',
-        deadline:'Spring 2026 — contact CASD guidance', deadlineDate:new Date('2026-04-15'),
-        how:'Contact Coatesville Area High School guidance or apply via chescocf.org.', source:'chescocf.org — Chester County Community Foundation', url:'https://www.chescocf.org',
-        grades:['12th'], gpaMin:'3to35', interests:['Community','General'] },
-      { id:'cv2', type:'scholarship', title:'Western Chester County Chamber Scholarship', amount:'Varies', amountNum:2000, category:'General',
-        desc:'The Western Chester County Chamber awards scholarships to seniors in Coatesville and surrounding area, including a Trades Scholarship for CTE students.',
-        eligibility:'Seniors in the Chamber service area. Trades award requires 2.0+ GPA and CTE enrollment.',
-        deadline:'April 15, 2026 (academic) · May 13, 2026 (trades)', deadlineDate:new Date('2026-04-15'),
-        how:'Apply at westernchestercounty.com.', source:'westernchestercounty.com — Western Chester County Chamber', url:'https://www.westernchestercounty.com/chamberscholarship/',
-        grades:['12th'], gpaMin:'3to35', interests:['General','Community'] }
-    ]
-  },
-  greatvalley: {
-    label:'Great Valley · 19355', hasStatic:true,
-    extraScholarships:[
-      { id:'gv1', type:'scholarship', title:'CCCF Universal Application (Great Valley)', amount:'Multiple awards', amountNum:4000, category:'General',
-        desc:'Great Valley students in Malvern and Berwyn are eligible for dozens of CCCF scholarships covering merit, arts, healthcare, STEM, and need-based awards.',
-        eligibility:'Chester County residents in the Great Valley School District.',
-        deadline:'March 15, 2026', deadlineDate:new Date('2026-03-15'),
-        how:'Apply at chescocf.org.', source:'chescocf.org — Chester County Community Foundation', url:'https://www.chescocf.org',
-        grades:['11th','12th'], gpaMin:'3to35', interests:['General','STEM','Arts','Healthcare','Community'] }
-    ]
-  },
-  kennett: {
-    label:'Kennett Square · 19348', hasStatic:true,
-    extraScholarships:[
-      { id:'ks1', type:'scholarship', title:'CCCF Universal Application (Kennett)', amount:'Varies', amountNum:2000, category:'Community',
-        desc:'Kennett Consolidated students can access local scholarships through the CCCF Universal Application. Kennett Square has strong community foundation funding.',
-        eligibility:'Kennett Consolidated School District seniors.',
-        deadline:'March 15, 2026', deadlineDate:new Date('2026-03-15'),
-        how:'Apply at chescocf.org and check Kennett High School guidance for district-specific awards.', source:'chescocf.org', url:'https://www.chescocf.org',
-        grades:['12th'], gpaMin:'3to35', interests:['Community','General'] }
-    ]
-  },
-  octorara: {
-    label:'Octorara · 19310', hasStatic:true,
-    extraScholarships:[
-      { id:'oc1', type:'scholarship', title:'Western CC Chamber Trades Scholarship', amount:'Varies', amountNum:1500, category:'General',
-        desc:'Available to Octorara seniors enrolled in CTE programs, covering tuition for trade certifications or two-year degrees.',
-        eligibility:'Octorara seniors in a CTE program with 2.0+ cumulative GPA and 2.5+ CTE GPA.',
-        deadline:'May 13, 2026', deadlineDate:new Date('2026-05-13'),
-        how:'Apply at westernchestercounty.com or contact Octorara guidance.', source:'westernchestercounty.com', url:'https://www.westernchestercounty.com/chamberscholarship/',
-        grades:['12th'], gpaMin:'below3', interests:['General','STEM'] }
-    ]
-  },
-  owenjroberts: { label:'Owen J. Roberts · 19465', hasStatic:false, extraScholarships:[] },
-  oxford: { label:'Oxford · 19363', hasStatic:false, extraScholarships:[] },
-  tredyffrin: { label:'Tredyffrin-Easttown · 19301', hasStatic:false, extraScholarships:[] },
-  unionville: { label:'Unionville-Chadds Ford · 19317', hasStatic:false, extraScholarships:[] },
-  other: { label:'Other Chester County', hasStatic:false, extraScholarships:[] }
-};
+// ============================================================
+// DISTRICT DATA — loaded from data/districts.json
+// ============================================================
+let districtData = {};
+
+async function loadDistricts() {
+  try {
+    const res = await fetch('/data/districts.json');
+    const json = await res.json();
+
+    // Convert array to keyed object, parse deadlineDates in extraScholarships
+    json.districts.forEach(d => {
+      if (typeof d !== 'object' || !d.id) return; // skip comment entries
+      d.extraScholarships = (d.extraScholarships || []).map(s => ({
+        ...s,
+        deadlineDate: new Date(s.deadlineDate)
+      }));
+      districtData[d.id] = d;
+    });
+
+    // Populate district picker from JSON
+    const select = document.getElementById('district-select');
+    const mobileDrawerDistrict = document.getElementById('district-select-mobile');
+    if (select) {
+      select.innerHTML = json.districts
+        .filter(d => d.id && d.id !== 'other')
+        .map(d => {
+          const county = d.county !== 'Chester County' ? ` (${d.county})` : '';
+          return `<option value="${d.id}">${d.label}${county}</option>`;
+        })
+        .join('') + '<option value="other">Other Chester County zip →</option>';
+    }
+
+    // Set initial district tag
+    const first = json.districts.find(d => d.id === 'phoenixville');
+    if (first) document.getElementById('district-tag').textContent = first.label;
+
+    renderScholarships();
+  } catch(e) {
+    console.warn('Could not load districts.json, using fallback', e);
+    // Fallback — keep site working even if JSON fails
+    districtData = {
+      phoenixville: { label:'Phoenixville · 19460', hasStatic:true, extraScholarships:[] },
+      other: { label:'Other Chester County', hasStatic:false, extraScholarships:[] }
+    };
+    renderScholarships();
+  }
+}
 
 function switchDistrict(val) {
   currentDistrict = val;
@@ -1627,12 +1586,37 @@ function switchDistrict(val) {
 async function runAISearch() {
   const zip = document.getElementById('ai-zip-input').value.trim();
   if (!zip || zip.length !== 5) { alert('Please enter a valid 5-digit ZIP code'); return; }
+
+  // Pennsylvania ZIP codes range from 15000–19640
+  const zipNum = parseInt(zip, 10);
+  const isPA = zipNum >= 15000 && zipNum <= 19640;
+
   const resultsDiv = document.getElementById('ai-results');
   const btn = document.querySelector('.ai-search-btn');
   resultsDiv.classList.remove('hidden');
-  resultsDiv.className = 'ai-results loading';
+  resultsDiv.className = 'ai-results';
+
+  if (!isPA) {
+    resultsDiv.innerHTML = `
+      <div style="background:#fef9c3;border:1.5px solid #f59e0b;border-radius:10px;padding:1rem">
+        <div style="font-weight:700;color:#92400e;margin-bottom:0.4rem">📍 Outside our coverage area</div>
+        <div style="font-size:0.85rem;color:#78350f;line-height:1.6">
+          ScholarFind is built specifically for <strong>Chester County, PA</strong> students — ZIP <strong>${zip}</strong> is outside our coverage area so our local data won't be relevant to you.
+          <div style="margin-top:0.75rem">For scholarships in your area try:</div>
+          <div style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem">
+            <a href="https://www.fastweb.com" target="_blank" style="color:#1a9e8f;font-weight:600">→ Fastweb.com — free national scholarship search</a>
+            <a href="https://www.scholarships.com" target="_blank" style="color:#1a9e8f;font-weight:600">→ Scholarships.com — matches by profile</a>
+            <a href="https://studentaid.gov" target="_blank" style="color:#1a9e8f;font-weight:600">→ StudentAid.gov — federal aid & grants</a>
+            <span style="color:#92400e">→ Your school district guidance office — for local awards</span>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Searching…';
+  resultsDiv.className = 'ai-results loading';
   resultsDiv.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;margin-right:6px">⏳</span> Searching for scholarships near ZIP ' + zip + '…';
   try {
     const response = await fetch('/.netlify/functions/search-scholarships', {
@@ -1998,7 +1982,7 @@ function closeWelcome() {
 // INIT — runs after full DOM is loaded
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
-  renderScholarships();
+  loadDistricts(); // loads districts.json then calls renderScholarships()
   renderInternships();
   renderUniversityPrograms();
 
