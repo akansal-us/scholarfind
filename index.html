@@ -1736,10 +1736,13 @@ function getUrgency(d) {
 }
 
 function renderDeadlines() {
-  const all = [...scholarships, ...internships, ...universityPrograms].filter(x => x.deadlineDate).sort((a,b)=>a.deadlineDate-b.deadlineDate);
   const now = new Date();
+  const all = [...scholarships, ...internships, ...universityPrograms].filter(x => x.deadlineDate);
+  const active = all.filter(x => x.deadlineDate >= now).sort((a,b) => a.deadlineDate - b.deadlineDate);
+  const past = all.filter(x => x.deadlineDate < now).sort((a,b) => b.deadlineDate - a.deadlineDate);
   const grid = document.getElementById('deadline-grid');
-  grid.innerHTML = all.map(item => {
+
+  function deadlineCardHTML(item) {
     const days = Math.round((item.deadlineDate - now) / 86400000);
     const cls = days < 0 ? 'ok' : days <= 14 ? 'urgent' : days <= 45 ? 'soon' : 'ok';
     const label = days < 0 ? 'Passed' : `${days} days`;
@@ -1752,7 +1755,20 @@ function renderDeadlines() {
         <a href="${item.url}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.78rem;color:var(--teal);font-weight:600;text-decoration:none">Apply →</a>
       </div>
     </div>`;
-  }).join('');
+  }
+
+  let html = active.map(deadlineCardHTML).join('');
+
+  if (past.length > 0) {
+    html += `<div style="grid-column:1/-1;display:flex;align-items:center;gap:1rem;margin-top:0.5rem">
+      <div style="flex:1;height:1px;background:var(--light)"></div>
+      <span style="font-size:0.78rem;font-weight:600;color:#94a3b8;white-space:nowrap">⏰ Past deadlines (${past.length})</span>
+      <div style="flex:1;height:1px;background:var(--light)"></div>
+    </div>`;
+    html += past.map(deadlineCardHTML).join('');
+  }
+
+  grid.innerHTML = html;
 }
 
 function renderSaved() {
