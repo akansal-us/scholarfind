@@ -409,10 +409,10 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-val" id="stat-scholarships">10</div><div class="stat-lbl">Scholarships</div></div>
-    <div class="stat"><div class="stat-val" id="stat-money">$500K+</div><div class="stat-lbl">Available</div></div>
-    <div class="stat"><div class="stat-val" id="stat-internships">10</div><div class="stat-lbl">Internships</div></div>
-    <div class="stat"><div class="stat-val">20</div><div class="stat-lbl">Uni Programs</div></div>
+    <div class="stat"><div class="stat-val" id="stat-scholarships">12</div><div class="stat-lbl">Scholarships</div></div>
+    <div class="stat"><div class="stat-val" id="stat-money">$600K+</div><div class="stat-lbl">Available</div></div>
+    <div class="stat"><div class="stat-val" id="stat-internships">15</div><div class="stat-lbl">Internships</div></div>
+    <div class="stat"><div class="stat-val">23</div><div class="stat-lbl">Uni Programs</div></div>
     <div class="stat"><div class="stat-val" id="stat-deadline">Mar 31</div><div class="stat-lbl">Next Deadline</div></div>
   </div>
 </div>
@@ -805,6 +805,40 @@ const scholarships = [
     grades:['11th','12th'],
     gpaMin:'35plus',
     interests:['STEM','General']
+  }  ,
+  {
+    id:'s11', type:'scholarship',
+    title:'Lockheed Martin STEM Scholarship',
+    amount:'Up to $10,000',
+    amountNum:10000,
+    category:'STEM',
+    desc:'Lockheed Martin, with facilities in the Philadelphia region, offers STEM scholarships for high school seniors pursuing engineering, computer science, or related fields. Chester County students are eligible. Lockheed also runs a separate high school internship program — scholarship and internship can be pursued independently.',
+    eligibility:'High school seniors pursuing STEM degrees. Strong academic record required. U.S. citizenship required.',
+    deadline:'Check lockheedmartin.com for 2026-27 cycle',
+    deadlineDate: new Date('2026-10-01'),
+    how:'Visit lockheedmartin.com/en-us/careers/candidates/students-early-careers/high-school.html for current scholarship and internship openings.',
+    source:'lockheedmartin.com — Lockheed Martin',
+    url:'https://www.lockheedmartin.com/en-us/careers/candidates/students-early-careers/high-school.html',
+    grades:['12th'],
+    gpaMin:'35plus',
+    interests:['STEM']
+  },
+  {
+    id:'s12', type:'scholarship',
+    title:'Comcast NBCUniversal RISE Scholarship',
+    amount:'Up to $5,000',
+    amountNum:5000,
+    category:'STEM',
+    desc:'Comcast, headquartered in Philadelphia and with major operations throughout the region, awards scholarships to students pursuing technology, media, or business degrees. Chester County students within the Comcast service area are eligible. Comcast also hires local high school interns in West Chester and surrounding areas.',
+    eligibility:'High school seniors pursuing technology, business, or media degrees. Strong community involvement preferred.',
+    deadline:'Rolling — check comcast.com/rise for current cycle',
+    deadlineDate: new Date('2026-12-01'),
+    how:'Search "Comcast RISE Scholarship" at comcast.com or corporate.comcast.com/values/education.',
+    source:'comcast.com — Comcast, Philadelphia region',
+    url:'https://corporate.comcast.com/values/education',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['STEM','General']
   }
 ];
 
@@ -968,6 +1002,86 @@ const internships = [
     grades:['11th','12th'],
     gpaMin:'below3',
     interests:['Healthcare']
+  }  ,
+  {
+    id:'i11', type:'internship',
+    title:'GSK Electromechanical Apprentice Program',
+    amount:'Paid · Full-time · Degree funded',
+    category:'STEM',
+    desc:'GSK offers a 3-4 year paid apprenticeship for high school graduates at its Upper Merion facility (King of Prussia, 8 miles from Phoenixville). Work full-time in biopharmaceutical manufacturing while earning a fully funded Associate's degree in Engineering Science at Montgomery County Community College.',
+    eligibility:'High school graduates by June 2026 with 2.5+ GPA and algebra/geometry credits. Must be able to work full time at Upper Merion, PA facility.',
+    deadline:'Rolling — check gsk.com/apprentices for 2026 openings',
+    deadlineDate: new Date('2026-08-01'),
+    how:'Search #ApprenticeUS2026 at gsk.com/en-us/careers/early-careers/apprentices. Apply early — recruitment is ongoing and positions fill fast.',
+    source:'gsk.com — GSK Upper Merion, King of Prussia PA (8 miles)',
+    url:'https://us.gsk.com/en-us/careers/early-careers/apprentices/',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['STEM','Healthcare']
+  },
+  {
+    id:'i12', type:'internship',
+    title:'Monell Science Apprenticeship Program',
+    amount:'Paid weekly stipend',
+    category:'STEM Programs',
+    desc:'A prestigious 7-week paid summer research internship at the Monell Chemical Senses Center in Philadelphia for high school students from the greater Philadelphia area. Work directly alongside scientists on real biomedical research projects in neuroscience, chemistry, and data analysis. Named one of the top 25 pre-college science programs nationally.',
+    eligibility:'High school students (grade 9+) from the greater Philadelphia area including Chester County. Strong interest in science required — no prior research experience needed. Applications due December 31.',
+    deadline:'December 31, 2026 (for Summer 2027)',
+    deadlineDate: new Date('2026-12-31'),
+    how:'Apply at monell.org/science-apprenticeship-applications. Requires personal statement, one teacher recommendation, and transcript. Decisions by April 1.',
+    source:'monell.org — Monell Chemical Senses Center, Philadelphia PA (28 miles)',
+    url:'https://monell.org/science-apprenticeship-program/',
+    grades:['9th','10th','11th','12th'],
+    gpaMin:'3to35',
+    interests:['STEM','Healthcare']
+  },
+  {
+    id:'i13', type:'internship',
+    title:'Penn AEOP High School Internship (GRASP Lab)',
+    amount:'Free · Research experience',
+    category:'STEM Programs',
+    desc:'A 7-week summer research program at the University of Pennsylvania's GRASP Lab (General Robotics, Automation, Sensing & Perception) for rising high school juniors and seniors. Work on real robotics and AI research projects alongside Penn graduate students and faculty. One of the most selective STEM experiences in the Philadelphia region.',
+    eligibility:'Rising juniors and seniors (currently in 10th and 11th grade) who are US citizens or permanent residents. Strong STEM interest required.',
+    deadline:'May 16, 2026',
+    deadlineDate: new Date('2026-05-16'),
+    how:'Apply at diversity.seas.upenn.edu/aeop-high-school-internship-program. Program runs June 20 – August 5, 2026.',
+    source:'seas.upenn.edu — University of Pennsylvania, Philadelphia PA (28 miles)',
+    url:'https://diversity.seas.upenn.edu/aeop-high-school-internship-program/',
+    grades:['11th','12th'],
+    gpaMin:'35plus',
+    interests:['STEM']
+  },
+  {
+    id:'i14', type:'internship',
+    title:'Pennsylvania Governor's School for the Sciences',
+    amount:'FREE · Residential · Fully funded',
+    category:'STEM Programs',
+    desc:'A highly selective FREE 5-week residential summer program at Carnegie Mellon University for Pennsylvania's top high school students in science and math. College-level courses, hands-on lab experiments, and mentorship from CMU faculty. One of the most prestigious STEM programs available to PA students — Chester County students are eligible.',
+    eligibility:'Pennsylvania high school students completing 10th or 11th grade with exceptional STEM ability. Competitive statewide application. Fully funded — no cost.',
+    deadline:'Apply in Spring 2026 — check sciences.pa-gov-schools.org',
+    deadlineDate: new Date('2026-03-15'),
+    how:'Apply at sciences.pa-gov-schools.org. Program runs June 21 – July 25, 2026 at Carnegie Mellon University, Pittsburgh.',
+    source:'sciences.pa-gov-schools.org — Carnegie Mellon University, Pittsburgh PA',
+    url:'https://sciences.pa-gov-schools.org/',
+    grades:['11th','12th'],
+    gpaMin:'35plus',
+    interests:['STEM']
+  },
+  {
+    id:'i15', type:'internship',
+    title:'Pennsylvania State Government High School Internship',
+    amount:'Paid · Part-time',
+    category:'STEM Programs',
+    desc:'The Commonwealth of Pennsylvania runs a formal high school internship program placing students in state government agencies across PA. Roles span IT, environmental science, communications, public policy, and administration. A unique way to get real government work experience while still in high school.',
+    eligibility:'Current high school students across Pennsylvania. Placement varies by agency and location. Contact PA Department of Human Resources for Chester County placements.',
+    deadline:'Rolling — check pa.gov for current openings',
+    deadlineDate: new Date('2026-09-01'),
+    how:'Visit pa.gov/agencies/hrmoa/programs/hire-separation/high-school-internships for open positions and application instructions.',
+    source:'pa.gov — Commonwealth of Pennsylvania',
+    url:'https://www.pa.gov/agencies/hrmoa/programs/hire-separation/high-school-internships',
+    grades:['10th','11th','12th'],
+    gpaMin:'below3',
+    interests:['General','STEM','Community']
   }
 ];
 
@@ -1291,6 +1405,54 @@ const universityPrograms = [
     source:'nyu.edu — New York University, NYC',
     url:'https://www.nyu.edu/admissions/high-school-and-middle-school-programs.html',
     grades:['6th','7th','8th','9th','10th','11th','12th'],
+    level:'Middle School'
+  }  ,
+  {
+    id:'u21', type:'university',
+    title:'Franklin Institute STEM Scholars Program',
+    amount:'FREE',
+    category:'Free / Low Cost',
+    tags:['High School','STEM','Free'],
+    desc:'The Franklin Institute in Philadelphia runs STEM Scholars — a competitive program pairing high school students with scientists and engineers for mentored research experiences. The Franklin is 28 miles from Phoenixville and one of the most respected science institutions in the region.',
+    eligibility:'Philadelphia-area high school students with strong STEM interest. Chester County students are eligible.',
+    deadline:'Check fi.edu for 2026 application dates',
+    deadlineDate: new Date('2026-04-01'),
+    how:'Visit fi.edu/en/science-and-education/stem-scholars for application info and current program dates.',
+    source:'fi.edu — The Franklin Institute, Philadelphia PA (28 miles)',
+    url:'https://www.fi.edu/en/science-and-education/stem-scholars',
+    grades:['9th','10th','11th','12th'],
+    level:'High School'
+  },
+  {
+    id:'u22', type:'university',
+    title:'Penn Summer Mentorship Program (Engineering)',
+    amount:'FREE',
+    category:'Free / Low Cost',
+    tags:['High School','STEM','Free'],
+    desc:'A free 4-week summer program at Penn's School of Engineering for Philadelphia-area high school students in 9th and 10th grade. Attend lab demonstrations, meet faculty and researchers, explore engineering disciplines, and get college readiness workshops including financial aid and SAT prep. Chester County students within 60 miles qualify.',
+    eligibility:'Philadelphia-area high school students currently in 9th or 10th grade with a minimum 3.0 GPA. Program held on Penn's campus in Philadelphia.',
+    deadline:'February 21, 2026',
+    deadlineDate: new Date('2026-02-21'),
+    how:'Apply at diversity.seas.upenn.edu. Program runs July 7 – August 1, 2026.',
+    source:'seas.upenn.edu — University of Pennsylvania, Philadelphia PA (28 miles)',
+    url:'https://diversity.seas.upenn.edu',
+    grades:['9th','10th'],
+    level:'High School'
+  },
+  {
+    id:'u23', type:'university',
+    title:'GSK Science in the Summer',
+    amount:'FREE',
+    category:'Free / Low Cost',
+    tags:['Middle School','STEM','Free'],
+    desc:'GSK's 35-year-old flagship education program brings free hands-on STEM classes to middle school students during summer break. Run in partnership with community organizations across Philadelphia and Chester County, it focuses on students from underserved communities. Classes are taught at local community sites — no transportation to a university needed.',
+    eligibility:'Elementary and middle school students (grades K-8) in the Philadelphia area including Chester County. Free, runs through community partners.',
+    deadline:'Check gsk.com for 2026 community partner locations',
+    deadlineDate: new Date('2026-06-01'),
+    how:'Visit gsk.com or contact Chester County community organizations to find a program near you. GSK partners with local nonprofits to host classes.',
+    source:'gsk.com — GSK, Collegeville/King of Prussia PA (8-12 miles)',
+    url:'https://us.gsk.com/en-us/responsibility/our-people/in-the-community/',
+    grades:['6th','7th','8th'],
     level:'Middle School'
   }
 ];
