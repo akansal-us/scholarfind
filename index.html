@@ -141,6 +141,23 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .disclaimer-dismiss{background:none;border:1px solid #334155;color:#94a3b8;padding:0.2rem 0.7rem;border-radius:50px;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
 .disclaimer-dismiss:hover{background:#1e293b}
 
+/* EMAIL SIGNUP */
+.email-signup-card{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem;color:white}
+.email-signup-card h3{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--gold);margin-bottom:0.3rem}
+.email-signup-card p{font-size:0.84rem;color:#94a3b8;margin-bottom:1rem;line-height:1.5}
+.email-prefs{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem}
+.email-pref{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:#cbd5e1;cursor:pointer}
+.email-pref input{accent-color:var(--gold);width:15px;height:15px}
+.email-input-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+.email-input-row input{flex:1;min-width:200px;border:1.5px solid #334155;background:#1e293b;color:white;padding:0.65rem 1rem;border-radius:8px;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
+.email-input-row input:focus{border-color:var(--gold)}
+.email-input-row input::placeholder{color:#64748b}
+.email-sub-btn{background:var(--gold);color:var(--navy);border:none;padding:0.65rem 1.4rem;border-radius:8px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;white-space:nowrap;transition:background 0.2s}
+.email-sub-btn:hover{background:#e6b800}
+.email-sub-btn:disabled{background:#475569;color:#94a3b8;cursor:not-allowed}
+.email-success{background:#065f46;border-radius:8px;padding:0.75rem 1rem;font-size:0.85rem;color:#6ee7b7;margin-top:0.75rem;display:none}
+.email-error{background:#7f1d1d;border-radius:8px;padding:0.75rem 1rem;font-size:0.85rem;color:#fca5a5;margin-top:0.75rem;display:none}
+
 /* FILTER BAR */
 .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .filter-btn{border:1.5px solid var(--light);background:var(--white);padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;color:var(--slate);transition:all 0.2s}
@@ -247,6 +264,24 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 /* WARNING BANNER */
 .warn-banner{font-size:0.78rem;color:#92400e;margin-bottom:1rem;padding:0.4rem 0.8rem;background:#fef9c3;border-radius:6px;border-left:3px solid #f59e0b;line-height:1.5}
 
+/* WELCOME MODAL */
+.welcome-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.7);z-index:2000;align-items:center;justify-content:center;padding:1rem}
+.welcome-overlay.open{display:flex}
+.welcome-modal{background:var(--white);border-radius:20px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden}
+.welcome-header{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);padding:1.8rem;text-align:center}
+.welcome-header h2{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--white);margin-bottom:0.3rem}
+.welcome-header p{color:#94a3b8;font-size:0.88rem}
+.welcome-body{padding:1.5rem}
+.welcome-features{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem}
+.welcome-feature{background:var(--cream);border-radius:10px;padding:0.9rem;border:1.5px solid var(--light)}
+.welcome-feature-icon{font-size:1.4rem;margin-bottom:0.3rem}
+.welcome-feature-title{font-weight:700;font-size:0.88rem;margin-bottom:0.2rem}
+.welcome-feature-desc{font-size:0.78rem;color:var(--slate);line-height:1.4}
+.welcome-tip{background:#f0fdf9;border:1.5px solid var(--teal);border-radius:10px;padding:0.8rem 1rem;font-size:0.82rem;color:#0f6e56;margin-bottom:1.2rem;line-height:1.5}
+.welcome-btn{width:100%;background:var(--teal);color:white;border:none;padding:0.9rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
+.welcome-btn:hover{background:#158a7c}
+@media(max-width:500px){.welcome-features{grid-template-columns:1fr}}
+
 /* HIDDEN */
 .hidden{display:none!important}
 
@@ -321,17 +356,63 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
   <button class="tab-btn" onclick="switchTab('saved',this);closeDrawer()">⭐ Saved (<span id="saved-count-mobile">0</span>)</button>
 </div>
 
+<!-- WELCOME MODAL -->
+<div class="welcome-overlay" id="welcome-overlay">
+  <div class="welcome-modal">
+    <div class="welcome-header">
+      <h2>Welcome to Scholar<span style="color:var(--gold)">Find</span></h2>
+      <p>Chester County's free scholarship & opportunities finder</p>
+    </div>
+    <div class="welcome-body">
+      <div class="welcome-features">
+        <div class="welcome-feature">
+          <div class="welcome-feature-icon">🏆</div>
+          <div class="welcome-feature-title">Scholarships</div>
+          <div class="welcome-feature-desc">Real, verified local awards with direct apply links</div>
+        </div>
+        <div class="welcome-feature">
+          <div class="welcome-feature-icon">💼</div>
+          <div class="welcome-feature-title">Internships</div>
+          <div class="welcome-feature-desc">Paid opportunities within 15 miles of your district</div>
+        </div>
+        <div class="welcome-feature">
+          <div class="welcome-feature-icon">🎓</div>
+          <div class="welcome-feature-title">University Programs</div>
+          <div class="welcome-feature-desc">Summer programs for grades 6–12 at nearby universities</div>
+        </div>
+        <div class="welcome-feature">
+          <div class="welcome-feature-icon">🎯</div>
+          <div class="welcome-feature-title">Eligibility Quiz</div>
+          <div class="welcome-feature-desc">5 quick questions to find scholarships you qualify for</div>
+        </div>
+        <div class="welcome-feature">
+          <div class="welcome-feature-icon">📅</div>
+          <div class="welcome-feature-title">Deadline Tracker</div>
+          <div class="welcome-feature-desc">Countdowns so nothing slips through the cracks</div>
+        </div>
+        <div class="welcome-feature">
+          <div class="welcome-feature-icon">⭐</div>
+          <div class="welcome-feature-title">Save & Track</div>
+          <div class="welcome-feature-desc">Bookmark anything and get email reminders</div>
+        </div>
+      </div>
+      <div class="welcome-tip">💡 <strong>Start here:</strong> Select your Chester County school district at the top, then browse scholarships relevant to your area.</div>
+      <button class="welcome-btn" onclick="closeWelcome()">Let's find scholarships →</button>
+    </div>
+  </div>
+</div>
+
 <div class="hero">
   <h1>Find <span>Scholarships</span> &amp; Opportunities</h1>
   <p>Real, verified opportunities for Chester County students · Select your school district below</p>
-
 </div>
 
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat"><div class="stat-val" id="stat-scholarships">10</div><div class="stat-lbl">Scholarships</div></div>
-    <div class="stat"><div class="stat-val" id="stat-money">$100K+</div><div class="stat-lbl">Available</div></div>
+    <div class="stat"><div class="stat-val" id="stat-money">$500K+</div><div class="stat-lbl">Available</div></div>
     <div class="stat"><div class="stat-val" id="stat-internships">10</div><div class="stat-lbl">Internships</div></div>
+    <div class="stat"><div class="stat-val">20</div><div class="stat-lbl">Uni Programs</div></div>
     <div class="stat"><div class="stat-val" id="stat-deadline">Mar 31</div><div class="stat-lbl">Next Deadline</div></div>
   </div>
 </div>
@@ -499,6 +580,24 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <!-- SAVED TAB -->
 <div class="section" id="tab-saved">
   <div class="tab-header"><h2>⭐ Saved Items</h2><p>Scholarships and programs you've bookmarked · <span style="color:var(--warn)">⚠️ Stored on this device only</span></p></div>
+
+  <!-- EMAIL SIGNUP -->
+  <div class="email-signup-card" id="email-signup-card">
+    <h3>📬 Get deadline reminders by email</h3>
+    <p>We'll email you 7 days before saved scholarship deadlines, plus a monthly digest of new opportunities added to the site.</p>
+    <div class="email-prefs">
+      <label class="email-pref"><input type="checkbox" id="pref-deadlines" checked/> 7-day deadline reminders</label>
+      <label class="email-pref"><input type="checkbox" id="pref-digest" checked/> Monthly new scholarships digest</label>
+      <label class="email-pref"><input type="checkbox" id="pref-new" checked/> Alerts when new scholarships are added</label>
+    </div>
+    <div class="email-input-row">
+      <input type="email" id="reminder-email" placeholder="your@email.com"/>
+      <button class="email-sub-btn" id="email-sub-btn" onclick="subscribeEmail()">Notify me →</button>
+    </div>
+    <div class="email-success" id="email-success">✅ You're signed up! Watch your inbox for reminders.</div>
+    <div class="email-error" id="email-error">Something went wrong — please try again or email us directly.</div>
+  </div>
+
   <div id="saved-grid-wrap">
     <div class="cards-grid" id="saved-grid"></div>
     <div class="saved-empty hidden" id="saved-empty">
@@ -1647,6 +1746,70 @@ function resetQuiz() {
     const pip = document.getElementById('pip-' + i);
     pip.className = 'quiz-pip' + (i === 0 ? ' active' : '');
   }
+}
+
+// ============================================================
+// EMAIL SIGNUP
+// ============================================================
+async function subscribeEmail() {
+  const email = document.getElementById('reminder-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('email-error').style.display = 'block';
+    document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+    return;
+  }
+  const btn = document.getElementById('email-sub-btn');
+  btn.disabled = true;
+  btn.textContent = 'Signing up…';
+
+  const prefs = {
+    deadlines: document.getElementById('pref-deadlines').checked,
+    digest: document.getElementById('pref-digest').checked,
+    newScholarships: document.getElementById('pref-new').checked,
+    savedItems: savedItems,
+    district: currentDistrict
+  };
+
+  try {
+    const response = await fetch('/.netlify/functions/email-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, prefs })
+    });
+    if (response.ok) {
+      document.getElementById('email-success').style.display = 'block';
+      document.getElementById('email-error').style.display = 'none';
+      document.getElementById('reminder-email').value = '';
+      btn.textContent = 'Signed up ✓';
+      localStorage.setItem('sf_email_subscribed', '1');
+    } else {
+      throw new Error('Server error');
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Notify me →';
+    document.getElementById('email-error').style.display = 'block';
+    document.getElementById('email-success').style.display = 'none';
+  }
+}
+
+// Hide signup card if already subscribed
+if (localStorage.getItem('sf_email_subscribed')) {
+  const card = document.getElementById('email-signup-card');
+  if (card) card.style.display = 'none';
+}
+
+// ============================================================
+// WELCOME MODAL
+// ============================================================
+function closeWelcome() {
+  document.getElementById('welcome-overlay').classList.remove('open');
+  localStorage.setItem('sf_welcomed', '1');
+}
+
+// Show on first visit only
+if (!localStorage.getItem('sf_welcomed')) {
+  document.getElementById('welcome-overlay').classList.add('open');
 }
 
 // ============================================================
