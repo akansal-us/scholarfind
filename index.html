@@ -410,7 +410,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-val" id="stat-scholarships">12</div><div class="stat-lbl">Scholarships</div></div>
+    <div class="stat"><div class="stat-val" id="stat-scholarships">16</div><div class="stat-lbl">Scholarships</div></div>
     <div class="stat"><div class="stat-val" id="stat-money">$600K+</div><div class="stat-lbl">Available</div></div>
     <div class="stat"><div class="stat-val" id="stat-internships">15</div><div class="stat-lbl">Internships</div></div>
     <div class="stat"><div class="stat-val">23</div><div class="stat-lbl">Uni Programs</div></div>
@@ -842,6 +842,74 @@ const scholarships = [
     grades:['12th'],
     gpaMin:'3to35',
     interests:['STEM','General']
+  },
+  {
+    id:'s13', type:'scholarship',
+    title:'Ervin L. Steele Nursing Scholarship',
+    amount:'Varies',
+    amountNum:3000,
+    category:'Healthcare',
+    desc:'The Chester County Hospital Foundation awards the Ervin L. Steele Scholarship to students pursuing nursing degrees. Named after a long-serving hospital board member, it supports the next generation of nurses serving the Chester County community.',
+    eligibility:'Students pursuing a nursing degree at an accredited institution. Chester County residents given strong preference.',
+    deadline:'Check chestercountyhospital.org for 2026 dates',
+    deadlineDate: new Date('2026-04-15'),
+    how:'Contact the Chester County Hospital Foundation directly at chestercountyhospital.org or call the Foundation office for current application details.',
+    source:'chestercountyhospital.org — Chester County Hospital Foundation',
+    url:'https://www.chestercountyhospital.org/foundation',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['Healthcare']
+  },
+  {
+    id:'s14', type:'scholarship',
+    title:'Chester County Engineers Scholarship',
+    amount:'$2,500',
+    amountNum:2500,
+    category:'STEM',
+    desc:'Chester County Engineers (CCE) is a nonprofit dedicated to the civil engineering profession in Chester County. They award a competitive $2,500 scholarship annually to college or college-bound students pursuing civil engineering in the region. A hidden gem specifically for Chester County students going into engineering.',
+    eligibility:'Chester County region students enrolled or planning to enroll full-time in an engineering program at an accredited college or university. Applications due May 1, 2026.',
+    deadline:'May 1, 2026',
+    deadlineDate: new Date('2026-05-01'),
+    how:'Download the application at chestercountyengineers.org. Submit completed form with supporting documents to CCE, c/o 1250 Wright\'s Lane, West Chester PA 19380 or email as PDF with subject "CCE Scholarship".',
+    source:'chestercountyengineers.org — Chester County Engineers, West Chester PA',
+    url:'https://chestercountyengineers.org/news/2026-chester-county-engineers-scholarship-application/',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['STEM']
+  },
+  {
+    id:'s15', type:'scholarship',
+    title:'PSPE Valley Forge Chapter Scholarship',
+    amount:'Varies',
+    amountNum:2000,
+    category:'STEM',
+    desc:'The Valley Forge Chapter of the Pennsylvania Society of Professional Engineers awards scholarships to high school students in Chester and Montgomery Counties pursuing a Bachelor of Science in Engineering. Ideal for Phoenixville and Great Valley students heading into any engineering discipline.',
+    eligibility:'High school students who live or attend school in Montgomery, Berks, or Chester County Pennsylvania and plan to pursue a BS in Engineering at an accredited institution.',
+    deadline:'Check guidance office — typically spring 2026',
+    deadlineDate: new Date('2026-04-01'),
+    how:'Contact your PAHS guidance counselor — the chapter distributes applications through local high schools. Also check pspe.org/valleyforge for direct contact.',
+    source:'pspe.org — PSPE Valley Forge Chapter, Montgomery/Chester County PA',
+    url:'https://www.pspe.org/valleyforge/',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['STEM']
+  },
+  {
+    id:'s16', type:'scholarship',
+    title:'America250PA Semiquincentennial Scholarship',
+    amount:'$10,000',
+    amountNum:10000,
+    category:'General',
+    desc:'Celebrating America\'s 250th anniversary, Pennsylvania is awarding 25 scholarships of $10,000 each to PA high school seniors attending PA colleges or universities in 2026-27. Chester County students are eligible and can attend participating schools including West Chester University, Temple, Penn State, and more.',
+    eligibility:'Pennsylvania high school seniors planning to attend an accredited Pennsylvania college or university for the 2026-2027 academic year. Based on demonstrated civic values and academic achievement.',
+    deadline:'January 31, 2026 (awards announced April 2026)',
+    deadlineDate: new Date('2026-01-31'),
+    how:'Apply at america250pa.org. Complete the online application before January 31, 2026. For questions email info@America250PA.org.',
+    source:'america250pa.org — America250PA, Commonwealth of Pennsylvania',
+    url:'https://america250pa.org/PPE:_Semiquin_Scholarships',
+    grades:['12th'],
+    gpaMin:'3to35',
+    interests:['General','Community']
   }
 ];
 
@@ -1622,7 +1690,10 @@ async function runAISearch() {
     const response = await fetch('/.netlify/functions/search-scholarships', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ zip })
+      body: JSON.stringify({
+        zip,
+        knownTitles: scholarships.map(s => s.title)
+      })
     });
     const data = await response.json();
     const items = data.items || [];
@@ -1633,13 +1704,37 @@ async function runAISearch() {
       resultsDiv.innerHTML = '<span class="result-badge result-badge-empty">0 results</span> No specific results found. Try the <a href="https://www.chescocf.org" target="_blank">Chester County Community Foundation</a> — it covers students county-wide.';
       return;
     }
+
+    // Cross-reference against our verified database
+    const verifiedTitles = [...scholarships, ...internships].map(s => s.title.toLowerCase());
+    const alreadyHave = items.filter(s => verifiedTitles.some(t => t.includes((s.title||'').toLowerCase().substring(0,15))));
+
     resultsDiv.className = 'ai-results';
     resultsDiv.innerHTML =
-      '<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem">' +
+      '<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap">' +
         '<span class="result-badge">' + items.length + ' found</span>' +
-        '<span style="font-size:0.85rem;color:var(--slate)">scholarships near ZIP ' + zip + '</span>' +
+        '<span style="font-size:0.85rem;color:var(--slate)">AI-searched scholarships near ZIP ' + zip + '</span>' +
       '</div>' +
-      items.map(s => '<div class="ai-result-card"><h4>' + (s.title||'') + '</h4><p><strong>' + (s.amount||'Varies') + '</strong> · ' + (s.deadline||'Check website') + '</p><p style="margin-top:0.3rem">' + (s.desc||'').substring(0,120) + '...</p>' + (s.url ? '<a href="' + s.url + '" target="_blank">Apply / Learn More →</a>' : '') + '</div>').join('');
+      '<div style="background:#fef9c3;border:1.5px solid #f59e0b;border-radius:8px;padding:0.6rem 0.9rem;margin-bottom:1rem;font-size:0.78rem;color:#78350f;line-height:1.5">' +
+        '⚠️ <strong>AI-generated results</strong> — these are found by searching the web and have not been individually verified. ' +
+        'Always confirm deadlines and amounts directly with each organization before applying. ' +
+        'Our <strong>Scholarships tab</strong> above contains hand-verified awards.' +
+      '</div>' +
+      (alreadyHave.length ? '<div style="background:#dcfce7;border-radius:8px;padding:0.6rem 0.9rem;margin-bottom:1rem;font-size:0.78rem;color:#166534">✅ ' + alreadyHave.length + ' of these match scholarships already in our verified database — check the Scholarships tab for full details.</div>' : '') +
+      items.map(s => {
+        const url = s.url || '';
+        const domain = url ? new URL(url.startsWith('http') ? url : 'https://' + url).hostname.replace('www.','') : '';
+        const trusted = domain.endsWith('.edu') || domain.endsWith('.gov') || domain.endsWith('.org');
+        const confidenceBadge = trusted
+          ? '<span style="background:#dcfce7;color:#166534;font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:50px;margin-left:0.4rem">✓ .org/.edu source</span>'
+          : '<span style="background:#fef9c3;color:#78350f;font-size:0.7rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:50px;margin-left:0.4rem">verify source</span>';
+        return '<div class="ai-result-card">' +
+          '<h4>' + (s.title||'') + confidenceBadge + '</h4>' +
+          '<p><strong>' + (s.amount||'Varies') + '</strong> · ' + (s.deadline||'Check website') + '</p>' +
+          '<p style="margin-top:0.3rem">' + (s.desc||'').substring(0,140) + '...</p>' +
+          (url ? '<a href="' + url + '" target="_blank">Verify &amp; Apply →</a>' : '') +
+          '</div>';
+      }).join('');
   } catch(e) {
     btn.disabled = false;
     btn.textContent = 'Search →';
