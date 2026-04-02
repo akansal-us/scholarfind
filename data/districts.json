@@ -1,0 +1,347 @@
+{
+  "_comment": "ScholarFind district data. Add new districts here — no HTML editing needed. Each district needs: id, label, county, state, zips, hasStatic, extraScholarships[]",
+  "districts": [
+    {
+      "id": "phoenixville",
+      "label": "Phoenixville · 19460",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19460"],
+      "hasStatic": true,
+      "extraScholarships": []
+    },
+    {
+      "id": "westchester",
+      "label": "West Chester · 19380",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19380", "19382"],
+      "hasStatic": true,
+      "extraScholarships": [
+        {
+          "id": "wc1",
+          "type": "scholarship",
+          "title": "WCU General Scholarship",
+          "amount": "Varies — hundreds available",
+          "amountNum": 3000,
+          "category": "General",
+          "desc": "West Chester University offers 600+ scholarships for incoming and current students covering merit, need, arts, STEM, and leadership. One General Application covers many awards.",
+          "eligibility": "Incoming and current WCU students. Most require FAFSA completion.",
+          "deadline": "Rolling — check wcupa.edu/scholarships",
+          "deadlineDate": "2026-05-01",
+          "how": "Apply at wcupa.edu/scholarships.",
+          "source": "wcupa.edu — West Chester University",
+          "url": "https://www.wcupa.edu/financialAid/scholarships.aspx",
+          "grades": ["12th"],
+          "gpaMin": "3to35",
+          "interests": ["General", "STEM", "Arts", "Healthcare", "Community"]
+        },
+        {
+          "id": "wc2",
+          "type": "scholarship",
+          "title": "CCCF Universal Application (West Chester)",
+          "amount": "Multiple awards",
+          "amountNum": 4000,
+          "category": "General",
+          "desc": "The CCCF Universal Application covers dozens of named scholarships for Chester County residents including West Chester area students.",
+          "eligibility": "Chester County residents attending or planning post-secondary education.",
+          "deadline": "March 15, 2026",
+          "deadlineDate": "2026-03-15",
+          "how": "Apply at chescocf.org.",
+          "source": "chescocf.org — Chester County Community Foundation",
+          "url": "https://www.chescocf.org",
+          "grades": ["11th", "12th"],
+          "gpaMin": "3to35",
+          "interests": ["General", "STEM", "Arts", "Community", "Healthcare"]
+        }
+      ]
+    },
+    {
+      "id": "downingtown",
+      "label": "Downingtown · 19335",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19335", "19341"],
+      "hasStatic": true,
+      "extraScholarships": [
+        {
+          "id": "dt1",
+          "type": "scholarship",
+          "title": "Downingtown Woman's Club Scholarship",
+          "amount": "Varies",
+          "amountNum": 2000,
+          "category": "General",
+          "desc": "A long-standing local scholarship for Downingtown-area students recognizing academic achievement and community involvement.",
+          "eligibility": "Downingtown area high school seniors.",
+          "deadline": "Spring 2026 — check chescocf.org",
+          "deadlineDate": "2026-04-01",
+          "how": "Apply through chescocf.org Universal Application.",
+          "source": "chescocf.org — Chester County Community Foundation",
+          "url": "https://www.chescocf.org",
+          "grades": ["12th"],
+          "gpaMin": "3to35",
+          "interests": ["General", "Community"]
+        },
+        {
+          "id": "dt2",
+          "type": "scholarship",
+          "title": "Mullestein Family Scholarship",
+          "amount": "Varies",
+          "amountNum": 2000,
+          "category": "General",
+          "desc": "A scholarship for Downingtown-area students through the Chester County Community Foundation Universal Application.",
+          "eligibility": "Chester County students, Downingtown area preferred.",
+          "deadline": "March 15, 2026",
+          "deadlineDate": "2026-03-15",
+          "how": "Apply at chescocf.org.",
+          "source": "chescocf.org — Chester County Community Foundation",
+          "url": "https://www.chescocf.org",
+          "grades": ["12th"],
+          "gpaMin": "3to35",
+          "interests": ["General"]
+        }
+      ]
+    },
+    {
+      "id": "coatesville",
+      "label": "Coatesville · 19320",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19320"],
+      "hasStatic": true,
+      "extraScholarships": [
+        {
+          "id": "cv1",
+          "type": "scholarship",
+          "title": "Rotary Club of Coatesville Scholarship",
+          "amount": "Varies",
+          "amountNum": 2500,
+          "category": "Community",
+          "desc": "The Coatesville Rotary Club awards scholarships to local seniors demonstrating academic achievement, leadership, and community service.",
+          "eligibility": "Coatesville Area School District seniors with strong community involvement.",
+          "deadline": "Spring 2026 — contact CASD guidance",
+          "deadlineDate": "2026-04-15",
+          "how": "Contact Coatesville Area High School guidance or apply via chescocf.org.",
+          "source": "chescocf.org — Chester County Community Foundation",
+          "url": "https://www.chescocf.org",
+          "grades": ["12th"],
+          "gpaMin": "3to35",
+          "interests": ["Community", "General"]
+        },
+        {
+          "id": "cv2",
+          "type": "scholarship",
+          "title": "Western Chester County Chamber Scholarship",
+          "amount": "Varies",
+          "amountNum": 2000,
+          "category": "General",
+          "desc": "The Western Chester County Chamber awards scholarships to seniors in Coatesville and surrounding area, including a Trades Scholarship for CTE students.",
+          "eligibility": "Seniors in the Chamber service area. Trades award requires 2.0+ GPA and CTE enrollment.",
+          "deadline": "April 15, 2026 (academic) · May 13, 2026 (trades)",
+          "deadlineDate": "2026-04-15",
+          "how": "Apply at westernchestercounty.com.",
+          "source": "westernchestercounty.com — Western Chester County Chamber",
+          "url": "https://www.westernchestercounty.com/chamberscholarship/",
+          "grades": ["12th"],
+          "gpaMin": "3to35",
+          "interests": ["General", "Community"]
+        }
+      ]
+    },
+    {
+      "id": "greatvalley",
+      "label": "Great Valley · 19355",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19355", "19301"],
+      "hasStatic": true,
+      "extraScholarships": [
+        {
+          "id": "gv1",
+          "type": "scholarship",
+          "title": "CCCF Universal Application (Great Valley)",
+          "amount": "Multiple awards",
+          "amountNum": 4000,
+          "category": "General",
+          "desc": "Great Valley students in Malvern and Berwyn are eligible for dozens of CCCF scholarships covering merit, arts, healthcare, STEM, and need-based awards.",
+          "eligibility": "Chester County residents in the Great Valley School District.",
+          "deadline": "March 15, 2026",
+          "deadlineDate": "2026-03-15",
+          "how": "Apply at chescocf.org.",
+          "source": "chescocf.org — Chester County Community Foundation",
+          "url": "https://www.chescocf.org",
+          "grades": ["11th", "12th"],
+          "gpaMin": "3to35",
+          "interests": ["General", "STEM", "Arts", "Healthcare", "Community"]
+        }
+      ]
+    },
+    {
+      "id": "kennett",
+      "label": "Kennett Square · 19348",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19348"],
+      "hasStatic": true,
+      "extraScholarships": [
+        {
+          "id": "ks1",
+          "type": "scholarship",
+          "title": "CCCF Universal Application (Kennett)",
+          "amount": "Varies",
+          "amountNum": 2000,
+          "category": "Community",
+          "desc": "Kennett Consolidated students can access local scholarships through the CCCF Universal Application. Kennett Square has strong community foundation funding.",
+          "eligibility": "Kennett Consolidated School District seniors.",
+          "deadline": "March 15, 2026",
+          "deadlineDate": "2026-03-15",
+          "how": "Apply at chescocf.org and check Kennett High School guidance for district-specific awards.",
+          "source": "chescocf.org",
+          "url": "https://www.chescocf.org",
+          "grades": ["12th"],
+          "gpaMin": "3to35",
+          "interests": ["Community", "General"]
+        }
+      ]
+    },
+    {
+      "id": "octorara",
+      "label": "Octorara · 19310",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19310"],
+      "hasStatic": true,
+      "extraScholarships": [
+        {
+          "id": "oc1",
+          "type": "scholarship",
+          "title": "Western CC Chamber Trades Scholarship",
+          "amount": "Varies",
+          "amountNum": 1500,
+          "category": "General",
+          "desc": "Available to Octorara seniors enrolled in CTE programs, covering tuition for trade certifications or two-year degrees.",
+          "eligibility": "Octorara seniors in a CTE program with 2.0+ cumulative GPA and 2.5+ CTE GPA.",
+          "deadline": "May 13, 2026",
+          "deadlineDate": "2026-05-13",
+          "how": "Apply at westernchestercounty.com or contact Octorara guidance.",
+          "source": "westernchestercounty.com",
+          "url": "https://www.westernchestercounty.com/chamberscholarship/",
+          "grades": ["12th"],
+          "gpaMin": "below3",
+          "interests": ["General", "STEM"]
+        }
+      ]
+    },
+    {
+      "id": "owenjroberts",
+      "label": "Owen J. Roberts · 19465",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19465", "19475"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "oxford",
+      "label": "Oxford · 19363",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19363"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "tredyffrin",
+      "label": "Tredyffrin-Easttown · 19301",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19301", "19312"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "unionville",
+      "label": "Unionville-Chadds Ford · 19317",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": ["19317", "19373"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "other",
+      "label": "Other Chester County",
+      "county": "Chester County",
+      "state": "PA",
+      "zips": [],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+
+    "_comment_expansion": "--- ADD NEW COUNTIES BELOW THIS LINE --- Copy any district block above and update the fields. No HTML editing needed.",
+
+    {
+      "id": "norristown",
+      "label": "Norristown · 19401",
+      "county": "Montgomery County",
+      "state": "PA",
+      "zips": ["19401", "19403", "19404"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "kingofprussia",
+      "label": "King of Prussia · 19406",
+      "county": "Montgomery County",
+      "state": "PA",
+      "zips": ["19406"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "lansdale",
+      "label": "Lansdale · 19446",
+      "county": "Montgomery County",
+      "state": "PA",
+      "zips": ["19446"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "mediadelco",
+      "label": "Media · 19063",
+      "county": "Delaware County",
+      "state": "PA",
+      "zips": ["19063"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "haverford",
+      "label": "Haverford · 19041",
+      "county": "Delaware County",
+      "state": "PA",
+      "zips": ["19041", "19083"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "lancastercity",
+      "label": "Lancaster · 17601",
+      "county": "Lancaster County",
+      "state": "PA",
+      "zips": ["17601", "17602", "17603"],
+      "hasStatic": false,
+      "extraScholarships": []
+    },
+    {
+      "id": "doylestown",
+      "label": "Doylestown · 18901",
+      "county": "Bucks County",
+      "state": "PA",
+      "zips": ["18901", "18902"],
+      "hasStatic": false,
+      "extraScholarships": []
+    }
+  ]
+}
