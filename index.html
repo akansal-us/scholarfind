@@ -833,7 +833,7 @@ const scholarships = [
     eligibility:'High school seniors pursuing technology, business, or media degrees. Strong community involvement preferred.',
     deadline:'Rolling — check comcast.com/rise for current cycle',
     deadlineDate: new Date('2026-12-01'),
-    how:'Search "Comcast RISE Scholarship" at comcast.com or corporate.comcast.com/values/education.',
+    how:'Search Comcast RISE Scholarship at comcast.com or corporate.comcast.com/values/education.',
     source:'comcast.com — Comcast, Philadelphia region',
     url:'https://corporate.comcast.com/values/education',
     grades:['12th'],
@@ -1008,7 +1008,7 @@ const internships = [
     title:'GSK Electromechanical Apprentice Program',
     amount:'Paid · Full-time · Degree funded',
     category:'STEM',
-    desc:'GSK offers a 3-4 year paid apprenticeship for high school graduates at its Upper Merion facility (King of Prussia, 8 miles from Phoenixville). Work full-time in biopharmaceutical manufacturing while earning a fully funded Associate's degree in Engineering Science at Montgomery County Community College.',
+    desc:'GSK offers a 3-4 year paid apprenticeship for high school graduates at its Upper Merion facility (King of Prussia, 8 miles from Phoenixville). Work full-time in biopharmaceutical manufacturing while earning a fully funded Associate degree in Engineering Science at Montgomery County Community College.',
     eligibility:'High school graduates by June 2026 with 2.5+ GPA and algebra/geometry credits. Must be able to work full time at Upper Merion, PA facility.',
     deadline:'Rolling — check gsk.com/apprentices for 2026 openings',
     deadlineDate: new Date('2026-08-01'),
@@ -1040,7 +1040,7 @@ const internships = [
     title:'Penn AEOP High School Internship (GRASP Lab)',
     amount:'Free · Research experience',
     category:'STEM Programs',
-    desc:'A 7-week summer research program at the University of Pennsylvania's GRASP Lab (General Robotics, Automation, Sensing & Perception) for rising high school juniors and seniors. Work on real robotics and AI research projects alongside Penn graduate students and faculty. One of the most selective STEM experiences in the Philadelphia region.',
+    desc:'A 7-week summer research program at the University of Pennsylvania\'s GRASP Lab (General Robotics, Automation, Sensing & Perception) for rising high school juniors and seniors. Work on real robotics and AI research projects alongside Penn graduate students and faculty. One of the most selective STEM experiences in the Philadelphia region.',
     eligibility:'Rising juniors and seniors (currently in 10th and 11th grade) who are US citizens or permanent residents. Strong STEM interest required.',
     deadline:'May 16, 2026',
     deadlineDate: new Date('2026-05-16'),
@@ -1053,10 +1053,10 @@ const internships = [
   },
   {
     id:'i14', type:'internship',
-    title:'Pennsylvania Governor's School for the Sciences',
+    title:'Pennsylvania Governor\'s School for the Sciences',
     amount:'FREE · Residential · Fully funded',
     category:'STEM Programs',
-    desc:'A highly selective FREE 5-week residential summer program at Carnegie Mellon University for Pennsylvania's top high school students in science and math. College-level courses, hands-on lab experiments, and mentorship from CMU faculty. One of the most prestigious STEM programs available to PA students — Chester County students are eligible.',
+    desc:'A highly selective FREE 5-week residential summer program at Carnegie Mellon University for Pennsylvania\'s top high school students in science and math. College-level courses, hands-on lab experiments, and mentorship from CMU faculty. One of the most prestigious STEM programs available to PA students — Chester County students are eligible.',
     eligibility:'Pennsylvania high school students completing 10th or 11th grade with exceptional STEM ability. Competitive statewide application. Fully funded — no cost.',
     deadline:'Apply in Spring 2026 — check sciences.pa-gov-schools.org',
     deadlineDate: new Date('2026-03-15'),
@@ -1429,8 +1429,8 @@ const universityPrograms = [
     amount:'FREE',
     category:'Free / Low Cost',
     tags:['High School','STEM','Free'],
-    desc:'A free 4-week summer program at Penn's School of Engineering for Philadelphia-area high school students in 9th and 10th grade. Attend lab demonstrations, meet faculty and researchers, explore engineering disciplines, and get college readiness workshops including financial aid and SAT prep. Chester County students within 60 miles qualify.',
-    eligibility:'Philadelphia-area high school students currently in 9th or 10th grade with a minimum 3.0 GPA. Program held on Penn's campus in Philadelphia.',
+    desc:'A free 4-week summer program at Penn\'s School of Engineering for Philadelphia-area high school students in 9th and 10th grade. Attend lab demonstrations, meet faculty and researchers, explore engineering disciplines, and get college readiness workshops including financial aid and SAT prep. Chester County students within 60 miles qualify.',
+    eligibility:'Philadelphia-area high school students currently in 9th or 10th grade with a minimum 3.0 GPA. Program held on Penn\'s campus in Philadelphia.',
     deadline:'February 21, 2026',
     deadlineDate: new Date('2026-02-21'),
     how:'Apply at diversity.seas.upenn.edu. Program runs July 7 – August 1, 2026.',
@@ -1445,7 +1445,7 @@ const universityPrograms = [
     amount:'FREE',
     category:'Free / Low Cost',
     tags:['Middle School','STEM','Free'],
-    desc:'GSK's 35-year-old flagship education program brings free hands-on STEM classes to middle school students during summer break. Run in partnership with community organizations across Philadelphia and Chester County, it focuses on students from underserved communities. Classes are taught at local community sites — no transportation to a university needed.',
+    desc:'GSK\'s 35-year-old flagship education program brings free hands-on STEM classes to middle school students during summer break. Run in partnership with community organizations across Philadelphia and Chester County, it focuses on students from underserved communities. Classes are taught at local community sites — no transportation to a university needed.',
     eligibility:'Elementary and middle school students (grades K-8) in the Philadelphia area including Chester County. Free, runs through community partners.',
     deadline:'Check gsk.com for 2026 community partner locations',
     deadlineDate: new Date('2026-06-01'),
@@ -1955,36 +1955,46 @@ async function subscribeEmail() {
   }
 }
 
-// Hide signup card if already subscribed
-if (localStorage.getItem('sf_email_subscribed')) {
-  const card = document.getElementById('email-signup-card');
-  if (card) card.style.display = 'none';
-}
-
 // ============================================================
 // WELCOME MODAL
 // ============================================================
 function closeWelcome() {
-  document.getElementById('welcome-overlay').classList.remove('open');
+  const el = document.getElementById('welcome-overlay');
+  if (el) el.classList.remove('open');
   localStorage.setItem('sf_welcomed', '1');
 }
 
-// Show on first visit only
-if (!localStorage.getItem('sf_welcomed')) {
-  document.getElementById('welcome-overlay').classList.add('open');
-}
+// ============================================================
+// INIT — runs after full DOM is loaded
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  renderScholarships();
+  renderInternships();
+  renderUniversityPrograms();
 
-// ============================================================
-// INIT
-// ============================================================
-renderScholarships();
-renderInternships();
-renderUniversityPrograms();
-document.getElementById('saved-count').textContent = savedItems.length;
-document.getElementById('saved-count-mobile').textContent = savedItems.length;
-if (localStorage.getItem('disc_dismissed')) {
-  document.getElementById('disclaimer-bar').classList.add('hidden');
-}
+  const savedCount = document.getElementById('saved-count');
+  const savedCountMobile = document.getElementById('saved-count-mobile');
+  if (savedCount) savedCount.textContent = savedItems.length;
+  if (savedCountMobile) savedCountMobile.textContent = savedItems.length;
+
+  // Disclaimer bar
+  const disclaimerBar = document.getElementById('disclaimer-bar');
+  if (disclaimerBar && localStorage.getItem('disc_dismissed')) {
+    disclaimerBar.classList.add('hidden');
+  }
+
+  // Welcome modal — show on first visit only
+  const welcomeOverlay = document.getElementById('welcome-overlay');
+  if (welcomeOverlay && !localStorage.getItem('sf_welcomed')) {
+    welcomeOverlay.classList.add('open');
+  }
+
+  // Hide email signup if already subscribed
+  if (localStorage.getItem('sf_email_subscribed')) {
+    const card = document.getElementById('email-signup-card');
+    if (card) card.style.display = 'none';
+  }
+});
 </script>
 <!-- DISCLAIMER BAR -->
 <div class="disclaimer-bar" id="disclaimer-bar">
