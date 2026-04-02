@@ -32,7 +32,14 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          git diff --quiet data/scholarships.json || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff data/scholarships.json
+          git diff --quiet data/scholarships.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Git status:"
+          git status
+
+      - name: No changes detected
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No changes found in scholarships.json — data is already up to date. No PR needed."
 
       - name: Create Pull Request
         if: steps.changes.outputs.changed == 'true'
