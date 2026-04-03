@@ -187,12 +187,17 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .card-deadline{font-size:0.78rem;color:var(--slate);margin-top:0.5rem}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.6);z-index:1000;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.6);z-index:1000;align-items:flex-end;justify-content:center;padding:0}
 .modal-overlay.open{display:flex}
-.modal{background:var(--white);border-radius:20px;max-width:580px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.modal-header{background:var(--navy);padding:1.8rem;border-radius:20px 20px 0 0;position:relative}
-.modal-header h2{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--white);margin-bottom:0.3rem}
-.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.15);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+.modal{background:var(--white);border-radius:20px 20px 0 0;max-width:580px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);-webkit-overflow-scrolling:touch}
+.modal-header{background:var(--navy);padding:1.5rem 1.2rem 1.2rem;border-radius:20px 20px 0 0;position:relative}
+.modal-header h2{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--white);margin-bottom:0.3rem;padding-right:2.5rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.2);border:none;color:white;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+@media(min-width:640px){
+  .modal-overlay{align-items:center;padding:1rem}
+  .modal{border-radius:20px;max-height:88vh}
+  .modal-header{border-radius:20px 20px 0 0}
+}
 .modal-amount{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--gold)}
 .modal-body{padding:1.8rem}
 .modal-section{margin-bottom:1.2rem}
@@ -266,9 +271,13 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .warn-banner{font-size:0.78rem;color:#92400e;margin-bottom:1rem;padding:0.4rem 0.8rem;background:#fef9c3;border-radius:6px;border-left:3px solid #f59e0b;line-height:1.5}
 
 /* WELCOME MODAL */
-.welcome-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.7);z-index:2000;align-items:center;justify-content:center;padding:1rem}
+.welcome-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.7);z-index:2000;align-items:flex-end;justify-content:center;padding:0}
 .welcome-overlay.open{display:flex}
-.welcome-modal{background:var(--white);border-radius:20px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden}
+.welcome-modal{background:var(--white);border-radius:20px 20px 0 0;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+@media(min-width:640px){
+  .welcome-overlay{align-items:center;padding:1rem}
+  .welcome-modal{border-radius:20px;max-height:88vh}
+}
 .welcome-header{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);padding:1.8rem;text-align:center}
 .welcome-header h2{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--white);margin-bottom:0.3rem}
 .welcome-header p{color:#94a3b8;font-size:0.88rem}
@@ -282,6 +291,63 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .welcome-btn{width:100%;background:var(--teal);color:white;border:none;padding:0.9rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
 .welcome-btn:hover{background:#158a7c}
 @media(max-width:500px){.welcome-features{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-section{margin-top:2.5rem;padding-top:1.5rem;border-top:2px solid var(--light)}
+.faq-section-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:900;margin-bottom:0.3rem}
+.faq-section-sub{font-size:0.85rem;color:var(--slate);margin-bottom:1.2rem}
+.faq-item{border:1.5px solid var(--light);border-radius:var(--radius);margin-bottom:0.6rem;overflow:hidden;transition:border-color 0.2s}
+.faq-item.open{border-color:var(--teal)}
+.faq-q{width:100%;background:var(--white);border:none;padding:1rem 1.2rem;text-align:left;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:background 0.2s}
+.faq-q:hover{background:#f8fafc}
+.faq-item.open .faq-q{background:#f0fdf9;color:var(--teal)}
+.faq-icon{font-size:1rem;color:var(--teal);flex-shrink:0;transition:transform 0.25s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 1.2rem 1rem;font-size:0.85rem;color:var(--slate);line-height:1.7;background:var(--white)}
+.faq-item.open .faq-a{display:block;animation:fadeIn 0.2s ease}
+.faq-a a{color:var(--teal);font-weight:600;text-decoration:none}
+.faq-a strong{color:var(--navy)}
+.faq-built-by{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);border-radius:var(--radius);padding:1.5rem;margin-top:1.5rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.faq-built-by-text{flex:1;min-width:200px}
+.faq-built-by-text h3{font-family:'Fraunces',serif;font-size:1rem;color:var(--gold);margin-bottom:0.3rem}
+.faq-built-by-text p{font-size:0.82rem;color:#94a3b8;line-height:1.6}
+.faq-built-by-text a{color:var(--teal);font-weight:600}
+
+/* CHATBOT */
+.chat-fab{position:fixed;bottom:4.5rem;right:1.5rem;width:56px;height:56px;border-radius:50%;background:var(--teal);color:white;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,158,143,0.4);font-size:1.4rem;display:flex;align-items:center;justify-content:center;z-index:300;transition:transform 0.2s,box-shadow 0.2s}
+.chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(26,158,143,0.5)}
+.chat-fab .chat-badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--navy);font-size:0.6rem;font-weight:800;padding:0.15rem 0.35rem;border-radius:50px}
+.chat-window{position:fixed;bottom:8rem;right:1.5rem;width:360px;max-width:calc(100vw - 2rem);background:var(--white);border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);z-index:300;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.25s,opacity 0.25s;transform:translateY(20px) scale(0.95);opacity:0;pointer-events:none;max-height:520px}
+.chat-window.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.chat-header{background:var(--navy);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.chat-header-left{display:flex;align-items:center;gap:0.6rem}
+.chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.chat-title{font-family:'Fraunces',serif;font-size:0.95rem;font-weight:700;color:white}
+.chat-subtitle{font-size:0.65rem;color:#94a3b8;margin-top:0.1rem}
+.chat-close{background:rgba(255,255,255,0.12);border:none;color:white;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.chat-close:hover{background:rgba(255,255,255,0.22)}
+.chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;min-height:0}
+.chat-msg{display:flex;gap:0.5rem;align-items:flex-start}
+.chat-msg.user{flex-direction:row-reverse}
+.chat-bubble{max-width:82%;padding:0.6rem 0.9rem;border-radius:14px;font-size:0.82rem;line-height:1.5}
+.chat-msg.bot .chat-bubble{background:#f0f4f8;color:var(--navy);border-bottom-left-radius:4px}
+.chat-msg.user .chat-bubble{background:var(--teal);color:white;border-bottom-right-radius:4px}
+.chat-msg.bot .chat-bubble a{color:var(--teal);font-weight:600}
+.chat-typing{display:flex;gap:4px;align-items:center;padding:0.6rem 0.9rem;background:#f0f4f8;border-radius:14px;border-bottom-left-radius:4px;width:fit-content}
+.chat-typing span{width:7px;height:7px;border-radius:50%;background:#94a3b8;animation:typingDot 1.2s ease-in-out infinite}
+.chat-typing span:nth-child(2){animation-delay:0.2s}
+.chat-typing span:nth-child(3){animation-delay:0.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.chat-suggestions{padding:0 1rem 0.75rem;display:flex;gap:0.4rem;flex-wrap:wrap;flex-shrink:0}
+.chat-suggestion{background:var(--cream);border:1.5px solid var(--light);border-radius:50px;padding:0.3rem 0.75rem;font-size:0.72rem;font-weight:600;cursor:pointer;color:var(--navy);transition:all 0.2s;white-space:nowrap}
+.chat-suggestion:hover{background:var(--teal);color:white;border-color:var(--teal)}
+.chat-input-row{padding:0.75rem;border-top:1.5px solid var(--light);display:flex;gap:0.5rem;flex-shrink:0}
+.chat-input{flex:1;border:1.5px solid var(--light);border-radius:50px;padding:0.5rem 1rem;font-size:0.85rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--navy);transition:border-color 0.2s}
+.chat-input:focus{border-color:var(--teal)}
+.chat-send{background:var(--teal);color:white;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0}
+.chat-send:hover{background:#158a7c}
+.chat-send:disabled{background:#94a3b8;cursor:not-allowed}
+.chat-disclaimer{font-size:0.62rem;color:#94a3b8;text-align:center;padding:0.3rem 1rem 0.5rem;flex-shrink:0}
 
 /* HIDDEN */
 .hidden{display:none!important}
@@ -444,6 +510,101 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
     <button class="filter-btn" onclick="setFilter('schol','General',this)">General</button>
   </div>
   <div class="cards-grid" id="schol-grid"></div>
+
+  <!-- FAQ SECTION -->
+  <div class="faq-section">
+    <h2 class="faq-section-title">❓ Frequently Asked Questions</h2>
+    <p class="faq-section-sub">Everything parents and students ask about ScholarFind</p>
+
+    <div class="faq-item" id="faq-1">
+      <button class="faq-q" onclick="toggleFaq('faq-1')">
+        Who built this and why?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>A Phoenixville parent, not a company.</strong> I built ScholarFind out of personal frustration — I spent hours searching for scholarships and local programs for my own kids and couldn't find a single place with information relevant to Chester County. Everything was scattered across dozens of websites, buried in Naviance, or simply unknown to most families. So I built one free resource that pulls it all together. There are no investors, no ads, and no profit motive — just a parent trying to make this easier for other families in the community.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-2">
+      <button class="faq-q" onclick="toggleFaq('faq-2')">
+        How do I know the information is accurate?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Every scholarship and program in our main database has been <strong>manually researched and verified</strong> with a direct link to the official source. The site also runs an automated weekly check that visits each scholarship URL to look for deadline or amount changes, and flags anything that looks different for human review before it updates. That said — deadlines and amounts do change year to year, and we always recommend <strong>verifying directly with each organization</strong> before applying. The disclaimer at the bottom of every page says exactly this.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-3">
+      <button class="faq-q" onclick="toggleFaq('faq-3')">
+        Is this free? Are there ads?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>Completely free, no ads, no sign-ups, no catches.</strong> ScholarFind will always be free for students and families. There are no advertisements, no affiliate links, and no sponsored results — every scholarship listed is there because it's genuinely useful to Chester County students, not because anyone paid to be included. The site is funded out of pocket and runs on free hosting infrastructure.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-4">
+      <button class="faq-q" onclick="toggleFaq('faq-4')">
+        Do students need to create an account?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>No account needed — ever.</strong> Students can browse everything, use the quiz, save scholarships, and get deadline reminders without creating an account or sharing any personal information. The "Saved Items" feature stores bookmarks directly on the student's own device — we never see that data. The only optional step is entering an email address on the Saved tab to receive deadline reminders, and even that is entirely optional.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-5">
+      <button class="faq-q" onclick="toggleFaq('faq-5')">
+        How often is it updated?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        The site runs on a <strong>two-tier automated update system</strong>. Every Wednesday, an AI script visits each scholarship URL and checks for deadline or amount changes. Every Sunday, a separate script searches the web for new scholarships and programs we might be missing. Any changes are reviewed by a human before going live — nothing updates automatically without approval. New programs and scholarships are added manually as they're discovered or submitted by the community.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-6">
+      <button class="faq-q" onclick="toggleFaq('faq-6')">
+        Is this only for Phoenixville students?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>No — it covers all 11 Chester County school districts.</strong> Use the district picker at the top of the page to select your school district and see scholarships specific to your area. Most of the scholarships (Chester County Community Foundation, Philadelphia Foundation, PHEAA, Lenfest) are available to students across the entire county. The district picker also surfaces district-specific awards — for example, West Chester students see the WCU General Scholarship, and Coatesville students see the Rotary Club and Western Chester County Chamber awards.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-7">
+      <button class="faq-q" onclick="toggleFaq('faq-7')">
+        What does the AI search do — is it reliable?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        The AI search (ZIP code search box) is a <strong>supplementary tool, not a replacement for our verified database</strong>. When you enter a ZIP code, it searches the web in real time for scholarships near that area. Results are clearly labelled as AI-generated and unverified — we show a confidence badge based on the source domain (.org/.edu sources are flagged as more trustworthy). Think of it as a starting point for research, not a definitive list. Our <strong>main Scholarships tab</strong> contains hand-verified awards and is always the more reliable source.
+      </div>
+    </div>
+
+    <div class="faq-item" id="faq-8">
+      <button class="faq-q" onclick="toggleFaq('faq-8')">
+        Can I suggest a scholarship that's missing?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Yes — and please do! If you know of a local scholarship, internship, or program that should be here, use the <strong>ScholarBot chat button</strong> in the bottom-right corner and say "I want to suggest a scholarship." You can also email directly. Every submission is reviewed and verified before being added. Community contributions are how this site grows — a parent in Coatesville or Kennett Square knows their local Rotary Club awards better than anyone.
+      </div>
+    </div>
+
+    <!-- BUILT BY CARD -->
+    <div class="faq-built-by">
+      <div style="font-size:2.5rem">👨‍👧‍👦</div>
+      <div class="faq-built-by-text">
+        <h3>Built by a Chester County parent</h3>
+        <p>ScholarFind is a free community resource — not a company, not a startup. Built in Phoenixville PA because local scholarship information was too hard to find. If it helps your student, share it with another family. That's all the thanks needed.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- INTERNSHIPS TAB -->
@@ -617,7 +778,11 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
   <div class="modal" id="modal">
-    <div class="modal-header">
+    <!-- Mobile drag handle -->
+    <div style="text-align:center;padding:0.5rem 0 0;background:var(--navy);border-radius:20px 20px 0 0">
+      <div style="width:40px;height:4px;background:rgba(255,255,255,0.25);border-radius:2px;display:inline-block"></div>
+    </div>
+    <div class="modal-header" style="border-radius:0">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <h2 id="m-title">Title</h2>
       <div class="modal-amount" id="m-amount"></div>
@@ -629,6 +794,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
       <div class="modal-section"><h3>How to Apply</h3><p id="m-how"></p></div>
       <div class="modal-section" id="m-source-wrap"><h3>✅ Verified Source</h3><p id="m-source"></p></div>
       <a id="m-apply" href="#" target="_blank" class="apply-btn">Apply / Learn More →</a>
+      <button onclick="closeModal()" style="width:100%;margin-top:0.75rem;background:none;border:1.5px solid var(--light);border-radius:10px;padding:0.75rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--slate);cursor:pointer">✕ Close</button>
     </div>
   </div>
 </div>
@@ -2065,6 +2231,147 @@ async function subscribeEmail() {
 }
 
 // ============================================================
+// FAQ
+// ============================================================
+function toggleFaq(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  // Toggle this one
+  if (!isOpen) item.classList.add('open');
+}
+
+// ============================================================
+// CHATBOT
+// ============================================================
+let chatOpen = false;
+let chatHistory = [];
+let chatTyping = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chat-window');
+  const icon = document.getElementById('chat-fab-icon');
+  const badge = document.getElementById('chat-badge');
+  win.classList.toggle('open', chatOpen);
+  icon.textContent = chatOpen ? '✕' : '💬';
+  if (chatOpen) {
+    badge.style.display = 'none';
+    document.getElementById('chat-input').focus();
+    scrollChatToBottom();
+  } else {
+    badge.style.display = '';
+  }
+}
+
+function scrollChatToBottom() {
+  const msgs = document.getElementById('chat-messages');
+  setTimeout(() => msgs.scrollTop = msgs.scrollHeight, 50);
+}
+
+function addChatMessage(text, role) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble';
+  // Convert markdown-style bold and links to HTML
+  bubble.innerHTML = text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+    .replace(/\n/g, '<br/>');
+  div.appendChild(bubble);
+  msgs.appendChild(div);
+  scrollChatToBottom();
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg bot';
+  div.id = 'chat-typing-indicator';
+  div.innerHTML = '<div class="chat-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div);
+  scrollChatToBottom();
+}
+
+function hideTyping() {
+  const el = document.getElementById('chat-typing-indicator');
+  if (el) el.remove();
+}
+
+function sendSuggestion(btn) {
+  const text = btn.textContent;
+  document.getElementById('chat-suggestions').style.display = 'none';
+  document.getElementById('chat-input').value = text;
+  sendChat();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const message = input.value.trim();
+  if (!message || chatTyping) return;
+
+  input.value = '';
+  document.getElementById('chat-suggestions').style.display = 'none';
+  addChatMessage(message, 'user');
+  chatHistory.push({ role: 'user', content: message });
+
+  chatTyping = true;
+  document.getElementById('chat-send').disabled = true;
+  showTyping();
+
+  // Build slim scholarship data to send (titles, amounts, deadlines, urls only)
+  const slimData = {
+    scholarships: scholarships.map(s => ({
+      title: s.title, amount: s.amount, deadline: s.deadline,
+      category: s.category, eligibility: s.eligibility, url: s.url,
+      grades: s.grades, gpaMin: s.gpaMin, interests: s.interests
+    })),
+    internships: internships.map(s => ({
+      title: s.title, amount: s.amount, deadline: s.deadline,
+      category: s.category, eligibility: s.eligibility, url: s.url,
+      grades: s.grades
+    })),
+    universityPrograms: universityPrograms.map(s => ({
+      title: s.title, amount: s.amount, deadline: s.deadline,
+      tags: s.tags, eligibility: s.eligibility, url: s.url,
+      grades: s.grades
+    }))
+  };
+
+  try {
+    const response = await fetch('/.netlify/functions/scholarship-chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message,
+        history: chatHistory.slice(-6),
+        scholarshipData: slimData
+      })
+    });
+
+    const data = await response.json();
+    hideTyping();
+
+    if (data.reply) {
+      addChatMessage(data.reply, 'bot');
+      chatHistory.push({ role: 'assistant', content: data.reply });
+    } else {
+      addChatMessage('Sorry, something went wrong. Please try again or browse the tabs above.', 'bot');
+    }
+  } catch(e) {
+    hideTyping();
+    addChatMessage('I\'m having trouble connecting right now. Please browse the Scholarships tab directly!', 'bot');
+  }
+
+  chatTyping = false;
+  document.getElementById('chat-send').disabled = false;
+  document.getElementById('chat-input').focus();
+}
+
+// ============================================================
 // WELCOME MODAL
 // ============================================================
 function closeWelcome() {
@@ -2109,6 +2416,41 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="disclaimer-bar" id="disclaimer-bar">
   <span>⚠️ Always verify deadlines &amp; amounts directly with each organization — details change yearly. Check Naviance &amp; your school counselor. <a href="https://www.chescocf.org" target="_blank">chescocf.org</a> for county-wide awards.</span>
   <button class="disclaimer-dismiss" onclick="document.getElementById('disclaimer-bar').classList.add('hidden');localStorage.setItem('disc_dismissed','1')">Got it ✕</button>
+</div>
+
+<!-- SCHOLARSHIP CHATBOT -->
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()" aria-label="Chat with ScholarBot">
+  <span id="chat-fab-icon">💬</span>
+  <span class="chat-badge" id="chat-badge">AI</span>
+</button>
+
+<div class="chat-window" id="chat-window">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">🎓</div>
+      <div>
+        <div class="chat-title">ScholarBot</div>
+        <div class="chat-subtitle">Scholarship assistant · Chester County</div>
+      </div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">
+      <div class="chat-bubble">Hi! I'm ScholarBot 👋 I can help you find scholarships, internships, and programs from our Chester County database. What are you looking for?</div>
+    </div>
+  </div>
+  <div class="chat-suggestions" id="chat-suggestions">
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">What scholarships am I eligible for?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">Show me healthcare scholarships</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">Any free programs?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">What deadlines are coming up?</button>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chat-input" type="text" placeholder="Ask about scholarships…" onkeydown="if(event.key==='Enter')sendChat()"/>
+    <button class="chat-send" id="chat-send" onclick="sendChat()">➤</button>
+  </div>
+  <div class="chat-disclaimer">Only answers from verified Chester County data · Always verify with each organization</div>
 </div>
 
 </body>
