@@ -187,9 +187,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .card-deadline{font-size:0.78rem;color:var(--slate);margin-top:0.5rem}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,0.6);z-index:1000;align-items:flex-end;justify-content:center}
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(13,27,42,0.6);z-index:1000;align-items:flex-end;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal{background:var(--white);width:100%;height:100dvh;max-height:100dvh;overflow-y:auto;border-radius:0;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.modal{background:var(--white);width:100%;height:100%;max-height:100%;overflow-y:auto;border-radius:0;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
 .modal-header{background:var(--navy);padding:0.9rem 1rem 0.8rem;position:relative;flex-shrink:0;border-radius:0}
 .modal-header h2{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--white);margin-bottom:0.15rem;padding-right:3rem}
 .modal-close{position:absolute;top:0.6rem;right:0.75rem;background:rgba(255,255,255,0.2);border:none;color:white;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
@@ -200,7 +200,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .modal-section p{font-size:0.84rem;line-height:1.5;color:var(--navy)}
 .apply-btn{display:block;background:var(--teal);color:white;text-decoration:none;text-align:center;padding:0.8rem;border-radius:10px;font-weight:600;font-size:0.95rem;margin-top:0.6rem;transition:background 0.2s}
 .apply-btn:hover{background:#158a7c}
-@media(min-width:600px){
+@media(min-width:769px){
   .modal-overlay{align-items:center;padding:1rem}
   .modal{width:100%;height:auto;max-width:580px;max-height:88vh;border-radius:20px}
   .modal-header{border-radius:20px 20px 0 0;padding:1.4rem 1.2rem 1.1rem}
@@ -322,11 +322,11 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .chat-fab{position:fixed;bottom:4.5rem;right:1rem;width:52px;height:52px;border-radius:50%;background:var(--teal);color:white;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,158,143,0.4);font-size:1.3rem;display:flex;align-items:center;justify-content:center;z-index:400;transition:transform 0.2s}
 .chat-fab:hover{transform:scale(1.08)}
 .chat-fab .chat-badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--navy);font-size:0.6rem;font-weight:800;padding:0.15rem 0.35rem;border-radius:50px}
-.chat-window{position:fixed;inset:0;width:100%;height:100dvh;max-height:100dvh;background:var(--white);border-radius:0;box-shadow:none;z-index:400;display:flex;flex-direction:column;overflow:hidden;transition:opacity 0.2s,transform 0.2s;transform:translateY(100%);opacity:0;pointer-events:none}
+.chat-window{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:var(--white);border-radius:0;box-shadow:none;z-index:400;display:flex;flex-direction:column;overflow:hidden;transition:opacity 0.2s,transform 0.2s;transform:translateY(100%);opacity:0;pointer-events:none}
 .chat-window.open{transform:translateY(0);opacity:1;pointer-events:all}
-@media(min-width:500px){
+@media(min-width:769px){
   .chat-fab{right:1.5rem}
-  .chat-window{inset:auto;bottom:5rem;right:1.5rem;width:340px;height:auto;max-height:70vh;border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);transform:translateY(16px)}
+  .chat-window{top:auto;left:auto;bottom:5rem;right:1.5rem;width:340px;height:auto;max-height:70vh;border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);transform:translateY(16px)}
   .chat-window.open{transform:translateY(0)}
 }
 .chat-header{background:var(--navy);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -2380,6 +2380,32 @@ async function sendChat() {
   document.getElementById('chat-send').disabled = false;
   document.getElementById('chat-input').focus();
 }
+
+// ============================================================
+// MOBILE FULL SCREEN HEIGHT FIX
+// Sets actual viewport height for modal and chat on mobile
+// ============================================================
+function setMobileHeights() {
+  const vh = window.innerHeight;
+  const isMobile = window.innerWidth < 769;
+  if (isMobile) {
+    const modal = document.getElementById('modal');
+    const chatWin = document.getElementById('chat-window');
+    const overlay = document.getElementById('modal-overlay');
+    if (modal) modal.style.height = vh + 'px';
+    if (chatWin) chatWin.style.height = vh + 'px';
+    if (overlay) overlay.style.height = vh + 'px';
+  } else {
+    const modal = document.getElementById('modal');
+    const chatWin = document.getElementById('chat-window');
+    const overlay = document.getElementById('modal-overlay');
+    if (modal) modal.style.height = '';
+    if (chatWin) chatWin.style.height = '';
+    if (overlay) overlay.style.height = '';
+  }
+}
+window.addEventListener('resize', setMobileHeights);
+setMobileHeights();
 
 // ============================================================
 // WELCOME MODAL
