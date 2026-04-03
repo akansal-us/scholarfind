@@ -317,10 +317,10 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .chat-fab{position:fixed;bottom:4.5rem;right:1rem;width:56px;height:56px;border-radius:50%;background:var(--teal);color:white;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,158,143,0.4);font-size:1.4rem;display:flex;align-items:center;justify-content:center;z-index:300;transition:transform 0.2s,box-shadow 0.2s}
 .chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(26,158,143,0.5)}
 .chat-fab .chat-badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--navy);font-size:0.6rem;font-weight:800;padding:0.15rem 0.35rem;border-radius:50px}
-.chat-window{position:fixed;bottom:8rem;right:1rem;width:calc(100vw - 2rem);max-width:340px;background:var(--white);border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);z-index:300;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.25s,opacity 0.25s;transform:translateY(20px) scale(0.95);opacity:0;pointer-events:none;max-height:72vh}
+.chat-window{position:fixed;bottom:5rem;left:0.75rem;right:0.75rem;width:auto;background:var(--white);border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);z-index:300;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.25s,opacity 0.25s;transform:translateY(20px) scale(0.95);opacity:0;pointer-events:none;max-height:70vh}
 .chat-window.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
 @media(min-width:480px){
-  .chat-window{width:340px;right:1.5rem}
+  .chat-window{left:auto;right:1.5rem;width:340px}
   .chat-fab{right:1.5rem}
 }
 .chat-header{background:var(--navy);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
