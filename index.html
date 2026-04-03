@@ -314,11 +314,15 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .faq-built-by-text a{color:var(--teal);font-weight:600}
 
 /* CHATBOT */
-.chat-fab{position:fixed;bottom:4.5rem;right:1.5rem;width:56px;height:56px;border-radius:50%;background:var(--teal);color:white;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,158,143,0.4);font-size:1.4rem;display:flex;align-items:center;justify-content:center;z-index:300;transition:transform 0.2s,box-shadow 0.2s}
+.chat-fab{position:fixed;bottom:4.5rem;right:1rem;width:56px;height:56px;border-radius:50%;background:var(--teal);color:white;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,158,143,0.4);font-size:1.4rem;display:flex;align-items:center;justify-content:center;z-index:300;transition:transform 0.2s,box-shadow 0.2s}
 .chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(26,158,143,0.5)}
 .chat-fab .chat-badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--navy);font-size:0.6rem;font-weight:800;padding:0.15rem 0.35rem;border-radius:50px}
-.chat-window{position:fixed;bottom:8rem;right:1.5rem;width:360px;max-width:calc(100vw - 2rem);background:var(--white);border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);z-index:300;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.25s,opacity 0.25s;transform:translateY(20px) scale(0.95);opacity:0;pointer-events:none;max-height:520px}
+.chat-window{position:fixed;bottom:8rem;right:1rem;width:calc(100vw - 2rem);max-width:340px;background:var(--white);border-radius:18px;box-shadow:0 12px 48px rgba(13,27,42,0.2);z-index:300;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.25s,opacity 0.25s;transform:translateY(20px) scale(0.95);opacity:0;pointer-events:none;max-height:72vh}
 .chat-window.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+@media(min-width:480px){
+  .chat-window{width:340px;right:1.5rem}
+  .chat-fab{right:1.5rem}
+}
 .chat-header{background:var(--navy);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .chat-header-left{display:flex;align-items:center;gap:0.6rem}
 .chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
@@ -329,10 +333,10 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;min-height:0}
 .chat-msg{display:flex;gap:0.5rem;align-items:flex-start}
 .chat-msg.user{flex-direction:row-reverse}
-.chat-bubble{max-width:82%;padding:0.6rem 0.9rem;border-radius:14px;font-size:0.82rem;line-height:1.5}
+.chat-bubble{max-width:85%;padding:0.6rem 0.9rem;border-radius:14px;font-size:0.82rem;line-height:1.5;word-break:break-word;overflow-wrap:anywhere}
 .chat-msg.bot .chat-bubble{background:#f0f4f8;color:var(--navy);border-bottom-left-radius:4px}
 .chat-msg.user .chat-bubble{background:var(--teal);color:white;border-bottom-right-radius:4px}
-.chat-msg.bot .chat-bubble a{color:var(--teal);font-weight:600}
+.chat-msg.bot .chat-bubble a{color:var(--teal);font-weight:600;display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}
 .chat-typing{display:flex;gap:4px;align-items:center;padding:0.6rem 0.9rem;background:#f0f4f8;border-radius:14px;border-bottom-left-radius:4px;width:fit-content}
 .chat-typing span{width:7px;height:7px;border-radius:50%;background:#94a3b8;animation:typingDot 1.2s ease-in-out infinite}
 .chat-typing span:nth-child(2){animation-delay:0.2s}
@@ -2276,10 +2280,11 @@ function addChatMessage(text, role) {
   div.className = `chat-msg ${role}`;
   const bubble = document.createElement('div');
   bubble.className = 'chat-bubble';
-  // Convert markdown-style bold and links to HTML
+  // Convert markdown to HTML — clean links, bold, line breaks
   bubble.innerHTML = text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+    .replace(/\[(.*?)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1 →</a>')
+    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">Apply →</a>')
     .replace(/\n/g, '<br/>');
   div.appendChild(bubble);
   msgs.appendChild(div);
