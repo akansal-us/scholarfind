@@ -1,1 +1,153 @@
-{"lastUpdated":"2026-03-20","note":"This file is auto-updated weekly by GitHub Actions. See scripts/update-data.mjs"}
+{
+  "lastUpdated": "2026-04-02",
+  "scholarships": [
+    {
+      "id": "cccd-senior-2026",
+      "title": "CCCD Senior Scholarship",
+      "amount": "Varies",
+      "category": "High School Senior",
+      "desc": "Scholarship for Chester County Community College district high school seniors",
+      "eligibility": "High school seniors in CCCD district",
+      "deadline": "2026-03-31",
+      "how": "Online application through CCCD website",
+      "source": "Chester County Community College",
+      "url": "https://www.chesco.org"
+    },
+    {
+      "id": "wcu-passhe-2026",
+      "title": "West Chester University PASSHE Foundation Scholarship",
+      "amount": "Varies",
+      "category": "University Merit",
+      "desc": "Foundation scholarship for West Chester University students",
+      "eligibility": "Admitted or current West Chester University students",
+      "deadline": "2026-01-09",
+      "how": "Online application portal",
+      "source": "West Chester University Foundation",
+      "url": "https://www.wcupa.edu"
+    },
+    {
+      "id": "pfma-ridge-2026",
+      "title": "Pennsylvania Food Merchants Association Thomas R. and Laura Ridge Scholarship",
+      "amount": "$2500",
+      "category": "Career/Trade",
+      "desc": "Scholarship for students pursuing food retail and grocery industry careers",
+      "eligibility": "Pennsylvania residents pursuing food retail careers",
+      "deadline": "2026-03-02",
+      "how": "Application through PFMA website",
+      "source": "Pennsylvania Food Merchants Association",
+      "url": "https://www.pfma.org"
+    },
+    {
+      "id": "bryson-funk-memorial-2026",
+      "title": "Bryson Funk Memorial Award",
+      "amount": "$324",
+      "category": "Memorial/Community",
+      "desc": "Three awards of $324 each for local students",
+      "eligibility": "Chester County residents",
+      "deadline": "2026-03-27",
+      "how": "Application through local education foundation",
+      "source": "Bryson Funk Memorial Fund",
+      "url": "https://www.chesco.org"
+    },
+    {
+      "id": "wccc-academic-trades-2026",
+      "title": "Western Chester County Chamber Academic and Trades Scholarships",
+      "amount": "Varies",
+      "category": "Academic/Trade",
+      "desc": "Scholarships for academic and trades career paths",
+      "eligibility": "Western Chester County residents pursuing academic or trades education",
+      "deadline": "2026-04-30",
+      "how": "Application through Chamber website",
+      "source": "Western Chester County Chamber of Commerce",
+      "url": "https://www.wcccc.org"
+    }
+  ],
+  "internships": [
+    {
+      "id": "tague-lumber-2026",
+      "title": "Tague Lumber Door Shop Internship",
+      "amount": "Paid",
+      "category": "Retail/Construction",
+      "desc": "Part-time and full-time internship opportunities in Phoenixville, PA",
+      "eligibility": "High school or college students interested in retail/construction",
+      "deadline": "2026-05-15",
+      "how": "Contact Tague Lumber directly or submit resume",
+      "source": "Tague Lumber Door Shop",
+      "url": "https://www.tagueLumber.com"
+    },
+    {
+      "id": "chester-county-history-ideal-2026",
+      "title": "Chester County History Center IDEAL Summer Internship",
+      "amount": "$950 expenses + $15/hour",
+      "category": "Cultural Heritage",
+      "desc": "9-week paid summer internship at Chester County History Center",
+      "eligibility": "College students interested in history and heritage",
+      "deadline": "2026-01-30",
+      "how": "Online application through History Center website",
+      "source": "Chester County History Center",
+      "url": "https://www.chesterCountyHistory.org"
+    },
+    {
+      "id": "wayne-art-center-2026",
+      "title": "Wayne Art Center Summer Camp Internship",
+      "amount": "Hourly wage",
+      "category": "Arts/Education",
+      "desc": "Summer internship positions for 2026 Summer Art Camp",
+      "eligibility": "High school or college students with art background",
+      "deadline": "2026-04-15",
+      "how": "Online application submission",
+      "source": "Wayne Art Center",
+      "url": "https://www.wayneartcenter.org"
+    },
+    {
+      "id": "chester-county-library-2026",
+      "title": "Chester County Library Internship",
+      "amount": "Paid",
+      "category": "Library Science",
+      "desc": "Internship positions at Chester County Library main location or Henrietta Hankin Branch",
+      "eligibility": "High school or college students interested in library services",
+      "deadline": "2026-04-30",
+      "how": "Submit application and resume to library HR",
+      "source": "Chester County Library",
+      "url": "https://www.chesco.org/library"
+    },
+    {
+      "id": "chester-county-probation-2026",
+      "title": "Chester County Adult Probation Internship",
+      "amount": "Unpaid/Academic Credit",
+      "category": "Criminal Justice",
+      "desc": "Summer internship for human service students in adult probation department",
+      "eligibility": "Human service students with good academic standing",
+      "deadline": "2026-04-01",
+      "how": "Contact Adult Probation Department directly",
+      "source": "Chester County Adult Probation",
+      "url": "https://www.chesco.org"
+    }
+  ],
+  "universityPrograms": [
+    {
+      "id": "wcu-scholar-2026",
+      "title": "West Chester University Scholarship Programs",
+      "amount": "Varies",
+      "category": "University Merit/Need",
+      "desc": "Comprehensive scholarship offerings for admitted students",
+      "eligibility": "High school graduates, transfer students",
+      "deadline": "2026-01-09",
+      "how": "FAFSA and WCU scholarship portal application",
+      "source": "West Chester University",
+      "url": "https://www.wcupa.edu/admissions/financing"
+    },
+    {
+      "id": "cccd-transfer-2026",
+      "title": "CCCD to Four-Year University Transfer Scholarships",
+      "amount": "Varies",
+      "category": "Transfer",
+      "desc": "Articulation and transfer scholarships for CCCD students",
+      "eligibility": "CCCD students transferring to four-year institutions",
+      "deadline": "2026-03-31",
+      "how": "Work with CCCD transfer advisor",
+      "source": "Chester County Community College",
+      "url": "https://www.chesco.org"
+    }
+  ]
+}
