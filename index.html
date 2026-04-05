@@ -2050,6 +2050,14 @@ function openModal(id) {
   const distExtra = (districtData[currentDistrict] && districtData[currentDistrict].extraScholarships) || [];
   const item = [...all, ...distExtra].find(x => x.id === id);
   if (!item) return;
+
+  // On mobile — just go straight to the URL, no modal
+  if (window.innerWidth < 769) {
+    if (item.url) window.open(item.url, '_blank');
+    return;
+  }
+
+  // Desktop — show modal as normal
   document.getElementById('m-title').textContent = item.title;
   document.getElementById('m-amount').textContent = item.amount;
   document.getElementById('m-desc').textContent = item.desc;
@@ -2059,28 +2067,13 @@ function openModal(id) {
   document.getElementById('m-source').textContent = item.source;
   document.getElementById('m-apply').href = item.url;
   document.getElementById('modal-overlay').classList.add('open');
-  // On mobile: hide header/nav so modal truly covers everything
-  if (window.innerWidth < 769) {
-    document.body.style.overflow = 'hidden';
-    const header = document.querySelector('header');
-    const nav = document.querySelector('nav');
-    const distBar = document.querySelector('.district-bar');
-    if (header) header.style.display = 'none';
-    if (nav) nav.style.display = 'none';
-    if (distBar) distBar.style.display = 'none';
-  }
+  document.body.style.overflow = 'hidden';
 }
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
-  const header = document.querySelector('header');
-  const nav = document.querySelector('nav');
-  const distBar = document.querySelector('.district-bar');
-  if (header) header.style.display = '';
-  if (nav) nav.style.display = '';
-  if (distBar) distBar.style.display = '';
 }
-function closeModalOnOverlay(e) { if (window.innerWidth >= 769 && e.target.id === 'modal-overlay') closeModal(); }
+function closeModalOnOverlay(e) { if (e.target.id === 'modal-overlay') closeModal(); }
 
 // ============================================================
 // FILTERS & TABS
