@@ -651,9 +651,8 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <!-- INTERNSHIPS TAB -->
 <div class="section" id="tab-internships">
   <div class="tab-header"><h2>💼 Internships &amp; Programs</h2><p>Local opportunities within 15 miles of Phoenixville 19460</p></div>
-  <div style="background:#f0fdf9;border:1.5px solid #1a9e8f;border-radius:10px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.82rem;color:#0f6e56;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-    <span style="font-size:1.1rem;flex-shrink:0">💼</span>
-    <span><strong>Looking for your first part-time job?</strong> Wegmans, Giant, Wawa, Target and other local employers hire students 16+ — find them at <a href="https://www.snagajob.com" target="_blank" style="color:#0f6e56;font-weight:700;text-decoration:underline;">Snagajob.com</a>. PA students under 18 need a work permit — ask your guidance counselor.</span>
+  <div style="background:#f0fdf9;border:1.5px solid #1a9e8f;border-radius:10px;padding:0.65rem 1rem;margin-bottom:1rem;font-size:0.82rem;color:#0f6e56;line-height:1.5;">
+    💼 <strong>Looking for your first part-time job?</strong> Wegmans, Giant, Wawa, Target and other local employers hire students 16+ — find them at <a href="https://www.snagajob.com" target="_blank" style="color:#0f6e56;font-weight:700;text-decoration:underline;">Snagajob.com</a>. PA students under 18 need a work permit — ask your guidance counselor.
   </div>
   <div class="tab-search">
     <input type="text" id="search-intern" placeholder="Search internships…" oninput="renderInternships()" />
@@ -833,7 +832,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
       <div class="modal-section"><h3>About</h3><p id="m-desc"></p></div>
       <div class="modal-section"><h3>Who Can Apply</h3><p id="m-eligibility"></p></div>
       <div class="modal-section"><h3>Deadline</h3><p id="m-deadline"></p></div>
-      <a id="m-apply" href="#" target="_blank" class="apply-btn">Apply / Learn More →</a>
+      <a id="m-apply" href="#" target="_blank" class="apply-btn" onclick="track('apply_click',{item_name:document.getElementById('m-title').textContent,method:'modal_desktop'})">Apply / Learn More →</a>
     </div>
   </div>
 </div>
@@ -1835,6 +1834,7 @@ async function loadDistricts() {
 
 function switchDistrict(val) {
   currentDistrict = val;
+  track('district_switch', { district: val });
   const data = districtData[val] || districtData.phoenixville;
   document.getElementById('district-tag').textContent = data.label;
   const subtitle = document.getElementById('schol-subtitle');
@@ -2077,7 +2077,10 @@ function openModal(id) {
 
   // On mobile — just go straight to the URL, no modal
   if (window.innerWidth < 769) {
-    if (item.url) window.open(item.url, '_blank');
+    if (item.url) {
+      track('apply_click', { item_id: id, item_name: item.title, item_category: item.type, method: 'mobile_direct' });
+      window.open(item.url, '_blank');
+    }
     return;
   }
 
@@ -2090,6 +2093,8 @@ function openModal(id) {
   document.getElementById('m-apply').href = item.url;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  // Track modal open
+  track('view_opportunity', { item_id: id, item_name: item.title, item_category: item.type });
 }
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
@@ -2118,6 +2123,7 @@ function filterCards() {
 
 function switchTab(tab, btn) {
   currentTab = tab;
+  track('tab_view', { tab_name: tab });
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
@@ -2156,9 +2162,11 @@ function toggleSave(id, btn) {
   if (savedItems.includes(id)) {
     savedItems = savedItems.filter(x => x !== id);
     btn.textContent = '☆';
+    track('unsave_item', { item_id: id });
   } else {
     savedItems.push(id);
     btn.textContent = '⭐';
+    track('save_item', { item_id: id });
   }
   localStorage.setItem('sf_saved', JSON.stringify(savedItems));
   document.getElementById('saved-count').textContent = savedItems.length;
@@ -2189,6 +2197,7 @@ function quizBack(stepIndex) {
 }
 
 function runQuiz() {
+  track('quiz_complete', { grade: quizAnswers.grade, gpa: quizAnswers.gpa, interest: quizAnswers.interest });
   const { grade, gpa, interest, family } = quizAnswers;
   const gpRank = {below3:0,'3to35':1,'35plus':2};
   const matched = scholarships.filter(s => {
@@ -2370,6 +2379,7 @@ async function sendChat() {
   document.getElementById('chat-suggestions').style.display = 'none';
   addChatMessage(message, 'user');
   chatHistory.push({ role: 'user', content: message });
+  track('scholarbot_message', { message_number: chatHistory.filter(m => m.role === 'user').length });
 
   chatTyping = true;
   document.getElementById('chat-send').disabled = true;
@@ -2432,6 +2442,15 @@ function setVh() {
 }
 window.addEventListener('resize', setVh);
 setVh();
+
+// ============================================================
+// ANALYTICS — GA4 event tracking
+// ============================================================
+function track(eventName, params) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', eventName, params);
+  }
+}
 
 // ============================================================
 // WELCOME MODAL
