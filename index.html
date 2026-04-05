@@ -76,21 +76,28 @@ nav{background:var(--white);border-bottom:2px solid var(--light);position:sticky
 }
 
 /* HERO */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 60%,#1a9e8f22 100%);padding:0.6rem 1.2rem 0.5rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,0.12),transparent 70%)}
-.hero h1{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:900;color:var(--white);margin-bottom:0.1rem}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 55%,#0f4a3c 100%);padding:0.8rem 2rem 0.7rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,0.15),transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(26,158,143,0.18),transparent 70%);pointer-events:none}
+.hero h1{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--white);margin-bottom:0.2rem;line-height:1.2;position:relative}
 .hero h1 span{color:var(--gold)}
-.hero p{color:#94a3b8;margin-bottom:0;font-size:0.75rem}
+.hero p{color:#94a3b8;margin-bottom:0;font-size:0.82rem;position:relative}
+@media(max-width:768px){
+  .hero{padding:0.6rem 1.2rem 0.5rem}
+  .hero h1{font-size:1.2rem}
+  .hero p{font-size:0.75rem}
+}
 .search-bar{display:flex;max-width:560px;margin:0 auto;background:var(--white);border-radius:50px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
 .search-bar input{flex:1;border:none;padding:0.85rem 1.4rem;font-size:1rem;font-family:'DM Sans',sans-serif;outline:none;background:transparent}
 .search-bar button{background:var(--teal);color:white;border:none;padding:0.85rem 1.6rem;font-weight:600;cursor:pointer;font-size:0.95rem;font-family:'DM Sans',sans-serif}
 
 /* STATS */
-.stats-bar{background:var(--navy);padding:0.4rem 1rem}
-.stats-inner{max-width:1200px;margin:0 auto;display:flex;gap:1rem;justify-content:center;flex-wrap:nowrap}
-.stat{text-align:center}
-.stat-val{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--gold)}
-.stat-lbl{font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.3px}
+.stats-bar{background:linear-gradient(90deg,#0d1b2a 0%,#1a3a5c 50%,#0d1b2a 100%);padding:0.6rem 1rem;border-top:1px solid rgba(255,255,255,0.06)}
+.stats-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;justify-content:center;flex-wrap:nowrap}
+.stat{text-align:center;padding:0 1.2rem;border-right:1px solid rgba(255,255,255,0.08)}
+.stat:last-child{border-right:none}
+.stat-val{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--gold)}
+.stat-lbl{font-size:0.62rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-top:0.1rem}
 
 /* MAIN */
 main{max-width:1200px;margin:0 auto;padding:2rem}
@@ -167,8 +174,12 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
 
 /* CARD */
-.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;border:1.5px solid transparent}
+.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--card-shadow);overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;border:1.5px solid transparent;border-left:4px solid transparent}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(13,27,42,0.15);border-color:var(--teal)}
+.card.urgent-card{border-left-color:var(--danger)}
+.card.soon-card{border-left-color:var(--warn)}
+.card.urgent-card:hover{border-color:var(--danger)}
+.card.soon-card:hover{border-color:var(--warn)}
 .card-header{padding:1.2rem 1.2rem 0.6rem;display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem}
 .card-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;line-height:1.3}
 .save-btn{background:none;border:none;cursor:pointer;font-size:1.2rem;flex-shrink:0;transition:transform 0.2s}
@@ -1968,7 +1979,8 @@ function renderInternships() {
 function cardHTML(item) {
   const saved = savedItems.includes(item.id);
   const urgency = getUrgency(item.deadlineDate);
-  return `<div class="card" onclick="openModal('${item.id}')">
+  const urgClass = urgency.cls === 'badge-urgent' ? 'urgent-card' : urgency.cls === 'badge-soon' ? 'soon-card' : '';
+  return `<div class="card ${urgClass}" onclick="openModal('${item.id}')">
     <div class="card-header">
       <div class="card-title">${item.title}</div>
       <button class="save-btn" onclick="event.stopPropagation();toggleSave('${item.id}',this)" title="${saved?'Remove':'Save'}">${saved?'⭐':'☆'}</button>
