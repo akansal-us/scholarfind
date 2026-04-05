@@ -208,13 +208,13 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 @media(min-width:769px){
   .modal-overlay{background:rgba(13,27,42,0.65);display:none;align-items:center;justify-content:center;padding:1.5rem}
   .modal-overlay.open{display:flex}
-  .modal{min-height:auto;max-height:88vh;max-width:580px;border-radius:20px;overflow-y:auto}
-  .modal-header{border-radius:20px 20px 0 0;padding:1.4rem 1.2rem 1.1rem}
-  .modal-header h2{font-size:1.4rem}
-  .modal-amount{font-size:2rem}
-  .modal-body{padding:1.5rem}
-  .modal-section{margin-bottom:1rem}
-  .modal-section p{font-size:0.92rem}
+  .modal{min-height:auto;max-height:75vh;max-width:460px;border-radius:16px;overflow-y:auto}
+  .modal-header{border-radius:16px 16px 0 0;padding:1rem 1.1rem 0.8rem}
+  .modal-header h2{font-size:1.1rem}
+  .modal-amount{font-size:1.5rem}
+  .modal-body{padding:1rem}
+  .modal-section{margin-bottom:0.6rem}
+  .modal-section p{font-size:0.83rem}
 }
 
 /* DEADLINE TRACKER */
@@ -808,8 +808,6 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
       <div class="modal-section"><h3>About</h3><p id="m-desc"></p></div>
       <div class="modal-section"><h3>Who Can Apply</h3><p id="m-eligibility"></p></div>
       <div class="modal-section"><h3>Deadline</h3><p id="m-deadline"></p></div>
-      <div class="modal-section"><h3>How to Apply</h3><p id="m-how"></p></div>
-      <div class="modal-section" id="m-source-wrap"><h3>✅ Verified Source</h3><p id="m-source"></p></div>
       <a id="m-apply" href="#" target="_blank" class="apply-btn">Apply / Learn More →</a>
     </div>
   </div>
@@ -2060,11 +2058,9 @@ function openModal(id) {
   // Desktop — show modal as normal
   document.getElementById('m-title').textContent = item.title;
   document.getElementById('m-amount').textContent = item.amount;
-  document.getElementById('m-desc').textContent = item.desc;
-  document.getElementById('m-eligibility').textContent = item.eligibility;
+  document.getElementById('m-desc').textContent = item.desc.length > 160 ? item.desc.substring(0, 160) + '…' : item.desc;
+  document.getElementById('m-eligibility').textContent = item.eligibility.length > 140 ? item.eligibility.substring(0, 140) + '…' : item.eligibility;
   document.getElementById('m-deadline').textContent = item.deadline;
-  document.getElementById('m-how').textContent = item.how;
-  document.getElementById('m-source').textContent = item.source;
   document.getElementById('m-apply').href = item.url;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
