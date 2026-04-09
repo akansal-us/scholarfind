@@ -697,78 +697,58 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 <div class="section" id="tab-quiz">
   <div class="quiz-wrap">
     <h2>🎯 Eligibility Quiz</h2>
-    <p>Answer 5 quick questions to see which scholarships you actually qualify for.</p>
+    <p>Answer 4 quick questions to find scholarships, internships, and programs you actually qualify for.</p>
     <div class="quiz-progress">
       <div class="quiz-pip active" id="pip-0"></div>
       <div class="quiz-pip" id="pip-1"></div>
       <div class="quiz-pip" id="pip-2"></div>
       <div class="quiz-pip" id="pip-3"></div>
-      <div class="quiz-pip" id="pip-4"></div>
     </div>
     <div class="quiz-card" id="quiz-card">
       <div class="quiz-step active" id="step-0">
-        <div class="quiz-step-label">Question 1 of 5</div>
-        <div class="quiz-q">What grade are you in?</div>
+        <div class="quiz-step-label">Question 1 of 4</div>
+        <div class="quiz-q">What are you looking for?</div>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="pickOpt(this,'grade','9th')">9th Grade</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'grade','10th')">10th Grade</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'grade','11th')">11th Grade</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'grade','12th')">12th Grade (Senior)</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'looking','scholarships');quizNext(1)">🏆 Scholarships</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'looking','internships');quizNext(1)">💼 Internships &amp; Programs</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'looking','both');quizNext(1)">✨ Show me everything</button>
         </div>
-        <div class="quiz-nav"><button class="quiz-btn" onclick="quizNext(1)">Next →</button></div>
       </div>
       <div class="quiz-step" id="step-1">
-        <div class="quiz-step-label">Question 2 of 5</div>
-        <div class="quiz-q">What is your GPA range?</div>
+        <div class="quiz-step-label">Question 2 of 4</div>
+        <div class="quiz-q">What grade are you in?</div>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="pickOpt(this,'gpa','below3')">Below 3.0</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'gpa','3to35')">3.0 – 3.49</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'gpa','35plus')">3.5 or above</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','6th');quizNext(2)">6th–8th (Middle School)</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','9th');quizNext(2)">9th Grade</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','10th');quizNext(2)">10th Grade</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','11th');quizNext(2)">11th Grade</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'grade','12th');quizNext(2)">12th Grade (Senior)</button>
         </div>
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="quizBack(0)">← Back</button>
-          <button class="quiz-btn" onclick="quizNext(2)">Next →</button>
-        </div>
+        <div class="quiz-nav"><button class="quiz-btn-back" onclick="quizBack(0)">← Back</button></div>
       </div>
       <div class="quiz-step" id="step-2">
-        <div class="quiz-step-label">Question 3 of 5</div>
-        <div class="quiz-q">What are your main interest areas?</div>
+        <div class="quiz-step-label">Question 3 of 4</div>
+        <div class="quiz-q">What interests you most?</div>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="pickOpt(this,'interest','STEM')">STEM</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'interest','Healthcare')">Healthcare</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'interest','Arts')">Arts</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'interest','Community')">Community Service</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'interest','General')">General / Undecided</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','STEM');quizNext(3)">🔬 STEM / Engineering</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Healthcare');quizNext(3)">🏥 Healthcare / Nursing</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Arts');quizNext(3)">🎨 Arts / Design</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Community');quizNext(3)">🤝 Community / Service</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','Finance');quizNext(3)">💰 Finance / Business</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'interest','General');quizNext(3)">🌟 Not sure yet</button>
         </div>
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="quizBack(1)">← Back</button>
-          <button class="quiz-btn" onclick="quizNext(3)">Next →</button>
-        </div>
+        <div class="quiz-nav"><button class="quiz-btn-back" onclick="quizBack(1)">← Back</button></div>
       </div>
       <div class="quiz-step" id="step-3">
-        <div class="quiz-step-label">Question 4 of 5</div>
-        <div class="quiz-q">Are you a first-generation college student?</div>
+        <div class="quiz-step-label">Question 4 of 4</div>
+        <div class="quiz-q">Any of these apply to you?</div>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="pickOpt(this,'firstgen','yes')">Yes</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'firstgen','no')">No</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'firstgen','unsure')">Not sure</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'special','retail');runQuiz()">Family works at Wawa, Giant, or grocery store</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'special','nursing');runQuiz()">Planning to study nursing</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'special','engineering');runQuiz()">Planning to study engineering</button>
+          <button class="quiz-opt" onclick="pickOpt(this,'special','none');runQuiz()">None of the above</button>
         </div>
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="quizBack(2)">← Back</button>
-          <button class="quiz-btn" onclick="quizNext(4)">Next →</button>
-        </div>
-      </div>
-      <div class="quiz-step" id="step-4">
-        <div class="quiz-step-label">Question 5 of 5</div>
-        <div class="quiz-q">Does a family member work in retail or food industry (Wawa, Giant, etc.)?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" onclick="pickOpt(this,'family','yes')">Yes</button>
-          <button class="quiz-opt" onclick="pickOpt(this,'family','no')">No</button>
-        </div>
-        <div class="quiz-nav">
-          <button class="quiz-btn-back" onclick="quizBack(3)">← Back</button>
-          <button class="quiz-btn gold" onclick="runQuiz()">Show My Matches →</button>
-        </div>
+        <div class="quiz-nav"><button class="quiz-btn-back" onclick="quizBack(2)">← Back</button></div>
       </div>
     </div>
     <div class="quiz-results-wrap hidden" id="quiz-results-wrap">
@@ -2168,9 +2148,9 @@ function pickOpt(btn, key, val) {
 function quizNext(stepIndex) {
   document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step-' + stepIndex).classList.add('active');
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     const pip = document.getElementById('pip-' + i);
-    pip.className = 'quiz-pip' + (i < stepIndex ? ' done' : i === stepIndex ? ' active' : '');
+    if (pip) pip.className = 'quiz-pip' + (i < stepIndex ? ' done' : i === stepIndex ? ' active' : '');
   }
 }
 
@@ -2179,28 +2159,86 @@ function quizBack(stepIndex) {
 }
 
 function runQuiz() {
-  track('quiz_complete', { grade: quizAnswers.grade, gpa: quizAnswers.gpa, interest: quizAnswers.interest });
-  const { grade, gpa, interest, family } = quizAnswers;
-  const gpRank = {below3:0,'3to35':1,'35plus':2};
-  const matched = scholarships.filter(s => {
-    if (grade && s.grades && !s.grades.includes(grade)) return false;
-    if (gpa && s.gpaMin && gpRank[gpa] < gpRank[s.gpaMin]) return false;
-    if (interest && s.interests && !s.interests.includes(interest)) return false;
-    if (s.familyRetail && family !== 'yes') return false;
-    return true;
-  });
-  const wrap = document.getElementById('quiz-results-wrap');
-  const list = document.getElementById('quiz-results-list');
+  track('quiz_complete', { grade: quizAnswers.grade, interest: quizAnswers.interest, looking: quizAnswers.looking });
+  const { grade, interest, special, looking } = quizAnswers;
+
+  // Grade helpers — middle school maps to 6th/7th/8th
+  const msGrades = ['6th','7th','8th'];
+  const gradeMatch = (itemGrades) => {
+    if (!itemGrades || !grade) return true;
+    if (grade === '6th') return itemGrades.some(g => msGrades.includes(g));
+    return itemGrades.includes(grade);
+  };
+
+  // Interest match — Finance/Business maps to STEM+General for internships
+  const interestMatch = (itemInterests) => {
+    if (!itemInterests || !interest) return true;
+    if (interest === 'Finance') return itemInterests.some(i => ['Finance','STEM','General'].includes(i));
+    return itemInterests.includes(interest) || itemInterests.includes('General');
+  };
+
+  // Decide which pools to search
+  const wantSchol    = !looking || looking === 'scholarships' || looking === 'both';
+  const wantIntern   = !looking || looking === 'internships'  || looking === 'both';
+
+  // --- Scholarships ---
+  let matchedSchol = [];
+  if (wantSchol) {
+    matchedSchol = scholarships.filter(s => {
+      if (!gradeMatch(s.grades)) return false;
+      if (!interestMatch(s.interests)) return false;
+      if (s.familyRetail && special !== 'retail') return false;
+      if (special === 'nursing' && s.category === 'Healthcare') return true;
+      if (special === 'engineering' && s.category === 'STEM') return true;
+      return true;
+    });
+  }
+
+  // --- Internships ---
+  let matchedIntern = [];
+  if (wantIntern) {
+    matchedIntern = internships.filter(s => {
+      if (!gradeMatch(s.grades)) return false;
+      if (!interestMatch(s.interests || [s.category])) return false;
+      return true;
+    });
+  }
+
+  // --- University Programs ---
+  let matchedUni = [];
+  if (wantIntern || looking === 'both' || !looking) {
+    matchedUni = universityPrograms.filter(p => {
+      if (!gradeMatch(p.grades)) return false;
+      const pInterests = p.tags || [];
+      if (interest === 'STEM' && !pInterests.some(t => ['STEM','College Credit'].includes(t))) return false;
+      if (interest === 'Arts' && !pInterests.includes('Arts') && !pInterests.includes('Free')) return false;
+      if (interest === 'Healthcare' && !pInterests.some(t => ['Healthcare','STEM','Free'].includes(t))) return false;
+      return true;
+    });
+  }
+
+  const wrap  = document.getElementById('quiz-results-wrap');
+  const list  = document.getElementById('quiz-results-list');
   const title = document.getElementById('quiz-results-title');
   document.getElementById('quiz-card').style.display = 'none';
   document.querySelector('.quiz-progress').style.display = 'none';
   wrap.classList.remove('hidden');
-  if (matched.length === 0) {
+
+  const total = matchedSchol.length + matchedIntern.length + matchedUni.length;
+
+  if (total === 0) {
     title.textContent = 'No exact matches found';
-    list.innerHTML = `<div class="quiz-no-match"><span>🔍</span><p>Try adjusting your answers — or browse the full scholarships tab to see everything available.</p><button class="quiz-btn" style="margin-top:1rem" onclick="resetQuiz()">Try again</button></div>`;
-  } else {
-    title.textContent = matched.length + ' scholarship' + (matched.length > 1 ? 's' : '') + ' matched!';
-    list.innerHTML = matched.map(s => {
+    list.innerHTML = `<div class="quiz-no-match"><span>🔍</span><p>Try adjusting your answers — or browse the tabs above to see everything available.</p><button class="quiz-btn" style="margin-top:1rem" onclick="resetQuiz()">Try again</button></div>`;
+    return;
+  }
+
+  title.textContent = total + ' opportunit' + (total === 1 ? 'y' : 'ies') + ' matched!';
+
+  let html = '';
+
+  if (matchedSchol.length) {
+    html += `<div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--teal);margin:0.75rem 0 0.4rem">🏆 Scholarships (${matchedSchol.length})</div>`;
+    html += matchedSchol.map(s => {
       const urgency = getUrgency(s.deadlineDate);
       return `<div class="quiz-match-card" onclick="openModal('${s.id}')">
         <div>
@@ -2212,6 +2250,38 @@ function runQuiz() {
       </div>`;
     }).join('');
   }
+
+  if (matchedIntern.length) {
+    html += `<div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--teal);margin:0.75rem 0 0.4rem">💼 Internships &amp; Programs (${matchedIntern.length})</div>`;
+    html += matchedIntern.map(s => {
+      const urgency = getUrgency(s.deadlineDate);
+      return `<div class="quiz-match-card" onclick="openModal('${s.id}')">
+        <div>
+          <div class="quiz-match-title">${s.title}</div>
+          <div class="quiz-match-amount">${s.amount}</div>
+          <div class="quiz-match-deadline">📅 ${s.deadline} &nbsp;<span class="badge ${urgency.cls}">${urgency.label}</span></div>
+        </div>
+        <div class="quiz-match-arrow">→</div>
+      </div>`;
+    }).join('');
+  }
+
+  if (matchedUni.length) {
+    html += `<div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--teal);margin:0.75rem 0 0.4rem">🎓 University Programs (${matchedUni.length})</div>`;
+    html += matchedUni.map(p => {
+      const urgency = getUrgency(p.deadlineDate);
+      return `<div class="quiz-match-card" onclick="openModal('${p.id}')">
+        <div>
+          <div class="quiz-match-title">${p.title}</div>
+          <div class="quiz-match-amount">${p.amount}</div>
+          <div class="quiz-match-deadline">📅 ${p.deadline} &nbsp;<span class="badge ${urgency.cls}">${urgency.label}</span></div>
+        </div>
+        <div class="quiz-match-arrow">→</div>
+      </div>`;
+    }).join('');
+  }
+
+  list.innerHTML = html;
 }
 
 function resetQuiz() {
@@ -2222,9 +2292,9 @@ function resetQuiz() {
   document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step-0').classList.add('active');
   document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     const pip = document.getElementById('pip-' + i);
-    pip.className = 'quiz-pip' + (i === 0 ? ' active' : '');
+    if (pip) pip.className = 'quiz-pip' + (i === 0 ? ' active' : '');
   }
 }
 
