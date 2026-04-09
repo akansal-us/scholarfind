@@ -93,7 +93,7 @@ nav{background:var(--white);border-bottom:2px solid var(--light);position:sticky
 
 /* STATS */
 .stats-bar{background:linear-gradient(90deg,#0d1b2a 0%,#1a3a5c 50%,#0d1b2a 100%);padding:0.6rem 1rem;border-top:1px solid rgba(255,255,255,0.06)}
-.stats-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;justify-content:center;flex-wrap:nowrap}
+.stats-inner{max-width:1200px;margin:0 auto;display:flex;gap:0;justify-content:center;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .stat{text-align:center;padding:0 1.2rem;border-right:1px solid rgba(255,255,255,0.08)}
 .stat:last-child{border-right:none}
 .stat-val{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--gold)}
@@ -166,8 +166,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .email-error{background:#7f1d1d;border-radius:8px;padding:0.75rem 1rem;font-size:0.85rem;color:#fca5a5;margin-top:0.75rem;display:none}
 
 /* FILTER BAR */
-.filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.filter-btn{border:1.5px solid var(--light);background:var(--white);padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;color:var(--slate);transition:all 0.2s}
+.filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{border:1.5px solid var(--light);background:var(--white);padding:0.35rem 0.85rem;border-radius:50px;font-size:0.8rem;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;color:var(--slate);transition:all 0.2s;white-space:nowrap;flex-shrink:0}
 .filter-btn:hover,.filter-btn.active{background:var(--teal);color:white;border-color:var(--teal)}
 
 /* CARDS GRID */
@@ -388,7 +389,8 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
   .logo{font-size:1.3rem}
   .tagline{display:none}
   main{padding:0.9rem}
-  .stats-inner{gap:0.75rem}
+  .stats-inner{gap:0;justify-content:space-around}
+  .stat{padding:0 0.6rem}
   .tab-btn{padding:0.65rem 0.9rem;font-size:0.8rem}
   .district-inner{gap:0.5rem}
   .district-select{font-size:0.82rem}
@@ -541,6 +543,21 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
     <button class="filter-btn" onclick="setFilter('schol','General',this)">General</button>
   </div>
   <div class="cards-grid" id="schol-grid"></div>
+
+  <!-- MORE SCHOLARSHIPS CALLOUT -->
+  <div style="margin-top:2rem;background:var(--white);border:1.5px solid var(--light);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+    <div style="font-size:1.6rem;flex-shrink:0">🔍</div>
+    <div style="flex:1;min-width:200px">
+      <div style="font-family:'Fraunces',serif;font-size:1rem;font-weight:700;margin-bottom:0.25rem">Looking for national scholarships too?</div>
+      <div style="font-size:0.83rem;color:var(--slate);line-height:1.6;margin-bottom:0.75rem">ScholarFind focuses on local and regional opportunities that are hard to find elsewhere. For national scholarships, these sites have comprehensive databases:</div>
+      <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
+        <a href="https://www.fastweb.com" target="_blank" style="display:inline-flex;align-items:center;background:var(--cream);border:1.5px solid var(--light);color:var(--navy);text-decoration:none;padding:0.4rem 0.9rem;border-radius:50px;font-size:0.8rem;font-weight:600">Fastweb ↗</a>
+        <a href="https://www.scholarships.com" target="_blank" style="display:inline-flex;align-items:center;background:var(--cream);border:1.5px solid var(--light);color:var(--navy);text-decoration:none;padding:0.4rem 0.9rem;border-radius:50px;font-size:0.8rem;font-weight:600">Scholarships.com ↗</a>
+        <a href="https://www.philafound.org/scholarships/" target="_blank" style="display:inline-flex;align-items:center;background:var(--cream);border:1.5px solid var(--light);color:var(--navy);text-decoration:none;padding:0.4rem 0.9rem;border-radius:50px;font-size:0.8rem;font-weight:600">Philadelphia Foundation ↗</a>
+        <a href="https://www.jkcf.org/our-scholarships/college-scholarship-program/" target="_blank" style="display:inline-flex;align-items:center;background:var(--cream);border:1.5px solid var(--light);color:var(--navy);text-decoration:none;padding:0.4rem 0.9rem;border-radius:50px;font-size:0.8rem;font-weight:600">Jack Kent Cooke ↗</a>
+      </div>
+    </div>
+  </div>
 
   <!-- FAQ SECTION -->
   <div class="faq-section">
@@ -888,7 +905,7 @@ const scholarships = [
     deadlineDate: new Date('2026-03-15'),
     how:'Submit the Universal Scholarship Application at chescocf.org. One form = many scholarships.',
     source:'chescocf.org — Chester County Community Foundation',
-    url:'https://www.chescocf.org/grants-scholarships/scholarships/',
+    url:'https://chescocf.org/receive/apply-for-scholarships/',
     grades:['11th','12th'],
     gpaMin:'3to35',
     interests:['General','Arts','STEM','Community']
@@ -939,7 +956,7 @@ const scholarships = [
     deadlineDate: new Date('2026-04-15'),
     how:'Apply at pfma.org. Include family employment verification and a personal essay.',
     source:'pfma.org — Pennsylvania Food Merchants Association',
-    url:'https://www.pfma.org/scholarship',
+    url:'https://www.pfma.org/events-resources/scholarships/',
     grades:['11th','12th'],
     gpaMin:'3to35',
     interests:['Community','General'],
@@ -974,7 +991,7 @@ const scholarships = [
     deadlineDate: new Date('2026-04-30'),
     how:'Apply at mainlinehealth.org/careers. Requires essay, transcripts, and two recommendations.',
     source:'mainlinehealth.org',
-    url:'https://www.mainlinehealth.org/giving/scholarships',
+    url:'https://www.mainlinehealth.org/nursing/students-and-new-graduates',
     grades:['12th'],
     gpaMin:'3to35',
     interests:['Healthcare']
@@ -1002,49 +1019,15 @@ const scholarships = [
     amount:'Varies',
     amountNum:3500,
     category:'STEM',
-    desc:'Vanguard, headquartered in Malvern just 5 miles from Phoenixville, offers scholarships through the Vanguard Strong Start program for students pursuing finance or business degrees.',
+    desc:'Vanguard, headquartered in Malvern just 5 miles from Phoenixville, supports students in the community through scholarship and internship programs for finance, business, and STEM fields.',
     eligibility:'Students pursuing finance, business, economics, or related STEM/quantitative fields. Chester County residents given preference.',
-    deadline:'February 28, 2026',
+    deadline:'Check with PAHS counselor for current cycle',
     deadlineDate: new Date('2026-02-28'),
-    how:'Apply at vanguard.com/corporate/careers/community. Check with PAHS counselor for current cycle.',
+    how:'Vanguard scholarship programs are not always publicly advertised. Contact your school guidance counselor or visit vanguard.com/community for current opportunities. Also see the Vanguard internship and North Star program on the Internships tab.',
     source:'vanguard.com — The Vanguard Group, Malvern PA',
-    url:'https://www.vanguard.com/corporate/careers/students-and-new-grads.html',
+    url:'https://www.vanguard.com/corporate/who-we-are/community.html',
     grades:['11th','12th'],
     gpaMin:'35plus',
-    interests:['STEM','General']
-  }  ,
-  {
-    id:'s11', type:'scholarship',
-    title:'Lockheed Martin STEM Scholarship',
-    amount:'Up to $10,000',
-    amountNum:10000,
-    category:'STEM',
-    desc:'Lockheed Martin, with facilities in the Philadelphia region, offers STEM scholarships for high school seniors pursuing engineering, computer science, or related fields. Chester County students are eligible. Lockheed also runs a separate high school internship program — scholarship and internship can be pursued independently.',
-    eligibility:'High school seniors pursuing STEM degrees. Strong academic record required. U.S. citizenship required.',
-    deadline:'Check lockheedmartin.com for 2026-27 cycle',
-    deadlineDate: new Date('2026-10-01'),
-    how:'Visit lockheedmartin.com/en-us/careers/candidates/students-early-careers/high-school.html for current scholarship and internship openings.',
-    source:'lockheedmartin.com — Lockheed Martin',
-    url:'https://www.lockheedmartin.com/en-us/careers/candidates/students-early-careers/high-school.html',
-    grades:['12th'],
-    gpaMin:'35plus',
-    interests:['STEM']
-  },
-  {
-    id:'s12', type:'scholarship',
-    title:'Comcast NBCUniversal RISE Scholarship',
-    amount:'Up to $5,000',
-    amountNum:5000,
-    category:'STEM',
-    desc:'Comcast, headquartered in Philadelphia and with major operations throughout the region, awards scholarships to students pursuing technology, media, or business degrees. Chester County students within the Comcast service area are eligible. Comcast also hires local high school interns in West Chester and surrounding areas.',
-    eligibility:'High school seniors pursuing technology, business, or media degrees. Strong community involvement preferred.',
-    deadline:'Rolling — check comcast.com/rise for current cycle',
-    deadlineDate: new Date('2026-12-01'),
-    how:'Search Comcast RISE Scholarship at comcast.com or corporate.comcast.com/values/education.',
-    source:'comcast.com — Comcast, Philadelphia region',
-    url:'https://corporate.comcast.com/values/education',
-    grades:['12th'],
-    gpaMin:'3to35',
     interests:['STEM','General']
   },
   {
@@ -1055,11 +1038,11 @@ const scholarships = [
     category:'Healthcare',
     desc:'The Chester County Hospital Foundation awards the Ervin L. Steele Scholarship to students pursuing nursing degrees. Named after a long-serving hospital board member, it supports the next generation of nurses serving the Chester County community.',
     eligibility:'Students pursuing a nursing degree at an accredited institution. Chester County residents given strong preference.',
-    deadline:'Check chestercountyhospital.org for 2026 dates',
+    deadline:'Check with school guidance office for 2026 dates',
     deadlineDate: new Date('2026-04-15'),
-    how:'Contact the Chester County Hospital Foundation directly at chestercountyhospital.org or call the Foundation office for current application details.',
-    source:'chestercountyhospital.org — Chester County Hospital Foundation',
-    url:'https://www.chestercountyhospital.org/foundation',
+    how:'Two $1,000 scholarships for Chester County high school seniors entering nursing. Requires application, two recommendation letters, and an essay. Apply via your school guidance office or search for the current application form online.',
+    source:'Ervin L. Steele Nursing Scholarship — Chester and Lancaster County',
+    url:'https://sites.google.com/etownschools.org/etown-scholarship-website/local-and-regional-scholarships',
     grades:['12th'],
     gpaMin:'3to35',
     interests:['Healthcare']
@@ -1099,22 +1082,39 @@ const scholarships = [
     interests:['STEM']
   },
   {
-    id:'s16', type:'scholarship',
-    title:'America250PA Semiquincentennial Scholarship',
-    amount:'$10,000',
-    amountNum:10000,
+    id:'s17', type:'scholarship',
+    title:'PCEF Scholarship — Phoenixville Area',
+    amount:'$2,000',
+    amountNum:2000,
     category:'General',
-    desc:'Celebrating America\'s 250th anniversary, Pennsylvania is awarding 25 scholarships of $10,000 each to PA high school seniors attending PA colleges or universities in 2026-27. Chester County students are eligible and can attend participating schools including West Chester University, Temple, Penn State, and more.',
-    eligibility:'Pennsylvania high school seniors planning to attend an accredited Pennsylvania college or university for the 2026-2027 academic year. Based on demonstrated civic values and academic achievement.',
-    deadline:'January 31, 2026 (awards announced April 2026)',
-    deadlineDate: new Date('2026-01-31'),
-    how:'Apply at america250pa.org. Complete the online application before January 31, 2026. For questions email info@America250PA.org.',
-    source:'america250pa.org — America250PA, Commonwealth of Pennsylvania',
-    url:'https://america250pa.org/PPE:_Semiquin_Scholarships',
+    desc:'The Phoenixville Community Education Foundation awards four $2,000 scholarships annually to college-bound PASD seniors. PCEF also administers several donor-funded scholarships for PASD students — all managed through the same foundation.',
+    eligibility:'Graduating seniors of the Phoenixville Area School District (PASD). Must be college-bound.',
+    deadline:'Check pcefonline.com for 2026 application dates',
+    deadlineDate: new Date('2026-04-01'),
+    how:'Check pcefonline.com/our-programs or ask your PAHS guidance counselor. Applications and all PCEF-administered scholarships are listed on Naviance.',
+    source:'pcefonline.com — Phoenixville Community Education Foundation',
+    url:'https://www.pcefonline.com/our-programs/',
     grades:['12th'],
-    gpaMin:'3to35',
-    interests:['General','Community']
-  }
+    gpaMin:'below3',
+    interests:['General','STEM','Arts','Healthcare','Community']
+  },
+  {
+    id:'s18', type:'scholarship',
+    title:'John Polefka Memorial Awards — PASD',
+    amount:'Varies',
+    amountNum:1000,
+    category:'Community',
+    desc:'Two separate awards honoring a PAHS graduate lost in Vietnam. The Enlistment Award is for PASD seniors planning to enlist in the U.S. Armed Services. The Peace Officer Scholarship is for seniors pursuing a career in law enforcement (police officer, state trooper, etc.).',
+    eligibility:'Graduating PASD seniors. Enlistment Award: planning to enlist in any U.S. military branch. Peace Officer Award: planning a career in law enforcement.',
+    deadline:'Check with PAHS guidance counselor for 2026 dates',
+    deadlineDate: new Date('2026-04-15'),
+    how:'Applications are available through the PAHS guidance office and listed on Naviance. Also listed at pcefonline.com/forms-applications.',
+    source:'pcefonline.com — Phoenixville Community Education Foundation',
+    url:'https://www.pcefonline.com/forms-applications/',
+    grades:['12th'],
+    gpaMin:'below3',
+    interests:['Community','General']
+  },
 ];
 
 const internships = [
@@ -1193,7 +1193,7 @@ const internships = [
     deadlineDate: new Date('2026-04-20'),
     how:'Apply at towerhealth.org/volunteering or visit the volunteer office at Phoenixville Hospital.',
     source:'towerhealth.org — Phoenixville Hospital',
-    url:'https://www.towerhealth.org/volunteering/volunteer-opportunities',
+    url:'https://towerhealth.org/locations/phoenixville-hospital/volunteers-phoenixville-hospital',
     grades:['10th','11th','12th'],
     gpaMin:'below3',
     interests:['Healthcare']
@@ -1501,7 +1501,7 @@ const universityPrograms = [
     deadlineDate: new Date('2026-04-01'),
     how:'Visit drexel.edu/excite or search "Young Dragons Drexel" for the 2026 application.',
     source:'drexel.edu/excite — Philadelphia, PA (30 miles)',
-    url:'https://drexel.edu/excite/engagement/young-dragons/',
+    url:'https://drexel.edu/excite/learning/young-dragons/',
     grades:['6th','7th','8th'],
     level:'Middle School'
   },
