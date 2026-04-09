@@ -1,6 +1,6 @@
 // ============================================================
 // scholarship-chat.js — Netlify Function
-// Powers the ScholarFind AI chatbot
+// Powers the ScholarFind AI chatbot (ScholarBot)
 // Only answers from verified scholarship database
 // Requires: ANTHROPIC_API_KEY in Netlify environment variables
 // ============================================================
@@ -14,10 +14,11 @@ exports.handler = async function(event) {
   const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
   if (!ANTHROPIC_API_KEY) return { statusCode: 500, body: 'API key not configured' };
 
-  // Build a compact scholarship context from the data sent by the frontend
-  const scholarships = scholarshipData.scholarships || [];
-  const internships = scholarshipData.internships || [];
-  const universityPrograms = scholarshipData.universityPrograms || [];
+  // Build compact context from data sent by the frontend
+  // .filter(Boolean) guards against any null/undefined items
+  const scholarships = (scholarshipData.scholarships || []).filter(Boolean);
+  const internships = (scholarshipData.internships || []).filter(Boolean);
+  const universityPrograms = (scholarshipData.universityPrograms || []).filter(Boolean);
 
   const formatItem = (s) =>
     `• ${s.title} | ${s.amount || 'Varies'} | Deadline: ${s.deadline} | ${s.category || ''} | Eligibility: ${(s.eligibility || '').substring(0, 120)} | URL: ${s.url}`;
@@ -52,7 +53,7 @@ ${universityPrograms.map(s => `• ${s.title} | ${s.amount || 'Varies'} | Deadli
         max_tokens: 600,
         system: `You are ScholarBot, a friendly assistant for ScholarFind — a free scholarship finder for Chester County, PA students.
 
-Your ONLY job is to help students find scholarships, internships, and university programs from the verified database below. 
+Your ONLY job is to help students find scholarships, internships, and university programs from the verified database below.
 
 RULES:
 - ONLY answer using information from the database below. Never invent scholarships or deadlines.
