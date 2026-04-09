@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-02",
+  "lastUpdated": "2026-04-08",
   "scholarships": [
     {
       "id": "cccd-senior-2026",
@@ -11,7 +11,10 @@
       "deadline": "2026-03-31",
       "how": "Online application through CCCD website",
       "source": "Chester County Community College",
-      "url": "https://www.chesco.org"
+      "url": "https://www.chesco.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Possibly inactive: Webpage contains only tracking and configuration scripts with no scholarship content. Unable to verify scholarship details from provided webpage."
     },
     {
       "id": "wcu-passhe-2026",
@@ -23,7 +26,10 @@
       "deadline": "2026-01-09",
       "how": "Online application portal",
       "source": "West Chester University Foundation",
-      "url": "https://www.wcupa.edu"
+      "url": "https://www.wcupa.edu",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Possibly inactive: Webpage content does not contain scholarship information - only general university marketing content and navigation elements. Unable to verify scholarship details from provided webpage."
     },
     {
       "id": "pfma-ridge-2026",
@@ -35,7 +41,9 @@
       "deadline": "2026-03-02",
       "how": "Application through PFMA website",
       "source": "Pennsylvania Food Merchants Association",
-      "url": "https://www.pfma.org"
+      "url": "https://www.pfma.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": false
     },
     {
       "id": "bryson-funk-memorial-2026",
@@ -47,7 +55,10 @@
       "deadline": "2026-03-27",
       "how": "Application through local education foundation",
       "source": "Bryson Funk Memorial Fund",
-      "url": "https://www.chesco.org"
+      "url": "https://www.chesco.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Possibly inactive: Webpage contains only tracking and initialization code with no scholarship details. Cannot verify current status, deadline, or amount from provided content."
     },
     {
       "id": "wccc-academic-trades-2026",
@@ -59,7 +70,10 @@
       "deadline": "2026-04-30",
       "how": "Application through Chamber website",
       "source": "Western Chester County Chamber of Commerce",
-      "url": "https://www.wcccc.org"
+      "url": "https://www.wcccc.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Fetch failed: request to https://www.wcccc.org/ failed, reason: getaddrinf"
     }
   ],
   "internships": [
@@ -73,7 +87,9 @@
       "deadline": "2026-05-15",
       "how": "Contact Tague Lumber directly or submit resume",
       "source": "Tague Lumber Door Shop",
-      "url": "https://www.tagueLumber.com"
+      "url": "https://www.tagueLumber.com",
+      "lastVerified": "2026-04-08",
+      "needsReview": false
     },
     {
       "id": "chester-county-history-ideal-2026",
@@ -85,7 +101,10 @@
       "deadline": "2026-01-30",
       "how": "Online application through History Center website",
       "source": "Chester County History Center",
-      "url": "https://www.chesterCountyHistory.org"
+      "url": "https://www.chesterCountyHistory.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Fetch failed: request to https://www.chestercountyhistory.org/ failed, rea"
     },
     {
       "id": "wayne-art-center-2026",
@@ -97,7 +116,10 @@
       "deadline": "2026-04-15",
       "how": "Online application submission",
       "source": "Wayne Art Center",
-      "url": "https://www.wayneartcenter.org"
+      "url": "https://www.wayneartcenter.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Fetch failed: The operation was aborted."
     },
     {
       "id": "chester-county-library-2026",
@@ -109,7 +131,10 @@
       "deadline": "2026-04-30",
       "how": "Submit application and resume to library HR",
       "source": "Chester County Library",
-      "url": "https://www.chesco.org/library"
+      "url": "https://www.chesco.org/library",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "URL returned 404"
     },
     {
       "id": "chester-county-probation-2026",
@@ -121,7 +146,10 @@
       "deadline": "2026-04-01",
       "how": "Contact Adult Probation Department directly",
       "source": "Chester County Adult Probation",
-      "url": "https://www.chesco.org"
+      "url": "https://www.chesco.org",
+      "lastVerified": "2026-04-08",
+      "needsReview": true,
+      "reviewReason": "Possibly inactive: Webpage contains only JavaScript code and tracking scripts with no scholarship content visible. Unable to verify current status, deadline, or amount details from provided webpage."
     }
   ],
   "universityPrograms": [
