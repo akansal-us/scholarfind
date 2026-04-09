@@ -197,6 +197,7 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 .badge-type{background:#f3e8ff;color:#7c3aed}
 .badge-source{background:#f0fdf4;color:#166534;font-size:0.68rem}
 .card-deadline{font-size:0.78rem;color:var(--slate);margin-top:0.5rem}
+.card-verified{font-size:0.7rem;color:#64748b;margin-top:0.25rem;letter-spacing:0.1px}
 
 /* MODAL */
 .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;background:var(--white)}
@@ -872,6 +873,8 @@ const scholarships = [
     how:'Apply online at lenfestscholars.org. Requires transcripts, two recommendations, and a personal statement.',
     source:'lenfestscholars.org — verified program since 2001',
     url:'https://www.lenfestscholars.org/applynow',
+    verifiedDate:'2026-04-09',
+
     grades:['11th'],
     gpaMin:'3to35',
     interests:['General','Community']
@@ -889,6 +892,8 @@ const scholarships = [
     how:'Apply through PCHF directly. Visit pchf.org for the current application. Letters of recommendation and an essay required.',
     source:'pchf.org — Phoenixville Community Health Foundation',
     url:'https://pchf.net/scholarships/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'3to35',
     interests:['Healthcare','Community']
@@ -906,6 +911,8 @@ const scholarships = [
     how:'Submit the Universal Scholarship Application at chescocf.org. One form = many scholarships.',
     source:'chescocf.org — Chester County Community Foundation',
     url:'https://chescocf.org/receive/apply-for-scholarships/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'3to35',
     interests:['General','Arts','STEM','Community']
@@ -923,6 +930,8 @@ const scholarships = [
     how:'Apply via the Common Scholarship Application at philafound.org. One application covers 200+ scholarships.',
     source:'philafound.org — Philadelphia Foundation',
     url:'https://www.philafound.org/scholarships/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'3to35',
     interests:['General','STEM','Arts','Community','Healthcare']
@@ -940,6 +949,8 @@ const scholarships = [
     how:'Log in to Naviance through your PAHS student account. Visit your school counselor for access help.',
     source:'Phoenixville Area High School Guidance Office',
     url:'https://www.pasd.com/domain/147',
+    verifiedDate:'2026-04-09',
+
     grades:['9th','10th','11th','12th'],
     gpaMin:'below3',
     interests:['General','STEM','Arts','Healthcare','Community']
@@ -957,6 +968,8 @@ const scholarships = [
     how:'Apply at pfma.org. Include family employment verification and a personal essay.',
     source:'pfma.org — Pennsylvania Food Merchants Association',
     url:'https://www.pfma.org/events-resources/scholarships/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'3to35',
     interests:['Community','General'],
@@ -975,6 +988,8 @@ const scholarships = [
     how:'Attend the Exelon STEM Academy first (see Internships tab). Scholarship applications open to Academy graduates.',
     source:'exelonstemacademy.org — Exelon Foundation',
     url:'https://www.exelonstemacademy.org/apply',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'3to35',
     interests:['STEM']
@@ -992,6 +1007,8 @@ const scholarships = [
     how:'Apply at mainlinehealth.org/careers. Requires essay, transcripts, and two recommendations.',
     source:'mainlinehealth.org',
     url:'https://www.mainlinehealth.org/nursing/students-and-new-graduates',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'3to35',
     interests:['Healthcare']
@@ -1009,6 +1026,8 @@ const scholarships = [
     how:'File FAFSA at fafsa.gov. PA State Grant is automatically considered. Check pheaa.org for status.',
     source:'pheaa.org — Pennsylvania Higher Education Assistance Agency',
     url:'https://www.pheaa.org/funding-opportunities/state-grant-program/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'below3',
     interests:['General','STEM','Arts','Healthcare','Community']
@@ -1026,6 +1045,8 @@ const scholarships = [
     how:'Vanguard scholarship programs are not always publicly advertised. Contact your school guidance counselor or visit vanguard.com/community for current opportunities. Also see the Vanguard internship and North Star program on the Internships tab.',
     source:'vanguard.com — The Vanguard Group, Malvern PA',
     url:'https://www.vanguard.com/corporate/who-we-are/community.html',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'35plus',
     interests:['STEM','General']
@@ -1043,6 +1064,8 @@ const scholarships = [
     how:'Two $1,000 scholarships for Chester County high school seniors entering nursing. Requires application, two recommendation letters, and an essay. Apply via your school guidance office or search for the current application form online.',
     source:'Ervin L. Steele Nursing Scholarship — Chester and Lancaster County',
     url:'https://sites.google.com/etownschools.org/etown-scholarship-website/local-and-regional-scholarships',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'3to35',
     interests:['Healthcare']
@@ -1060,6 +1083,8 @@ const scholarships = [
     how:'Download the application at chestercountyengineers.org. Submit completed form with supporting documents to CCE, c/o 1250 Wright\'s Lane, West Chester PA 19380 or email as PDF with subject "CCE Scholarship".',
     source:'chestercountyengineers.org — Chester County Engineers, West Chester PA',
     url:'https://chestercountyengineers.org/news/2026-chester-county-engineers-scholarship-application/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'3to35',
     interests:['STEM']
@@ -1077,6 +1102,8 @@ const scholarships = [
     how:'Contact your PAHS guidance counselor — the chapter distributes applications through local high schools. Also check pspe.org/valleyforge for direct contact.',
     source:'pspe.org — PSPE Valley Forge Chapter, Montgomery/Chester County PA',
     url:'https://www.pspe.org/valleyforge/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'3to35',
     interests:['STEM']
@@ -1094,6 +1121,8 @@ const scholarships = [
     how:'Check pcefonline.com/our-programs or ask your PAHS guidance counselor. Applications and all PCEF-administered scholarships are listed on Naviance.',
     source:'pcefonline.com — Phoenixville Community Education Foundation',
     url:'https://www.pcefonline.com/our-programs/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'below3',
     interests:['General','STEM','Arts','Healthcare','Community']
@@ -1111,77 +1140,15 @@ const scholarships = [
     how:'Applications are available through the PAHS guidance office and listed on Naviance. Also listed at pcefonline.com/forms-applications.',
     source:'pcefonline.com — Phoenixville Community Education Foundation',
     url:'https://www.pcefonline.com/forms-applications/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'below3',
     interests:['Community','General']
   },
 ];
 
-const internships = [
-  {
-    id:'i1', type:'internship',
-    title:'Vanguard Summer Internship',
-    amount:'$17–$25/hr · Paid',
-    category:'Finance',
-    desc:'10-week paid summer internship at Vanguard\'s Malvern campus, just 5 miles from Phoenixville. Roles in finance, technology, and operations.',
-    eligibility:'Rising college juniors and seniors. High school internships available through the North Star program (see below). GPA 3.0+ preferred.',
-    deadline:'January 31, 2026',
-    deadlineDate: new Date('2026-01-31'),
-    how:'Apply at vanguard.com/careers. Roles are posted in November–January for the following summer.',
-    source:'vanguard.com — Malvern, PA (5 miles)',
-    url:'https://www.vanguard.com/corporate/careers/students',
-    grades:['12th'],
-    gpaMin:'3to35',
-    interests:['Finance','STEM']
-  },
-  {
-    id:'i2', type:'internship',
-    title:'Vanguard North Star Program',
-    amount:'Free · Virtual · 2 days',
-    category:'Finance',
-    desc:'A free two-day virtual program for sophomore college students from underrepresented backgrounds (Black, Hispanic/Latinx, Indigenous). Gain access to Vanguard leaders across finance, technology, and investment management — and get priority access to interview for Vanguard\'s paid summer internship.',
-    eligibility:'Sophomore college students (graduating Dec 2027 or May 2028) from Black, Hispanic/Latinx, or Indigenous backgrounds. Application window: March 9–23, 2026 only. Program runs virtually May 12–13, 2026.',
-    deadline:'March 23, 2026',
-    deadlineDate: new Date('2026-03-23'),
-    how:'Apply at vanguardjobs.com/north-star-experiential-learning-program — window only open March 9–23, 2026.',
-    source:'vanguardjobs.com — The Vanguard Group, Malvern PA',
-    url:'https://www.vanguardjobs.com/north-star-experiential-learning-program/',
-    grades:['12th'],
-    gpaMin:'below3',
-    interests:['Finance','General']
-  },
-  {
-    id:'i3', type:'internship',
-    title:'SEI Investments Internship',
-    amount:'Competitive Pay',
-    category:'Finance',
-    desc:'SEI Investments is headquartered in Oaks, PA — just 3 miles from Phoenixville. They hire college interns in finance, technology, and operations each summer.',
-    eligibility:'College students only. Applications open January ONLY — short window, apply early.',
-    deadline:'January 31, 2026',
-    deadlineDate: new Date('2026-01-31'),
-    how:'Apply at seic.com/careers. Window opens and closes in January — set a reminder.',
-    source:'seic.com — Oaks, PA (3 miles)',
-    url:'https://www.seic.com/careers',
-    grades:['12th'],
-    gpaMin:'35plus',
-    interests:['Finance','STEM']
-  },
-  {
-    id:'i4', type:'internship',
-    title:'Siemens Healthineers Internship',
-    amount:'$24–$40/hr · Paid',
-    category:'Tech',
-    desc:'Siemens Healthineers\' Malvern campus (5 miles) hires engineering and software interns each summer. One of the highest-paying internships in the region.',
-    eligibility:'College students in engineering, computer science, or biomedical fields. GPA 3.2+ preferred.',
-    deadline:'February 15, 2026',
-    deadlineDate: new Date('2026-02-15'),
-    how:'Apply at siemens-healthineers.com/careers. Filter by Malvern, PA.',
-    source:'siemens-healthineers.com — Malvern, PA (5 miles)',
-    url:'https://www.siemens-healthineers.com/careers',
-    grades:['12th'],
-    gpaMin:'35plus',
-    interests:['STEM','Tech']
-  },
+const internships = [,
   {
     id:'i5', type:'internship',
     title:'Phoenixville Hospital Volunteer Program',
@@ -1194,24 +1161,10 @@ const internships = [
     how:'Apply at towerhealth.org/volunteering or visit the volunteer office at Phoenixville Hospital.',
     source:'towerhealth.org — Phoenixville Hospital',
     url:'https://towerhealth.org/locations/phoenixville-hospital/volunteers-phoenixville-hospital',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     gpaMin:'below3',
-    interests:['Healthcare']
-  },
-  {
-    id:'i6', type:'internship',
-    title:'Tower Health Clinical Internship',
-    amount:'Paid · Part-Time',
-    category:'Healthcare',
-    desc:'Tower Health offers paid clinical internships for college students pursuing nursing, pre-med, or allied health programs. Chester County locations including Phoenixville.',
-    eligibility:'College students enrolled in healthcare degree programs. Requires background check and health screening.',
-    deadline:'Rolling',
-    deadlineDate: new Date('2026-08-01'),
-    how:'Apply at towerhealth.org/careers. Search for internship roles in Phoenixville/Chester County.',
-    source:'towerhealth.org — Tower Health System',
-    url:'https://www.towerhealth.org/careers',
-    grades:['12th'],
-    gpaMin:'3to35',
     interests:['Healthcare']
   },
   {
@@ -1225,7 +1178,9 @@ const internships = [
     deadlineDate: new Date('2026-12-01'),
     how:'Apply at wawa.com/careers or visit your local Wawa store directly.',
     source:'wawa.com — Multiple Phoenixville locations',
-    url:'https://www.wawa.com/careers/search-apply',
+    url:'https://careers.wawa.com/us/en/',
+    verifiedDate:'2026-04-09',
+
     grades:['9th','10th','11th','12th'],
     gpaMin:'below3',
     interests:['Retail','General']
@@ -1242,6 +1197,8 @@ const internships = [
     how:'Apply at exelonstemacademy.org. Applications open each December for the following summer. Contact PAHS guidance to be notified.',
     source:'exelonstemacademy.org — PECO/Exelon Foundation',
     url:'https://www.exelonstemacademy.org',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th'],
     gpaMin:'below3',
     interests:['STEM']
@@ -1258,6 +1215,8 @@ const internships = [
     how:'Apply at exelonstemacademy.org. Applications open each December. Check with PAHS counselor or bookmark the site.',
     source:'exelonstemacademy.org — PECO/Exelon Foundation',
     url:'https://www.exelonstemacademy.org',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th'],
     gpaMin:'below3',
     interests:['STEM']
@@ -1274,6 +1233,8 @@ const internships = [
     how:'Apply at mainlinehealth.org/careers/students. Requires health screenings and a brief interview.',
     source:'mainlinehealth.org — Main Line Health',
     url:'https://www.mainlinehealth.org',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'below3',
     interests:['Healthcare']
@@ -1290,6 +1251,8 @@ const internships = [
     how:'Search #ApprenticeUS2026 at gsk.com/en-us/careers/early-careers/apprentices. Apply early — recruitment is ongoing and positions fill fast.',
     source:'gsk.com — GSK Upper Merion, King of Prussia PA (8 miles)',
     url:'https://us.gsk.com/en-us/careers/early-careers/apprentices/',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     gpaMin:'3to35',
     interests:['STEM','Healthcare']
@@ -1306,6 +1269,8 @@ const internships = [
     how:'Apply at monell.org/science-apprenticeship-applications. Requires personal statement, one teacher recommendation, and transcript. Decisions by April 1.',
     source:'monell.org — Monell Chemical Senses Center, Philadelphia PA (28 miles)',
     url:'https://monell.org/science-apprenticeship-program/',
+    verifiedDate:'2026-04-09',
+
     grades:['9th','10th','11th','12th'],
     gpaMin:'3to35',
     interests:['STEM','Healthcare']
@@ -1322,6 +1287,8 @@ const internships = [
     how:'Apply at diversity.seas.upenn.edu/aeop-high-school-internship-program. Program runs June 20 – August 5, 2026.',
     source:'seas.upenn.edu — University of Pennsylvania, Philadelphia PA (28 miles)',
     url:'https://diversity.seas.upenn.edu/aeop-high-school-internship-program/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'35plus',
     interests:['STEM']
@@ -1338,6 +1305,8 @@ const internships = [
     how:'Apply at sciences.pa-gov-schools.org. Program runs June 21 – July 25, 2026 at Carnegie Mellon University, Pittsburgh.',
     source:'sciences.pa-gov-schools.org — Carnegie Mellon University, Pittsburgh PA',
     url:'https://sciences.pa-gov-schools.org/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     gpaMin:'35plus',
     interests:['STEM']
@@ -1354,6 +1323,8 @@ const internships = [
     how:'Visit pa.gov/agencies/hrmoa/programs/hire-separation/high-school-internships for open positions and application instructions.',
     source:'pa.gov — Commonwealth of Pennsylvania',
     url:'https://www.pa.gov/agencies/hrmoa/programs/hire-separation/high-school-internships',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     gpaMin:'below3',
     interests:['General','STEM','Community']
@@ -1374,6 +1345,8 @@ const universityPrograms = [
     how:'Apply at villanova.edu/summer. Requires transcript, parent permission letter, and a 250–500 word personal statement.',
     source:'villanova.edu — Villanova, PA (18 miles)',
     url:'https://www1.villanova.edu/university/summer-sessions/pre-college-summer-academy.html',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     level:'High School'
   },
@@ -1390,6 +1363,8 @@ const universityPrograms = [
     how:'Apply at villanova.edu/summer. Contact CPS Admissions at cps.info@villanova.edu for the approved course list.',
     source:'villanova.edu — Villanova, PA (18 miles)',
     url:'https://www.villanova.edu/university/professional-studies/academics/degrees-certificates/admissions_hs_and_visiting_students.html',
+    verifiedDate:'2026-04-09',
+
     grades:['9th','10th','11th','12th'],
     level:'High School'
   },
@@ -1406,6 +1381,8 @@ const universityPrograms = [
     how:'Contact your PAHS guidance counselor first. Then register at wcupa.edu/dualenrollment or call 610-436-3411.',
     source:'wcupa.edu — West Chester, PA (12 miles)',
     url:'https://www.wcupa.edu/_admin/dualEnrollment/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     level:'High School'
   },
@@ -1422,6 +1399,8 @@ const universityPrograms = [
     how:'Talk to your PAHS guidance counselor. Applications for the following year are typically due in spring. Visit cciu.org/tchs for program details.',
     source:'cciu.org/tchs — Phoenixville, PA (on campus)',
     url:'https://www.cciu.org/programs/career-and-technolgy-programs',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     level:'High School'
   },
@@ -1438,6 +1417,8 @@ const universityPrograms = [
     how:'Apply at admissions.temple.edu/summer/pre-college. Priority given to applications received before March 1.',
     source:'temple.edu — Philadelphia, PA (30 miles)',
     url:'https://admissions.temple.edu/summer/pre-college/find-your-program/interdisciplinary-programs/summer-academy',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     level:'High School'
   },
@@ -1454,6 +1435,8 @@ const universityPrograms = [
     how:'Browse all programs at admissions.temple.edu/summer/pre-college and select the institute that matches your interest.',
     source:'temple.edu — Philadelphia, PA (30 miles)',
     url:'https://admissions.temple.edu/summer/pre-college/find-your-program/interdisciplinary-programs/summer-institutes-and-intensives',
+    verifiedDate:'2026-04-09',
+
     grades:['9th','10th','11th','12th'],
     level:'High School'
   },
@@ -1469,7 +1452,9 @@ const universityPrograms = [
     deadlineDate: new Date('2026-05-15'),
     how:'Visit drexel.edu/undergrad/admissions/summer-programs for the current list of offerings.',
     source:'drexel.edu — Philadelphia, PA (30 miles)',
-    url:'https://drexel.edu/undergrad/admissions/summer-programs',
+    url:'https://drexel.edu/academics/pre-college-programs/summer-institutes',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     level:'High School'
   },
@@ -1486,6 +1471,8 @@ const universityPrograms = [
     how:'Search "Penn GEMS" at seas.upenn.edu. Financial assistance is available for qualifying families.',
     source:'seas.upenn.edu — Philadelphia, PA (28 miles)',
     url:'https://www.seas.upenn.edu/prospective-students/pre-college/',
+    verifiedDate:'2026-04-09',
+
     grades:['7th','8th','9th'],
     level:'Middle School'
   },
@@ -1502,6 +1489,8 @@ const universityPrograms = [
     how:'Visit drexel.edu/excite or search "Young Dragons Drexel" for the 2026 application.',
     source:'drexel.edu/excite — Philadelphia, PA (30 miles)',
     url:'https://drexel.edu/excite/learning/young-dragons/',
+    verifiedDate:'2026-04-09',
+
     grades:['6th','7th','8th'],
     level:'Middle School'
   },
@@ -1517,7 +1506,9 @@ const universityPrograms = [
     deadlineDate: new Date('2026-05-01'),
     how:'Visit ambler.temple.edu or search "Temple Ambler summer programs" for current 2026 offerings.',
     source:'ambler.temple.edu — Ambler, PA (15 miles)',
-    url:'https://ambler.temple.edu/programs/continuing-education/youth-programs',
+    url:'https://ambler.temple.edu/community/middle-school-summer-programs',
+    verifiedDate:'2026-04-09',
+
     grades:['6th','7th','8th'],
     level:'Middle School'
   },
@@ -1534,6 +1525,8 @@ const universityPrograms = [
     how:'Register at idtech.com/villanova. Discounts available for early registration and siblings.',
     source:'idtech.com — Villanova, PA (18 miles)',
     url:'https://www.idtech.com/locations/pennsylvania-summer-camps/villanova-university',
+    verifiedDate:'2026-04-09',
+
     grades:['6th','7th','8th','9th','10th','11th'],
     level:'Middle School'
   },
@@ -1550,26 +1543,12 @@ const universityPrograms = [
     how:'Apply to Villanova through regular admissions and indicate interest in AAP. Email Marquis Coates at Villanova for details.',
     source:'villanova.edu/casa — Villanova, PA (18 miles)',
     url:'https://www1.villanova.edu/university/academic-enterprise/student-support/casa/programs.html',
+    verifiedDate:'2026-04-09',
+
     grades:['12th'],
     level:'High School'
   },
 
-  {
-    id:'u13', type:'university',
-    title:'Pitt Experiencing Architecture Program',
-    amount:'FREE',
-    category:'Free / Low Cost',
-    tags:['High School','Arts','Free'],
-    desc:'A free 3-week summer studio at the University of Pittsburgh for high schoolers interested in architecture, art, design, and urban studies. Use Pitt\'s architecture studios and maker spaces, build a design portfolio, and visit real construction sites with practicing architects.',
-    eligibility:'High school students interested in architecture, art, or design. Program is completely free. Applications open February 2, 2026 and close April 3, 2026.',
-    deadline:'April 3, 2026',
-    deadlineDate: new Date('2026-04-03'),
-    how:'Apply at arch.pitt.edu. Program runs July 6–26, 2026, Monday–Friday 9am–3pm on Pitt\'s Pittsburgh campus.',
-    source:'arch.pitt.edu — University of Pittsburgh',
-    url:'https://www.arch.pitt.edu/experiencing-architecture-program',
-    grades:['9th','10th','11th','12th'],
-    level:'High School'
-  },
   {
     id:'u14', type:'university',
     title:'Pitt AI Summer School (HexAI Lab)',
@@ -1583,6 +1562,8 @@ const universityPrograms = [
     how:'Register at pitthexai.github.io/AISummerSchool. Program typically held in June, 9am–3pm on Pitt\'s campus.',
     source:'pitthexai.github.io — University of Pittsburgh HexAI Lab',
     url:'https://pitthexai.github.io/AISummerSchool/',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     level:'High School'
   },
@@ -1599,6 +1580,8 @@ const universityPrograms = [
     how:'Apply at hillmanresearch.upmc.edu/training/high-school-undergrad. Highly competitive — apply early.',
     source:'hillmanresearch.upmc.edu — UPMC Hillman Cancer Center, Pittsburgh',
     url:'https://hillmanresearch.upmc.edu/training/high-school-undergrad',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     level:'High School'
   },
@@ -1614,7 +1597,9 @@ const universityPrograms = [
     deadlineDate: new Date('2026-05-01'),
     how:'Email summer@as.pitt.edu or visit pitt.edu/summer. Request the high school guest student application.',
     source:'as.pitt.edu — University of Pittsburgh, Dietrich School',
-    url:'https://www.as.pitt.edu/undergraduate/academic-resources/summer-sessions',
+    url:'https://www.chs.pitt.edu/accelerated-high-school',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     level:'High School'
   },
@@ -1631,6 +1616,8 @@ const universityPrograms = [
     how:'Apply at nyu.edu/precollege. $50 non-refundable application fee. International/scholarship deadline is March 15.',
     source:'nyu.edu/precollege — New York University, NYC',
     url:'https://www.nyu.edu/admissions/high-school-and-middle-school-programs/high-school-programs/nyu-precollege.html',
+    verifiedDate:'2026-04-09',
+
     grades:['11th','12th'],
     level:'High School'
   },
@@ -1647,6 +1634,8 @@ const universityPrograms = [
     how:'Visit tisch.nyu.edu/special-programs/high-school-programs. Applications typically open in fall for the following summer.',
     source:'tisch.nyu.edu — NYU Tisch School of the Arts, NYC',
     url:'https://tisch.nyu.edu/special-programs/high-school-programs/tisch-summer-high-school.html',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th'],
     level:'High School'
   },
@@ -1663,6 +1652,8 @@ const universityPrograms = [
     how:'Apply at sps.nyu.edu/high-school-academy. Program starts June 29, 2026. $50 application fee.',
     source:'sps.nyu.edu — NYU School of Professional Studies, NYC',
     url:'https://www.sps.nyu.edu/high-school-academy/programs/career-edge.html',
+    verifiedDate:'2026-04-09',
+
     grades:['10th','11th','12th'],
     level:'High School'
   },
@@ -1679,6 +1670,8 @@ const universityPrograms = [
     how:'Browse the full catalog at nyu.edu/admissions/high-school-and-middle-school-programs. Filter by grade, subject, and format.',
     source:'nyu.edu — New York University, NYC',
     url:'https://www.nyu.edu/admissions/high-school-and-middle-school-programs.html',
+    verifiedDate:'2026-04-09',
+
     grades:['6th','7th','8th','9th','10th','11th','12th'],
     level:'Middle School'
   }  ,
@@ -1695,25 +1688,12 @@ const universityPrograms = [
     how:'Visit fi.edu/en/science-and-education/stem-scholars for application info and current program dates.',
     source:'fi.edu — The Franklin Institute, Philadelphia PA (28 miles)',
     url:'https://www.fi.edu/en/science-and-education/stem-scholars',
+    verifiedDate:'2026-04-09',
+
     grades:['9th','10th','11th','12th'],
     level:'High School'
   },
-  {
-    id:'u22', type:'university',
-    title:'Penn Summer Mentorship Program (Engineering)',
-    amount:'FREE',
-    category:'Free / Low Cost',
-    tags:['High School','STEM','Free'],
-    desc:'A free 4-week summer program at Penn\'s School of Engineering for Philadelphia-area high school students in 9th and 10th grade. Attend lab demonstrations, meet faculty and researchers, explore engineering disciplines, and get college readiness workshops including financial aid and SAT prep. Chester County students within 60 miles qualify.',
-    eligibility:'Philadelphia-area high school students currently in 9th or 10th grade with a minimum 3.0 GPA. Program held on Penn\'s campus in Philadelphia.',
-    deadline:'February 21, 2026',
-    deadlineDate: new Date('2026-02-21'),
-    how:'Apply at diversity.seas.upenn.edu. Program runs July 7 – August 1, 2026.',
-    source:'seas.upenn.edu — University of Pennsylvania, Philadelphia PA (28 miles)',
-    url:'https://diversity.seas.upenn.edu',
-    grades:['9th','10th'],
-    level:'High School'
-  },
+
   {
     id:'u23', type:'university',
     title:'GSK Science in the Summer',
@@ -1726,7 +1706,9 @@ const universityPrograms = [
     deadlineDate: new Date('2026-06-01'),
     how:'Visit gsk.com or contact Chester County community organizations to find a program near you. GSK partners with local nonprofits to host classes.',
     source:'gsk.com — GSK, Collegeville/King of Prussia PA (8-12 miles)',
-    url:'https://us.gsk.com/en-us/responsibility/our-people/in-the-community/',
+    url:'https://us.gsk.com/en-us/careers/early-careers/apprentices/',
+    verifiedDate:'2026-04-09',
+
     grades:['6th','7th','8th'],
     level:'Middle School'
   }
@@ -1771,6 +1753,7 @@ function uniCardHTML(item) {
         <span class="badge ${urgency.cls}">${urgency.label}</span>
       </div>
       <div class="card-deadline">📅 ${item.deadline}</div>
+      ${item.verifiedDate ? `<div class="card-verified">✓ Verified ${item.verifiedDate}</div>` : ''}
     </div>
   </div>`;
 }
@@ -2008,6 +1991,7 @@ function cardHTML(item) {
         ${item.type==='internship'?'<span class="badge badge-type">Internship</span>':''}
       </div>
       <div class="card-deadline">📅 ${item.deadline}</div>
+      ${item.verifiedDate ? `<div class="card-verified">✓ Verified ${item.verifiedDate}</div>` : ''}
     </div>
   </div>`;
 }
@@ -2390,16 +2374,22 @@ async function sendChat() {
     scholarships: scholarships.map(s => ({
       title: s.title, amount: s.amount, deadline: s.deadline,
       category: s.category, eligibility: s.eligibility, url: s.url,
+      verifiedDate:'2026-04-09',
+
       grades: s.grades, gpaMin: s.gpaMin, interests: s.interests
     })),
     internships: internships.map(s => ({
       title: s.title, amount: s.amount, deadline: s.deadline,
       category: s.category, eligibility: s.eligibility, url: s.url,
+      verifiedDate:'2026-04-09',
+
       grades: s.grades
     })),
     universityPrograms: universityPrograms.map(s => ({
       title: s.title, amount: s.amount, deadline: s.deadline,
       tags: s.tags, eligibility: s.eligibility, url: s.url,
+      verifiedDate:'2026-04-09',
+
       grades: s.grades
     }))
   };
