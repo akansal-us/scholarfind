@@ -510,11 +510,9 @@ main{max-width:1200px;margin:0 auto;padding:2rem}
 
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-val" id="stat-scholarships">16</div><div class="stat-lbl">Scholarships</div></div>
-    <div class="stat"><div class="stat-val" id="stat-money">$600K+</div><div class="stat-lbl">Available</div></div>
-    <div class="stat"><div class="stat-val" id="stat-internships">15</div><div class="stat-lbl">Internships</div></div>
-    <div class="stat"><div class="stat-val">23</div><div class="stat-lbl">Uni Programs</div></div>
-    <div class="stat"><div class="stat-val" id="stat-deadline">Mar 31</div><div class="stat-lbl">Next Deadline</div></div>
+    <div class="stat"><div class="stat-val" id="stat-scholarships">15</div><div class="stat-lbl">Scholarships</div></div>
+    <div class="stat"><div class="stat-val" id="stat-internships">10</div><div class="stat-lbl">Internships</div></div>
+    <div class="stat"><div class="stat-val" id="stat-uni">21</div><div class="stat-lbl">Uni Programs</div></div>
   </div>
 </div>
 
@@ -2458,6 +2456,14 @@ document.addEventListener('DOMContentLoaded', function() {
   loadDistricts(); // loads districts.json then calls renderScholarships()
   renderInternships();
   renderUniversityPrograms();
+
+  // Update stats dynamically from actual data
+  const elSchol = document.getElementById('stat-scholarships');
+  const elIntern = document.getElementById('stat-internships');
+  const elUni = document.getElementById('stat-uni');
+  if (elSchol) elSchol.textContent = scholarships.length;
+  if (elIntern) elIntern.textContent = internships.length;
+  if (elUni) elUni.textContent = universityPrograms.length;
 
   const savedCount = document.getElementById('saved-count');
   const savedCountMobile = document.getElementById('saved-count-mobile');
